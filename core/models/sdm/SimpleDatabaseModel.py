@@ -1,9 +1,9 @@
 from xml.dom import minidom
 
-from core.sdm.Attribute import Attribute
-from core.sdm.Entity import Entity
-from core.sdm.ForeignKey import ForeignKey
-from core.sdm.Relationship import Relationship
+from core.models.sdm.Attribute import Attribute
+from core.models.sdm.Entity import Entity
+from core.models.sdm.ForeignKey import ForeignKey
+from core.models.sdm.Relationship import Relationship
 
 
 class SimpleDatabaseModel:

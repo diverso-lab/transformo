@@ -25,7 +25,7 @@
     </entity>
 
     <entity id="borrar">
-        <name>borrar</name>
+        <name>Borrar</name>
     </entity>
 
     <entity id="comment2">

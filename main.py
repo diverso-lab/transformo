@@ -1,13 +1,19 @@
-from core.sdm.SimpleDatabaseModel import SimpleDatabaseModel
+from core.models.mm.MigrationModel import MigrationModel
+from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 def main():
 
     sdm_source = SimpleDatabaseModel("assets/source.sdm")
-    sdm_source.print()
+    sdm_target = SimpleDatabaseModel("assets/target.sdm")
 
-    sdm2 = SimpleDatabaseModel("assets/target.sdm")
-    sdm2.print()
+    migration_model = MigrationModel(sdm_source, sdm_target)
+
+    migrate_users = migration_model.add_migration('migrate users')
+    migrate_posts = migration_model.add_migration('migrate posts')
+    migrate_forums = migration_model.add_migration('migrate forums')
+
+    migrate_posts.requires(migrate_users)
 
 
 if __name__ == "__main__":
