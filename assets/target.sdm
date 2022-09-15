@@ -1,0 +1,19 @@
+<sdm>
+
+    <entity id="post">
+        <name>Post</name>
+        <attribute>
+            <name>title</name>
+            <type>varchar(25)</type>
+        </attribute>
+        <attribute>
+            <name>body</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>author</name>
+            <type>varchar(25)</type>
+        </attribute>
+    </entity>
+
+</sdm>
