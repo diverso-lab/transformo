@@ -1,13 +1,13 @@
-from core.stm.actions.CreateAttributeAction import CreateAttributeAction
-from core.stm.actions.DeleteAttributeAction import DeleteAttributeAction
-from core.sdm.SimpleDatabaseModel import SimpleDatabaseModel
-from core.stm.AvailableAction import AvailableAction
-from core.stm.actions.CreateEntityAction import CreateEntityAction
-from core.stm.actions.DeleteEntityAction import DeleteEntityAction
-from core.stm.actions.MoveAttributeAction import MoveAttributeAction
-from core.stm.actions.RenameAttributeAction import RenameAttributeAction
-from core.stm.actions.RenameEntityAction import RenameEntityAction
-from core.stm.actions.RetypeAttributeAction import RetypeAttributeAction
+from core.models.stm.actions.CreateAttributeAction import CreateAttributeAction
+from core.models.stm.actions.DeleteAttributeAction import DeleteAttributeAction
+from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
+from core.models.stm.AvailableAction import AvailableAction
+from core.models.stm.actions.CreateEntityAction import CreateEntityAction
+from core.models.stm.actions.DeleteEntityAction import DeleteEntityAction
+from core.models.stm.actions.MoveAttributeAction import MoveAttributeAction
+from core.models.stm.actions.RenameAttributeAction import RenameAttributeAction
+from core.models.stm.actions.RenameEntityAction import RenameEntityAction
+from core.models.stm.actions.RetypeAttributeAction import RetypeAttributeAction
 
 
 class AvailableActionsExtractor:

@@ -1,6 +1,6 @@
 from typing import Any
 
-from core.stm.actions.AbstractAction import AbstractAction
+from core.models.stm.actions.AbstractAction import AbstractAction
 
 
 class AvailableAction:

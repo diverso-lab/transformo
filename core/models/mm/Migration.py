@@ -5,7 +5,7 @@ class Migration:
 
     def __init__(self, name: str, migration_type: MigrationType = MigrationType.Optional):
         self._name = name
-        self._type = migration_type
+        self._migration_type = migration_type
         self._requires_migrations: list[Migration] = list()
         self._excludes_migrations: list[Migration] = list()
 
@@ -13,4 +13,20 @@ class Migration:
         self._requires_migrations.append(migration)
 
     def excludes(self, migration):
-        self._excludes_migrations.append(migration)
+
+        # to avoid infinite recursion
+        if not migration in self._excludes_migrations:
+            self._excludes_migrations.append(migration)
+            migration.excludes(self)
+
+    def name(self):
+        return self._name
+
+    def type(self):
+        return self._migration_type
+
+    def requires_migrations(self):
+        return self._requires_migrations
+
+    def excludes_migrations(self):
+        return self._excludes_migrations

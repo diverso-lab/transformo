@@ -1,4 +1,4 @@
-from core.stm.Action import Action
+from core.models.stm.Action import Action
 
 
 class Transformation:
