@@ -86,6 +86,7 @@ class MigrationModel:
 
     def _select_migration(self, migration: Migration):
 
+        # migrations that are 'excludes' are removed from available migrations
         for m in migration.excludes_migrations():
             self._available_migrations.remove(m)
 

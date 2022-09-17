@@ -1,3 +1,4 @@
+from core.models.mm import MigrationModel
 from core.models.mm.MigrationType import MigrationType
 
 
@@ -8,6 +9,7 @@ class Migration:
         self._migration_type = migration_type
         self._requires_migrations: list[Migration] = list()
         self._excludes_migrations: list[Migration] = list()
+        self._migration_model: MigrationModel = None
 
     def requires(self, migration):
         self._requires_migrations.append(migration)
