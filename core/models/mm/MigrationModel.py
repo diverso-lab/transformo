@@ -3,6 +3,8 @@ from core.models.mm.MigrationType import MigrationType
 from core.models.sdm import SimpleDatabaseModel
 import copy
 
+from flamapy.core.discover import DiscoverMetamodels
+
 
 class MigrationModel:
 
@@ -12,6 +14,8 @@ class MigrationModel:
         self._migrations: list[Migration] = list()
         self._available_migrations: list[Migration] = list()
         self._selected_migrations: list[Migration] = list()
+        self._uvl: str = ''
+        self._dm = DiscoverMetamodels()
 
     def add_migration(self, name: str, migration_type: MigrationType = MigrationType.Optional) -> Migration:
         migration = Migration(name=name, migration_type=migration_type)
@@ -57,6 +61,13 @@ class MigrationModel:
         self.selected_migrations()
         print("Finish selection")
 
+    def is_valid(self):
+        return self._dm.use_operation_from_file("Valid", './models/' + self._uvl)
+
+    def is_valid_product(self):
+        return self._dm.use_operation_from_file("ValidProduct", './models/' + self._uvl,
+                                                configuration_file='./models/D2W.csvconf')
+
     def selection(self):
 
         if len(self._available_migrations) == 0:
@@ -97,3 +108,41 @@ class MigrationModel:
         if not migration in self._selected_migrations:
             self._selected_migrations.append(migration)
             self._available_migrations.remove(migration)
+
+    def export(self, file_name):
+        with open('models/' + file_name + ".uvl", 'w') as f:
+
+            # print features
+            f.write('features\n')
+            f.write('\t' + file_name + ' { abstract }\n')
+            # print mandatory features
+            f.write('\t\tmandatory\n')
+            for m in self._migrations:
+                if m.type() == MigrationType.Mandatory:
+                    string = "\t\t\t{}\n".format(m.name().replace(" ", "_"))
+                    f.write(string)
+
+            # print optional features
+            f.write('\t\toptional\n')
+            for m in self._migrations:
+                if m.type() == MigrationType.Optional:
+                    string = "\t\t\t{}\n".format(m.name().replace(" ", "_"))
+                    f.write(string)
+
+            # print constraints
+            f.write('constraints\n')
+            for m in self._migrations:
+
+                if len(m.requires_migrations()) > 0:
+                    for require_migration in m.requires_migrations():
+                        string = '\t{} => {}\n'.format(m.name().replace(" ", "_"),
+                                                       require_migration.name().replace(' ', '_'))
+                        f.write(string)
+
+                if len(m.excludes_migrations()) > 0:
+                    for exclude_migration in m.excludes_migrations():
+                        string = '\t{} => !{}\n'.format(m.name().replace(" ", "_"),
+                                                        exclude_migration.name().replace(' ', '_'))
+                        f.write(string)
+
+        self._uvl = file_name + '.uvl'
