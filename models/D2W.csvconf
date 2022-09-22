@@ -1,2 +1,4 @@
-migrate_posts,True
-migrate_forums,True
+D2W
+common_data
+migrate_users
+migrate_posts

@@ -1,3 +1,5 @@
+namespace D2W
+
 features
 	D2W { abstract }
 		mandatory
@@ -6,8 +8,7 @@ features
 			migrate_users
 			migrate_posts
 			migrate_forums
-			migrate_content
 constraints
 	migrate_posts => migrate_users
-	migrate_posts => !migrate_forums
-	migrate_forums => !migrate_posts
+	migrate_posts => ! migrate_forums
+	migrate_forums => ! migrate_posts

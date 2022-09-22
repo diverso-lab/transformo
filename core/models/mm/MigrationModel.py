@@ -1,14 +1,12 @@
 from core.models.mm.Migration import Migration
 from core.models.mm.MigrationType import MigrationType
 from core.models.sdm import SimpleDatabaseModel
-import copy
-
 from flamapy.core.discover import DiscoverMetamodels
 
 
 class MigrationModel:
 
-    def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel):
+    def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel, root: str):
         self._sdm_source = sdm_source
         self._sdm_target = sdm_target
         self._migrations: list[Migration] = list()
@@ -16,6 +14,8 @@ class MigrationModel:
         self._selected_migrations: list[Migration] = list()
         self._uvl: str = ''
         self._dm = DiscoverMetamodels()
+        self._exported_to_uvl = False
+        self._root = root
 
     def add_migration(self, name: str, migration_type: MigrationType = MigrationType.Optional) -> Migration:
         migration = Migration(name=name, migration_type=migration_type)
@@ -26,6 +26,8 @@ class MigrationModel:
             self._selected_migrations.append(migration)
         else:
             self._available_migrations.append(migration)
+
+        self.export(file_name=self._root)
 
         return migration
 
@@ -66,6 +68,10 @@ class MigrationModel:
 
     def is_valid_product(self):
         return self._dm.use_operation_from_file("ValidProduct", './models/' + self._uvl,
+                                                configuration_file='./models/D2W.csvconf')
+
+    def is_valid_configuration(self):
+        return self._dm.use_operation_from_file("ValidConfiguration", './models/' + self._uvl,
                                                 configuration_file='./models/D2W.csvconf')
 
     def selection(self):
@@ -112,6 +118,8 @@ class MigrationModel:
     def export(self, file_name):
         with open('models/' + file_name + ".uvl", 'w') as f:
 
+            f.write('namespace {}\n\n'.format(file_name))
+
             # print features
             f.write('features\n')
             f.write('\t' + file_name + ' { abstract }\n')
@@ -141,8 +149,10 @@ class MigrationModel:
 
                 if len(m.excludes_migrations()) > 0:
                     for exclude_migration in m.excludes_migrations():
-                        string = '\t{} => !{}\n'.format(m.name().replace(" ", "_"),
+                        string = '\t{} => ! {}\n'.format(m.name().replace(" ", "_"),
                                                         exclude_migration.name().replace(' ', '_'))
                         f.write(string)
 
         self._uvl = file_name + '.uvl'
+
+        self._exported_to_uvl = True
