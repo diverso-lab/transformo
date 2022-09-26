@@ -12,6 +12,7 @@ class MigrationModel:
         self._migrations: list[Migration] = list()
         self._available_migrations: list[Migration] = list()
         self._selected_migrations: list[Migration] = list()
+        self._eligible_migrations: list[Migration] = list()
         self._uvl: str = ''
         self._dm = DiscoverMetamodels()
         self._exported_to_uvl = False
@@ -34,7 +35,7 @@ class MigrationModel:
     def migrations(self) -> list[Migration]:
         return self._migrations
 
-    def available_migrations(self):
+    def print_available_migrations(self):
 
         print("Available migrations")
 
@@ -44,7 +45,7 @@ class MigrationModel:
             print("({}) ".format(i) + m.name())
             i = i + 1
 
-    def selected_migrations(self):
+    def print_selected_migrations(self):
 
         print("#####")
         print("Selected migrations:")
@@ -60,7 +61,7 @@ class MigrationModel:
 
     def finish(self):
         print()
-        self.selected_migrations()
+        self.print_selected_migrations()
         print("Finish selection")
 
     def is_valid(self):
@@ -79,9 +80,9 @@ class MigrationModel:
         if len(self._available_migrations) == 0:
             return self.finish()
 
-        self.selected_migrations()
+        self.print_selected_migrations()
 
-        self.available_migrations()
+        self.print_available_migrations()
 
         try:
 
@@ -101,19 +102,63 @@ class MigrationModel:
 
             return self.selection()
 
+    def _export_selected_migrations(self, available_migration: Migration = None):
+
+        with open('models/temp.csvconf', 'w') as f:
+
+            f.write('{}\n'.format('D2W'))
+
+            for s in self._selected_migrations:
+                f.write('{}\n'.format(s.name().replace(' ','_')))
+
+            if not available_migration is None:
+                f.write('{}\n'.format(available_migration.name().replace(' ','_')))
+
     def _select_migration(self, migration: Migration):
 
-        # migrations that are 'excludes' are removed from available migrations
-        for m in migration.excludes_migrations():
-            self._available_migrations.remove(m)
+        self._selected_migrations.append(migration)
+        self._available_migrations.remove(migration)
+        self._eligible_migrations.clear()
 
-        # recursive selection for requires
-        for m in migration.requires_migrations():
-            self._select_migration(m)
+        print("selecting... " + migration.name())
 
-        if not migration in self._selected_migrations:
-            self._selected_migrations.append(migration)
-            self._available_migrations.remove(migration)
+        for a in self._available_migrations:
+
+            print("checking... " + a.name())
+
+            self._export_selected_migrations(available_migration=a)
+            valid_product_with_available_migration = self._dm.use_operation_from_file("ValidProduct",
+                                                                                      './models/' + self._uvl,
+                                                                                      configuration_file='./models/temp.csvconf')
+
+            self._export_selected_migrations()
+            valid_product_without_available_migration = self._dm.use_operation_from_file("ValidProduct",
+                                                                                      './models/' + self._uvl,
+                                                                                      configuration_file='./models/temp.csvconf')
+
+            print("valid_product_with_available_migration: " + str(valid_product_with_available_migration))
+            print("valid_product_without_available_migration: " + str(valid_product_without_available_migration))
+
+            # detected requires
+            if valid_product_with_available_migration and not valid_product_without_available_migration:
+
+                print("detectadi requires")
+
+                # self._available_migrations.remove(a)
+                self._selected_migrations.append(a)
+
+            # detected excludes
+            if not valid_product_with_available_migration and valid_product_without_available_migration:
+
+                print("detectado excludes")
+                # self._available_migrations.remove(a)
+
+            if valid_product_with_available_migration and valid_product_without_available_migration:
+
+                self._eligible_migrations.append(a)
+
+        self._available_migrations.clear()
+        self._available_migrations = self._eligible_migrations.copy()
 
     def export(self, file_name):
         with open('models/' + file_name + ".uvl", 'w') as f:
@@ -150,7 +195,7 @@ class MigrationModel:
                 if len(m.excludes_migrations()) > 0:
                     for exclude_migration in m.excludes_migrations():
                         string = '\t{} => ! {}\n'.format(m.name().replace(" ", "_"),
-                                                        exclude_migration.name().replace(' ', '_'))
+                                                         exclude_migration.name().replace(' ', '_'))
                         f.write(string)
 
         self._uvl = file_name + '.uvl'

@@ -13,20 +13,22 @@ def main():
     migrate_users = migration_model.add_migration('migrate users')
     migrate_posts = migration_model.add_migration('migrate posts')
     migrate_forums = migration_model.add_migration('migrate forums')
-    #migrate_content = migration_model.add_migration('migrate content')
+    # migrate_content = migration_model.add_migration('migrate content')
 
     migrate_posts.requires(migrate_users)
     migrate_posts.excludes(migrate_forums)
 
     migration_model.export('D2W')
 
+    selected = migration_model.selection()
+
     # migration_model.selection()
 
-    #print(migration_model.is_valid())
+    # print(migration_model.is_valid())
 
-    print("Valid product: " + str(migration_model.is_valid_product()))
+    # print("Valid product: " + str(migration_model.is_valid_product()))
 
-    print("Valid configuration: " + str(migration_model.is_valid_configuration()))
+    # print("Valid configuration: " + str(migration_model.is_valid_configuration()))
 
 
 if __name__ == "__main__":
