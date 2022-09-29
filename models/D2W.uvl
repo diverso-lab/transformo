@@ -7,8 +7,10 @@ features
 		optional
 			migrate_users
 			migrate_posts
+			migrate_comments
 			migrate_forums
 constraints
 	migrate_posts => migrate_users
 	migrate_posts => ! migrate_forums
+	migrate_comments => migrate_posts
 	migrate_forums => ! migrate_posts

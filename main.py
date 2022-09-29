@@ -12,10 +12,12 @@ def main():
     common_data = migration_model.add_migration('common data', MigrationType.Mandatory)
     migrate_users = migration_model.add_migration('migrate users')
     migrate_posts = migration_model.add_migration('migrate posts')
+    migrate_comments = migration_model.add_migration('migrate comments')
     migrate_forums = migration_model.add_migration('migrate forums')
     # migrate_content = migration_model.add_migration('migrate content')
 
     migrate_posts.requires(migrate_users)
+    migrate_comments.requires(migrate_posts)
     migrate_posts.excludes(migrate_forums)
 
     migration_model.export('D2W')

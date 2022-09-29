@@ -94,7 +94,11 @@ class MigrationModel:
             option = int(inputted)
 
             migration = self._available_migrations[option]
-            self._select_migration(migration)
+
+            self._selected_migrations.append(migration)
+            self._available_migrations.remove(migration)
+
+            self._select_migration()
 
             return self.selection()
 
@@ -114,48 +118,55 @@ class MigrationModel:
             if not available_migration is None:
                 f.write('{}\n'.format(available_migration.name().replace(' ','_')))
 
-    def _select_migration(self, migration: Migration):
+    def _select_migration(self):
 
-        self._selected_migrations.append(migration)
-        self._available_migrations.remove(migration)
         self._eligible_migrations.clear()
-
-        print("selecting... " + migration.name())
 
         for a in self._available_migrations:
 
             print("checking... " + a.name())
 
             self._export_selected_migrations(available_migration=a)
-            valid_product_with_available_migration = self._dm.use_operation_from_file("ValidProduct",
+            valid_configuration_with_available_migration = self._dm.use_operation_from_file("ValidConfiguration",
                                                                                       './models/' + self._uvl,
                                                                                       configuration_file='./models/temp.csvconf')
 
             self._export_selected_migrations()
-            valid_product_without_available_migration = self._dm.use_operation_from_file("ValidProduct",
+            valid_configuration_without_available_migration = self._dm.use_operation_from_file("ValidConfiguration",
                                                                                       './models/' + self._uvl,
                                                                                       configuration_file='./models/temp.csvconf')
 
-            print("valid_product_with_available_migration: " + str(valid_product_with_available_migration))
-            print("valid_product_without_available_migration: " + str(valid_product_without_available_migration))
+            print("valid_configuration_with_available_migration: " + str(valid_configuration_with_available_migration))
+            print("valid_configuration_without_available_migration: " + str(valid_configuration_without_available_migration))
 
             # detected requires
-            if valid_product_with_available_migration and not valid_product_without_available_migration:
+            if valid_configuration_with_available_migration and not valid_configuration_without_available_migration:
 
-                print("detectadi requires")
+                print("detectado requires")
 
-                # self._available_migrations.remove(a)
                 self._selected_migrations.append(a)
 
+                # mutates selected migration in temp file (csvconf)
+                self._export_selected_migrations()
+
+                input("pausa")
+
             # detected excludes
-            if not valid_product_with_available_migration and valid_product_without_available_migration:
+            if not valid_configuration_with_available_migration and valid_configuration_without_available_migration:
 
                 print("detectado excludes")
                 # self._available_migrations.remove(a)
 
-            if valid_product_with_available_migration and valid_product_without_available_migration:
+            if valid_configuration_with_available_migration and valid_configuration_without_available_migration:
 
                 self._eligible_migrations.append(a)
+
+        valid_product = self._dm.use_operation_from_file("ValidProduct",'./models/' + self._uvl,
+                                                                                      configuration_file='./models/temp.csvconf')
+
+        if not valid_product:
+            return self._select_migration()
+
 
         self._available_migrations.clear()
         self._available_migrations = self._eligible_migrations.copy()
