@@ -1,3 +1,6 @@
 D2W
 common_data
+migrate_posts
 migrate_comments
+migrate_forums
+migrate_users

@@ -127,49 +127,50 @@ class MigrationModel:
             print("checking... " + a.name())
 
             self._export_selected_migrations(available_migration=a)
-            valid_configuration_with_available_migration = self._dm.use_operation_from_file("ValidConfiguration",
+            valid_product_with_available_migration = self._dm.use_operation_from_file("ValidProduct",
                                                                                       './models/' + self._uvl,
                                                                                       configuration_file='./models/temp.csvconf')
 
             self._export_selected_migrations()
-            valid_configuration_without_available_migration = self._dm.use_operation_from_file("ValidConfiguration",
+            valid_product_without_available_migration = self._dm.use_operation_from_file("ValidProduct",
                                                                                       './models/' + self._uvl,
                                                                                       configuration_file='./models/temp.csvconf')
 
-            print("valid_configuration_with_available_migration: " + str(valid_configuration_with_available_migration))
-            print("valid_configuration_without_available_migration: " + str(valid_configuration_without_available_migration))
-
-            # detected requires
-            if valid_configuration_with_available_migration and not valid_configuration_without_available_migration:
-
-                print("detectado requires")
-
-                self._selected_migrations.append(a)
-
-                # mutates selected migration in temp file (csvconf)
-                self._export_selected_migrations()
-
-                input("pausa")
+            #print("valid_product_with_available_migration: " + str(valid_product_with_available_migration))
+            #print("valid_product_without_available_migration: " + str(valid_product_without_available_migration))
 
             # detected excludes
-            if not valid_configuration_with_available_migration and valid_configuration_without_available_migration:
+            if not valid_product_with_available_migration and valid_product_without_available_migration:
 
                 print("detectado excludes")
-                # self._available_migrations.remove(a)
+                self._available_migrations.remove(a)
 
-            if valid_configuration_with_available_migration and valid_configuration_without_available_migration:
+            # detected requires
+            elif not valid_product_with_available_migration:
 
-                self._eligible_migrations.append(a)
+                    print("detectado requires")
 
-        valid_product = self._dm.use_operation_from_file("ValidProduct",'./models/' + self._uvl,
-                                                                                      configuration_file='./models/temp.csvconf')
+                    self._selected_migrations.append(a)
 
-        if not valid_product:
-            return self._select_migration()
+                    # mutates selected migration in temp file (csvconf)
+                    self._export_selected_migrations()
+
+                    self._available_migrations.remove(a)
+
+                    return self._select_migration()
+
+            else:
+            
+                if valid_product_with_available_migration and valid_product_without_available_migration:
+
+                    self._selected_migrations.append(a)
+
+                    #self._eligible_migrations.append(a)
+            
 
 
-        self._available_migrations.clear()
-        self._available_migrations = self._eligible_migrations.copy()
+        #self._available_migrations.clear()
+        #self._available_migrations = self._eligible_migrations.copy()
 
     def export(self, file_name):
         with open('models/' + file_name + ".uvl", 'w') as f:
