@@ -4,33 +4,36 @@ from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 def main():
+
+    # Definition of Simple Database Model
     sdm_source = SimpleDatabaseModel('models/source.sdm')
     sdm_target = SimpleDatabaseModel('models/target.sdm')
 
+    # Definition of migration model and migrations (abstract level)
     migration_model = MigrationModel(sdm_source, sdm_target, root = "D2W")
-
     common_data = migration_model.add_migration('common data', MigrationType.Mandatory)
-    migrate_users = migration_model.add_migration('migrate users')
-    migrate_posts = migration_model.add_migration('migrate posts')
-    migrate_comments = migration_model.add_migration('migrate comments')
-    migrate_forums = migration_model.add_migration('migrate forums')
-    # migrate_content = migration_model.add_migration('migrate content')
+    users = migration_model.add_migration('migrate users')
+    posts = migration_model.add_migration('migrate posts')
+    comments = migration_model.add_migration('migrate comments')
+    forums = migration_model.add_migration('migrate forums')
+    posts.requires(users)
+    comments.requires(posts)
+    posts.excludes(forums)
 
-    migrate_posts.requires(migrate_users)
-    migrate_comments.requires(migrate_posts)
-    migrate_posts.excludes(migrate_forums)
-
+    # Export to UVL
     migration_model.export('D2W')
 
-    selected = migration_model.selection()
+    # Interactive definition of each migration
+    users.define_migration()
 
-    # migration_model.selection()
-
-    # print(migration_model.is_valid())
-
-    # print("Valid product: " + str(migration_model.is_valid_product()))
-
-    # print("Valid configuration: " + str(migration_model.is_valid_configuration()))
+    # Selection of migrations
+    '''
+        This is a pending implementation in the Flama framework.
+        For the moment, let's assume that the dynamic feature selection 
+        functionality (constraint propagation) is already implemented.
+    '''
+    #selected = migration_model.selection()
+    selected = [common_data, users, posts, comments]
 
 
 if __name__ == "__main__":

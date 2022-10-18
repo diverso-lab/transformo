@@ -1,4 +1,4 @@
-from core.stm.actions.AbstractAction import AbstractAction
+from core.models.stm.actions.AbstractAction import AbstractAction
 
 
 class RetypeAttributeAction(AbstractAction):

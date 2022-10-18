@@ -18,6 +18,12 @@ class MigrationModel:
         self._exported_to_uvl = False
         self._root = root
 
+    def sdm_source(self):
+        return self._sdm_source
+
+    def sdm_target(self):
+        return self._sdm_target
+
     def add_migration(self, name: str, migration_type: MigrationType = MigrationType.Optional) -> Migration:
         migration = Migration(name=name, migration_type=migration_type)
 
@@ -29,6 +35,8 @@ class MigrationModel:
             self._available_migrations.append(migration)
 
         self.export(file_name=self._root)
+
+        migration.add_migration_model(self)
 
         return migration
 
