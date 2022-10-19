@@ -59,13 +59,15 @@ class Migration:
 
         if inputed == "q":
 
+            '''
             if self.__first_writing_in_file:
                 return self.finish()
 
             self._close_transformations()
             self._generate_sql_script()
             return self.finish()
-
+            '''
+            
         option = int(inputed)
 
         # selection of action from available actions in current SDM
