@@ -8,10 +8,6 @@ class SimpleTransformationModel:
     def __init__(self, stm_file) -> None:
 
         self._stm_file = stm_file
-
-        print("LOG")
-        print(self._stm_file)
-
         doc = minidom.parse(self._stm_file)
         self._transformations = []
         self._read_transformations(doc)

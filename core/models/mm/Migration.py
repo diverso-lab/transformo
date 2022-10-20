@@ -9,8 +9,8 @@ from core.writers.MigrationWriter import MigrationWriter
 
 class Migration:
 
-    def __init__(self, name: str, migration_type: MigrationType = MigrationType.Optional):
-        self._name = name
+    def __init__(self, migration_name: str, migration_type: MigrationType = MigrationType.Optional):
+        self._migration_name = migration_name
         self._migration_type = migration_type
         self._requires_migrations: list[Migration] = list()
         self._excludes_migrations: list[Migration] = list()
@@ -34,7 +34,7 @@ class Migration:
             migration.excludes(self)
 
     def name(self):
-        return self._name
+        return self._migration_name
 
     def type(self):
         return self._migration_type
@@ -66,7 +66,7 @@ class Migration:
 
             migration_writer = MigrationWriter(
                 migration_model_name = self._migration_model.root(),
-                migration_name = self._name,
+                migration_name = self._migration_name,
                 available_action= None,
                 opening = opening,
                 closing = True
@@ -87,7 +87,7 @@ class Migration:
         # write transformation in STM file
         migration_writer = MigrationWriter(
             migration_model_name = self._migration_model.root(),
-            migration_name = self._name,
+            migration_name = self._migration_name,
             available_action = selected_action,
             opening = opening,
             closing = False
@@ -98,8 +98,16 @@ class Migration:
         sdm_mutator = SimpleDatabaseModelMutator(
             current_sdm_source=self._current_sdm_source,
             available_action=selected_action,
-            actions_counter = self._actions_counter)
-        sdm_mutator.mutate()
+            actions_counter = self._actions_counter,
+            migration_name = self._migration_name)
+        # TODO: mutate
+        # sdm_mutator.mutate()
+        # TODO: return new SDM
+        # self._current_sdm_source = sdm_mutator.new_sdm()
+
+        self._actions_counter = self._actions_counter + 1
+
+       
 
         # recursive 
         self.define(opening = False)

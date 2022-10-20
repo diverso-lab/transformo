@@ -28,7 +28,7 @@ class MigrationModel:
         return self._root
 
     def add_migration(self, name: str, migration_type: MigrationType = MigrationType.Optional) -> Migration:
-        migration = Migration(name=name, migration_type=migration_type)
+        migration = Migration(migration_name=name, migration_type=migration_type)
 
         self._migrations.append(migration)
 
