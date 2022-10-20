@@ -11,22 +11,22 @@ def main():
 
     # Definition of migration model and migrations (abstract level)
     migration_model = MigrationModel(sdm_source, sdm_target, root = "D2W")
-    common_data = migration_model.add_migration('common data', MigrationType.Mandatory)
-    users = migration_model.add_migration('migrate users')
-    posts = migration_model.add_migration('migrate posts')
-    comments = migration_model.add_migration('migrate comments')
-    forums = migration_model.add_migration('migrate forums')
+    common_migration = migration_model.add_migration('common_migration', MigrationType.Mandatory)
+    users_migration = migration_model.add_migration('users_migration')
+    posts_migration = migration_model.add_migration('posts_migration')
+    comments_migration = migration_model.add_migration('comments_migration')
+    forums_migration = migration_model.add_migration('forums_migration')
 
     # Definition of constraints
-    posts.requires(users)
-    comments.requires(posts)
-    posts.excludes(forums)
+    posts_migration.requires(users_migration)
+    comments_migration.requires(posts_migration)
+    posts_migration.excludes(forums_migration)
 
     # Export to UVL
     migration_model.export()
 
     # Interactive definition of each migration
-    users.define_migration()
+    users_migration.define_migration()
 
     # Selection of migrations
     '''
@@ -35,7 +35,7 @@ def main():
         functionality (constraint propagation) is already implemented.
     '''
     #selected = migration_model.selection()
-    selected = [common_data, users, posts, comments]
+    selected = [common_migration, users_migration, posts_migration, comments_migration]
 
 
 if __name__ == "__main__":

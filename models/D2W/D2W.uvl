@@ -3,14 +3,14 @@ namespace D2W
 features
 	D2W { abstract }
 		mandatory
-			common_data
+			common_migration
 		optional
-			migrate_users
-			migrate_posts
-			migrate_comments
-			migrate_forums
+			users_migration
+			posts_migration
+			comments_migration
+			forums_migration
 constraints
-	migrate_posts => migrate_users
-	migrate_posts => ! migrate_forums
-	migrate_comments => migrate_posts
-	migrate_forums => ! migrate_posts
+	posts_migration => users_migration
+	posts_migration => ! forums_migration
+	comments_migration => posts_migration
+	forums_migration => ! posts_migration
