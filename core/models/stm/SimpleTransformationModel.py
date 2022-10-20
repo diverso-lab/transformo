@@ -5,6 +5,39 @@ from core.models.stm.Transformation import Transformation
 
 class SimpleTransformationModel:
 
+    def __init__(self, stm_file) -> None:
+
+        self._stm_file = stm_file
+
+        print("LOG")
+        print(self._stm_file)
+
+        doc = minidom.parse(self._stm_file)
+        self._transformations = []
+        self._read_transformations(doc)
+
+    def _read_transformations(self, doc):
+        items = doc.getElementsByTagName('transformation')
+
+        for i in items:
+            transformation = Transformation(item=i)
+            self._transformations.append(transformation)
+
+    def transformations(self):
+        return self._transformations
+
+    def print(self):
+        for t in self._transformations:
+            print("\n" + str(t))
+
+            print("\tActions:")
+            for a in t.actions():
+                print("\t" + str(a))
+
+
+
+
+    '''
     def __init__(self, sdm, file) -> None:
 
         self.__sdm = sdm
@@ -37,3 +70,5 @@ class SimpleTransformationModel:
             print("\tActions:")
             for a in t.actions():
                 print("\t" + str(a))
+
+    '''

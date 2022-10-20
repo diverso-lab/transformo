@@ -1,7 +1,9 @@
 from core.models.mm import MigrationModel
 from core.models.mm.MigrationType import MigrationType
+from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.AvailableActionsExtractor import AvailableActionsExtractor
 from core.models.stm.AvailableAction import AvailableAction
+from core.mutators.SimpleDatabaseModelMutator import SimpleDatabaseModelMutator
 from core.writers.MigrationWriter import MigrationWriter
 
 
@@ -13,10 +15,13 @@ class Migration:
         self._requires_migrations: list[Migration] = list()
         self._excludes_migrations: list[Migration] = list()
         self._migration_model: MigrationModel = None
-        self.__first_writing_in_file = True
+        self._selected_actions: list[AvailableAction] = list()
+        self._current_sdm_source:SimpleDatabaseModel = None
+        self._actions_counter:int = 0
 
     def add_migration_model(self, migration_model : MigrationModel):
         self._migration_model = migration_model
+        self._current_sdm_source = migration_model.sdm_source()
 
     def requires(self, migration):
         self._requires_migrations.append(migration)
@@ -40,10 +45,10 @@ class Migration:
     def excludes_migrations(self):
         return self._excludes_migrations
 
-    def define_migration(self, opening = True):
+    def define(self, opening = True):
 
-        extractor = AvailableActionsExtractor(sdm_source = self._migration_model.sdm_source(), sdm_target = self._migration_model.sdm_target())
-        selected_actions : list[AvailableAction] = list()
+        extractor = AvailableActionsExtractor(sdm_source = self._current_sdm_source, sdm_target = self._migration_model.sdm_target())
+        
 
         # show current source SDM
         extractor.A().print()
@@ -66,6 +71,8 @@ class Migration:
                 opening = opening,
                 closing = True
             )
+            migration_writer.write()
+            migration_writer.stm().print() ###### delete this line
 
             return self._finish()
             
@@ -73,7 +80,7 @@ class Migration:
 
         # selection of action from available actions in current SDM
         selected_action = extractor.available_actions()[option]
-        selected_actions.append(selected_action)
+        self._selected_actions.append(selected_action)
         print("Selected action: \n")
         print(selected_action)
 
@@ -85,8 +92,17 @@ class Migration:
             opening = opening,
             closing = False
         )
+        migration_writer.write()
 
-        self.define_migration(opening = False)
+        # mutates previous SDM
+        sdm_mutator = SimpleDatabaseModelMutator(
+            current_sdm_source=self._current_sdm_source,
+            available_action=selected_action,
+            actions_counter = self._actions_counter)
+        sdm_mutator.mutate()
+
+        # recursive 
+        self.define(opening = False)
 
     def _finish(self):
         pass

@@ -26,7 +26,7 @@ def main():
     migration_model.export()
 
     # Interactive definition of each migration
-    users_migration.define_migration()
+    users_migration.define()
 
     # Selection of migrations
     '''

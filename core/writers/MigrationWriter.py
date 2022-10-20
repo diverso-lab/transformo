@@ -2,6 +2,8 @@ from core.models.stm.AvailableAction import AvailableAction
 import jinja2
 import os
 
+from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
+
 
 class MigrationWriter:
 
@@ -15,7 +17,7 @@ class MigrationWriter:
 
         self._migration_model_name = migration_model_name
         self._migration_name = migration_name
-        self._filename = "models/{}/{}.stm".format(migration_model_name, migration_name)
+        self._stm_filename = "models/{}/{}.stm".format(migration_model_name, migration_name)
         self._available_action = available_action
         self._opening = opening
         self._closing = closing
@@ -23,12 +25,13 @@ class MigrationWriter:
         templateLoader = jinja2.FileSystemLoader(searchpath = "./core/writers/migration_templates")
         self._template_env = jinja2.Environment(loader = templateLoader)
 
-        self._write()
+    def stm_filename(self):
+        return self._stm_filename
 
-    def filename(self):
-        return self._filename
+    def stm(self):
+        return SimpleTransformationModel(stm_file = self._stm_filename)
 
-    def _write(self):
+    def write(self):
 
         if self._opening:
 
@@ -81,13 +84,12 @@ class MigrationWriter:
                     case "delete":
                         self._write_in_template("delete_attribute_action.stub")
 
-
     def _write_in_template(self, template_file):
         
         template = self._template_env.get_template(template_file)
         render = template.render(action = self._available_action.action())
 
-        with open(self._filename, "a") as f:
+        with open(self._stm_filename, "a") as f:
             f.write("\n")
             f.write(render)
 
@@ -96,14 +98,14 @@ class MigrationWriter:
         template = self._template_env.get_template(template_file)
         render = template.render()
 
-        with open(self._filename, "a") as f:
+        with open(self._stm_filename, "a") as f:
             if blank_line:
                 for i in range(number_blank_lines):
                     f.write("\n")
             f.write(render)
 
     def _clear(self):
-        open(self._filename, 'w').close()
+        open(self._stm_filename, 'w').close()
 
     def _finish(self):
         pass

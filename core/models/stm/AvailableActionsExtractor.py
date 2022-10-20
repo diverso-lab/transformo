@@ -18,7 +18,6 @@ class AvailableActionsExtractor:
         self._B = sdm_target
         self._available_actions : list[AvailableAction] = list()
 
-
     def A(self):
         return self._A
     
