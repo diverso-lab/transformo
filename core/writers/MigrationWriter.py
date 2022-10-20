@@ -1,43 +1,50 @@
 from core.models.stm.AvailableAction import AvailableAction
 import jinja2
+import os
 
 
 class MigrationWriter:
 
-    def __init__(self, filename, available_action: AvailableAction = None, first_write: bool = None, close : bool = False, single = False, transformation_file = None) -> None:
-        
+    def __init__(
+        self, 
+        migration_model_name:str,
+        migration_name:str, 
+        available_action: AvailableAction = None,
+        opening:bool = False,
+        closing:bool = False):
+
+        self._migration_model_name = migration_model_name
+        self._migration_name = migration_name
+        self._filename = "models/{}/{}.stm".format(migration_model_name, migration_name)
         self._available_action = available_action
+        self._opening = opening
+        self._closing = closing
 
-        templateLoader = jinja2.FileSystemLoader(searchpath = "./core/writer/transformation_templates")
-        self.__template_env = jinja2.Environment(loader = templateLoader)
+        templateLoader = jinja2.FileSystemLoader(searchpath = "./core/writers/migration_templates")
+        self._template_env = jinja2.Environment(loader = templateLoader)
 
-        self.__filename = "models/{}.stm".format(filename)
-
-        self.__filename_all_transformation = "stm/all.xml"
-        self.__first_write = first_write
-
-        self._single = single
+        self._write()
 
     def filename(self):
-        return self.__filename
+        return self._filename
 
-    def clear(self, filename):
-        open(filename, 'w').close()
-
-    def write_empty_line(self, filename):
-        with open(filename, "a") as f:
-            f.write("\n")
-
-    def write_single(self):
-
-        # clear file
-        self.clear(self.__filename)
-
-        self.select_and_write_in_template()
+    def _write(self):
 
         
 
-    def select_and_write_in_template(self):
+        if self._opening:
+
+            try:
+                os.mkdir("models/{}".format(self._migration_model_name))
+            except:
+                pass
+
+                self._clear()
+            self._write_in_template_without_parameter("g_opening.stub", blank_line= False)
+
+        if self._closing:
+            self._write_in_template_without_parameter("g_closing.stub", number_blank_lines=2)
+            return self._finish()
 
         transformation_type = self._available_action.action().transformation_type()
         action_type = self._available_action.action().action_type()
@@ -80,56 +87,29 @@ class MigrationWriter:
 
                 self._write_in_template("delete_attribute_action.stub")
 
-
-
-    def write(self):
-
-        # clear file
-        self.clear(self.__filename)
-
-        if(self.__first_write):
-            self.clear(self.__filename_all_transformation)
-
-        self.select_and_write_in_template()
-
-
-    def close(self):
-        template = self.__template_env.get_template("g_end.stub")
-        render = template.render()
-
-        with open(self.__filename_all_transformation, "a") as f:
-            f.write(render)
-
-        self.write_empty_line(self.__filename_all_transformation)
-
-
     def _write_in_template(self, template_file):
         
-        # write unique transformation in file
-        template = self.__template_env.get_template(template_file)
+        template = self._template_env.get_template(template_file)
         render = template.render(action = self._available_action.action())
 
-        with open(self.__filename, "a") as f:
+        with open(self._filename, "a") as f:
+            f.write("\n")
             f.write(render)
 
-        self.write_empty_line(self.__filename)
+    def _write_in_template_without_parameter(self, template_file: str, blank_line = True, number_blank_lines = 1):
 
-        
-        # write with the rest of transformation
-        if not self._single:
-            # write the start
-            if self.__first_write:
-                template = self.__template_env.get_template("g_start.stub")
-                render = template.render(action = self._available_action.action())
+        template = self._template_env.get_template(template_file)
+        render = template.render()
 
-                with open(self.__filename_all_transformation, "a") as f:
-                    f.write(render)
+        with open(self._filename, "a") as f:
+            if blank_line:
+                for i in range(number_blank_lines):
+                    f.write("\n")
+            f.write(render)
 
-            # write the transformation in the rest of all transformations
-            template = self.__template_env.get_template("g_" + template_file)
-            render = template.render(action = self._available_action.action())
+    def _clear(self):
+        open(self._filename, 'w').close()
 
-            with open(self.__filename_all_transformation, "a") as f:
-                f.write(render)
+    def _finish(self):
+        pass
 
-            self.write_empty_line(self.__filename_all_transformation)

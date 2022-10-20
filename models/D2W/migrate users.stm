@@ -1,0 +1,9 @@
+<stm>
+
+    <transformation type="entity" id="DeleteEntityAction">
+        <action type="delete">
+            <entity>borrar</entity>
+        </action>
+    </transformation>
+
+</stm>

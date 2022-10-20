@@ -40,7 +40,7 @@ class Migration:
     def excludes_migrations(self):
         return self._excludes_migrations
 
-    def define_migration(self):
+    def define_migration(self, opening = True):
 
         extractor = AvailableActionsExtractor(sdm_source = self._migration_model.sdm_source(), sdm_target = self._migration_model.sdm_target())
         selected_actions : list[AvailableAction] = list()
@@ -59,14 +59,15 @@ class Migration:
 
         if inputed == "q":
 
-            '''
-            if self.__first_writing_in_file:
-                return self.finish()
+            migration_writer = MigrationWriter(
+                migration_model_name = self._migration_model.root(),
+                migration_name = self._name,
+                available_action= None,
+                opening = opening,
+                closing = True
+            )
 
-            self._close_transformations()
-            self._generate_sql_script()
-            return self.finish()
-            '''
+            return self._finish()
             
         option = int(inputed)
 
@@ -77,16 +78,16 @@ class Migration:
         print(selected_action)
 
         # write transformation in STM file
-        stm_file = self.write_transformation(selected_action)
-        #stm = SimpleTransformationModel(sdm = self._A, file = stm_file)
+        migration_writer = MigrationWriter(
+            migration_model_name = self._migration_model.root(),
+            migration_name = self._name,
+            available_action = selected_action,
+            opening = opening,
+            closing = False
+        )
 
-    def write_transformation(self, action):
+        self.define_migration(opening = False)
 
-        transformation_writer = MigrationWriter(
-            filename = self._name,
-            available_action = action, 
-            first_write = self.__first_writing_in_file)
-        transformation_writer.write()
-
-        self.__first_writing_in_file = False
+    def _finish(self):
+        pass
 
