@@ -30,8 +30,6 @@ class MigrationWriter:
 
     def _write(self):
 
-        
-
         if self._opening:
 
             try:
@@ -39,7 +37,7 @@ class MigrationWriter:
             except:
                 pass
 
-                self._clear()
+            self._clear()
             self._write_in_template_without_parameter("g_opening.stub", blank_line= False)
 
         if self._closing:
@@ -49,43 +47,40 @@ class MigrationWriter:
         transformation_type = self._available_action.action().transformation_type()
         action_type = self._available_action.action().action_type()
 
-        # write transformation of type ENTITY
-        if transformation_type == "entity":
+        match transformation_type:
 
-            if action_type == "create":
+            case "entity":
+                
+                match action_type:
 
-                self._write_in_template("create_entity_action.stub")
+                    case "create":
+                        self._write_in_template("create_entity_action.stub")
 
-            if action_type == "rename":
+                    case "rename":
+                        self._write_in_template("rename_entity_action.stub")
 
-                self._write_in_template("rename_entity_action.stub")
+                    case "delete":
+                        self._write_in_template("delete_entity_action.stub")
 
-            if action_type == "delete":
+            case "attribute":
 
-                self._write_in_template("delete_entity_action.stub")
+                match action_type:
 
-        # write transformation of type ATTRIBUTE
-        if transformation_type == "attribute":
+                    case "create":
+                        self._write_in_template("create_attribute_action.stub")
 
-            if action_type == "create":
+                    case "rename":
+                        self._write_in_template("rename_attribute_action.stub")
 
-                self._write_in_template("create_attribute_action.stub")
+                    case "retype":
+                        self._write_in_template("retype_attribute_action.stub")
 
-            if action_type == "rename":
+                    case "move":
+                        self._write_in_template("move_attribute_action.stub")
 
-                self._write_in_template("rename_attribute_action.stub")
+                    case "delete":
+                        self._write_in_template("delete_attribute_action.stub")
 
-            if action_type == "retype":
-
-                self._write_in_template("retype_attribute_action.stub")
-
-            if action_type == "move":
-
-                self._write_in_template("move_attribute_action.stub")
-
-            if action_type == "delete":
-
-                self._write_in_template("delete_attribute_action.stub")
 
     def _write_in_template(self, template_file):
         

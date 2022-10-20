@@ -6,8 +6,8 @@ from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 def main():
 
     # Definition of Simple Database Model
-    sdm_source = SimpleDatabaseModel('models/source.sdm')
-    sdm_target = SimpleDatabaseModel('models/target.sdm')
+    sdm_source = SimpleDatabaseModel('models/D2W/source.sdm')
+    sdm_target = SimpleDatabaseModel('models/D2W/target.sdm')
 
     # Definition of migration model and migrations (abstract level)
     migration_model = MigrationModel(sdm_source, sdm_target, root = "D2W")
@@ -16,12 +16,14 @@ def main():
     posts = migration_model.add_migration('migrate posts')
     comments = migration_model.add_migration('migrate comments')
     forums = migration_model.add_migration('migrate forums')
+
+    # Definition of constraints
     posts.requires(users)
     comments.requires(posts)
     posts.excludes(forums)
 
     # Export to UVL
-    migration_model.export('D2W')
+    migration_model.export()
 
     # Interactive definition of each migration
     users.define_migration()

@@ -2,7 +2,14 @@
 
     <transformation type="entity" id="DeleteEntityAction">
         <action type="delete">
-            <entity>borrar</entity>
+            <entity>comment2</entity>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="DeleteAttributeAction">
+        <action type="delete">
+            <entity>post</entity>
+            <attribute>attribute_move</attribute>
         </action>
     </transformation>
 

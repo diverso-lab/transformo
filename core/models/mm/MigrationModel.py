@@ -37,8 +37,6 @@ class MigrationModel:
         else:
             self._available_migrations.append(migration)
 
-        self.export(file_name=self._root)
-
         migration.add_migration_model(self)
 
         return migration
@@ -183,14 +181,17 @@ class MigrationModel:
         #self._available_migrations.clear()
         #self._available_migrations = self._eligible_migrations.copy()
 
-    def export(self, file_name):
-        with open('models/' + file_name + ".uvl", 'w') as f:
+    def export(self):
 
-            f.write('namespace {}\n\n'.format(file_name))
+        uvl_filename = "models/{}/{}.uvl".format(self._root, self._root)
+
+        with open(uvl_filename, 'w') as f:
+
+            f.write('namespace {}\n\n'.format(self._root))
 
             # print features
             f.write('features\n')
-            f.write('\t' + file_name + ' { abstract }\n')
+            f.write('\t' + self._root + ' { abstract }\n')
             # print mandatory features
             f.write('\t\tmandatory\n')
             for m in self._migrations:
@@ -221,6 +222,6 @@ class MigrationModel:
                                                          exclude_migration.name().replace(' ', '_'))
                         f.write(string)
 
-        self._uvl = file_name + '.uvl'
+        self._uvl = uvl_filename
 
         self._exported_to_uvl = True
