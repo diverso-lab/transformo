@@ -1,4 +1,3 @@
-
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.AvailableAction import AvailableAction
 from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
@@ -8,19 +7,21 @@ from core.writers.SimpleDatabaseModelWriter import SimpleDatabaseModelWriter
 class SimpleDatabaseModelMutator:
 
     def __init__(
-        self, 
-        current_sdm_source:SimpleDatabaseModel,
-        last_stm: SimpleTransformationModel,
-        actions_counter: int,
-        migration_name: str) -> None:
+            self,
+            current_sdm_source: SimpleDatabaseModel,
+            last_stm: SimpleTransformationModel,
+            actions_counter: int,
+            migration_name: str,
+            folder: str) -> None:
 
         self._current_sdm_source = current_sdm_source
         self._last_stm = last_stm
         self._actions_counter = actions_counter
         self._migration_name = migration_name
+        self._folder = folder
 
     def mutate(self):
-        
+
         last_transformation = self._last_stm.last_transformation()
         action = last_transformation.actions()[0]
         action_item = action.item()
@@ -31,7 +32,7 @@ class SimpleDatabaseModelMutator:
         match transformation_type:
 
             case "entity":
-                
+
                 match action_type:
 
                     case "create":
@@ -44,7 +45,7 @@ class SimpleDatabaseModelMutator:
 
                     case "rename":
                         pass
- 
+
                     case "delete":
                         pass
 
@@ -68,8 +69,9 @@ class SimpleDatabaseModelMutator:
                         pass
 
         # TODO: generate new SDM (file) after applying action
-        sdm_filename = "models/{}_{}".format(self._migration_name, self._actions_counter)
-        sdm_writer = SimpleDatabaseModelWriter(sdm = self._current_sdm_source, sdm_filename=sdm_filename)
+        sdm_filename = "models/{}/{}_{}.sdm".format(self._folder, self._migration_name, self._actions_counter)
+        sdm_writer = SimpleDatabaseModelWriter(sdm=self._current_sdm_source, sdm_filename=sdm_filename,
+                                               folder=self._folder)
         sdm_writer.write()
 
         self._current_sdm_source = self._current_sdm_source.reload_sdm()

@@ -1,0 +1,32 @@
+<stm>
+
+    <transformation type="attribute" id="RenameAttributeAction">
+        <action type="rename">
+            <entity>post</entity>
+            <attribute>title</attribute>
+            <rename>author</rename>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="attribute" id="MoveAttributeAction">
+        <action type="move">
+            <from>post_meta</from>
+            <to>post</to>
+            <attribute>author</attribute>
+            <type>varchar(25)</type>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="attribute" id="CreateAttributeAction">
+        <action type="create">
+            <entity>post</entity>
+            <attribute>author</attribute>
+            <type>varchar(25)</type>
+        </action>
+    </transformation>
+
+</stm>

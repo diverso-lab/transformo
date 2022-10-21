@@ -4,13 +4,12 @@ from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 def main():
-
     # Definition of Simple Database Model
     sdm_source = SimpleDatabaseModel('models/D2W/source.sdm')
     sdm_target = SimpleDatabaseModel('models/D2W/target.sdm')
 
     # Definition of migration model and migrations (abstract level)
-    migration_model = MigrationModel(sdm_source, sdm_target, root = "D2W")
+    migration_model = MigrationModel(sdm_source, sdm_target, root="D2W")
     common_migration = migration_model.add_migration('common_migration', MigrationType.Mandatory)
     users_migration = migration_model.add_migration('users_migration')
     posts_migration = migration_model.add_migration('posts_migration')
@@ -34,7 +33,7 @@ def main():
         For the moment, let's assume that the dynamic feature selection 
         functionality (constraint propagation) is already implemented.
     '''
-    #selected = migration_model.selection()
+    # selected = migration_model.selection()
     selected = [common_migration, users_migration, posts_migration, comments_migration]
 
 
