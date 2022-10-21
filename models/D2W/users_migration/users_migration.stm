@@ -29,4 +29,12 @@
         </action>
     </transformation>
 
+
+
+    <transformation type="entity" id="DeleteEntityAction">
+        <action type="delete">
+            <entity>post_meta</entity>
+        </action>
+    </transformation>
+
 </stm>

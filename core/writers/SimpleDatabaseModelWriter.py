@@ -2,12 +2,14 @@ import os
 
 import jinja2
 
+from core.models.sdm.Attribute import Attribute
+from core.models.sdm.Entity import Entity
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 class SimpleDatabaseModelWriter:
 
-    def __init__(self, sdm: SimpleDatabaseModel, sdm_filename: str, folder:str) -> None:
+    def __init__(self, sdm: SimpleDatabaseModel, sdm_filename: str, folder: str) -> None:
         self._sdm = sdm
         self._sdm_filename = sdm_filename
         self._folder = folder
@@ -27,14 +29,22 @@ class SimpleDatabaseModelWriter:
         self._write_in_template_without_parameter("g_opening.stub")
 
         for entity in self._sdm.entities():
-            pass
+
+            self._write_in_template("entity_opening.stub", entity=entity)
+
+            for attribute in entity.attributes():
+                self._write_in_template("attribute.stub", attribute=attribute)
+
+            self._write_in_template("entity_closing.stub", entity=entity)
+
+            self._insert_blank_line()
 
         self._write_in_template_without_parameter("g_closing.stub")
 
-    def _write_in_template(self, template_file: str) -> None:
+    def _write_in_template(self, template_file: str, entity: Entity = None, attribute: Attribute = None) -> None:
 
         template = self._template_env.get_template(template_file)
-        render = template.render(action=self._available_action.action())
+        render = template.render(entity=entity, attribute=attribute)
 
         with open(self._sdm_filename, "a") as f:
             f.write("\n")
@@ -53,3 +63,7 @@ class SimpleDatabaseModelWriter:
 
     def _clear(self):
         open(self._sdm_filename, 'w').close()
+
+    def _insert_blank_line(self):
+        with open(self._sdm_filename, "a") as f:
+            f.write("\n")

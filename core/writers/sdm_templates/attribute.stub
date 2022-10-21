@@ -1,0 +1,4 @@
+        <attribute>
+            <name>{{ attribute.name() }}</name>
+            <type>{{ attribute.type() }}</type>
+        </attribute>

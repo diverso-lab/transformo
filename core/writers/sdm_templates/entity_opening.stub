@@ -1,0 +1,2 @@
+    <entity id="{{ entity.id() }}">
+        <name>{{ entity.name() }}</name>
