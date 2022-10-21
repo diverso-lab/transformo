@@ -64,16 +64,6 @@ class Migration:
 
         if inputed == "q":
 
-            migration_writer = MigrationWriter(
-                migration_model_name = self._migration_model.root(),
-                migration_name = self._migration_name,
-                available_action= None,
-                opening = opening,
-                closing = True
-            )
-            migration_writer.write()
-            migration_writer.stm().print() ###### delete this line
-
             return self._finish()
             
         option = int(inputed)
@@ -93,11 +83,12 @@ class Migration:
             closing = False
         )
         migration_writer.write()
+        last_stm = migration_writer.stm()
 
         # mutates previous SDM
         sdm_mutator = SimpleDatabaseModelMutator(
             current_sdm_source=self._current_sdm_source,
-            available_action=selected_action,
+            last_stm=last_stm,
             actions_counter = self._actions_counter,
             migration_name = self._migration_name)
         # TODO: mutate

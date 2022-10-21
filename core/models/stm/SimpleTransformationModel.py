@@ -12,23 +12,26 @@ class SimpleTransformationModel:
         self._transformations = []
         self._read_transformations(doc)
 
-    def _read_transformations(self, doc):
+    def _read_transformations(self, doc) -> None:
         items = doc.getElementsByTagName('transformation')
 
         for i in items:
             transformation = Transformation(item=i)
             self._transformations.append(transformation)
 
-    def transformations(self):
+    def transformations(self) -> list[Transformation]:
         return self._transformations
 
-    def print(self):
+    def print(self) -> None:
         for t in self._transformations:
             print("\n" + str(t))
 
             print("\tActions:")
             for a in t.actions():
                 print("\t" + str(a))
+
+    def last_transformation(self) -> Transformation:
+        return self._transformations[-1]
 
 
 

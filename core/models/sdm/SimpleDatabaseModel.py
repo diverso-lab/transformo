@@ -23,6 +23,9 @@ class SimpleDatabaseModel:
 
         self.detect_foreign_keys()
 
+    def reload_sdm(self):
+        self.__init__(self._file)
+
     def _read_entities(self, doc) -> None:
         items = doc.getElementsByTagName('entity')
 
@@ -93,12 +96,13 @@ class SimpleDatabaseModel:
 
     '''On change properties '''
 
-    '''
+    
     def add_entity(self, entity_name):
 
         entity = Entity(static=True, id=entity_name)
         self.entities_items.append(entity)
 
+    '''
     def edit_entity_name(self, entity, rename):
 
         entity.edit_name(rename)

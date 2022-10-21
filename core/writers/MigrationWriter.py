@@ -28,8 +28,10 @@ class MigrationWriter:
     def stm_filename(self):
         return self._stm_filename
 
-    def stm(self):
-        return SimpleTransformationModel(stm_file = self._stm_filename)
+    def stm(self) -> SimpleTransformationModel:
+
+        if self._closing:
+            return SimpleTransformationModel(stm_file = self._stm_filename)
 
     def write(self):
 
@@ -43,9 +45,16 @@ class MigrationWriter:
             self._clear()
             self._write_in_template_without_parameter("g_opening.stub", blank_line= False)
 
-        if self._closing:
-            self._write_in_template_without_parameter("g_closing.stub", number_blank_lines=2)
-            return self._finish()
+        else:
+
+            # delete last "</stm>"
+            with open(self._stm_filename, "r+") as f:
+                current_position = previous_position = f.tell()
+                while f.readline():
+                    previous_position = current_position
+                    current_position = f.tell()
+                f.truncate(previous_position)
+                f.close()
 
         transformation_type = self._available_action.action().transformation_type()
         action_type = self._available_action.action().action_type()
@@ -84,12 +93,15 @@ class MigrationWriter:
                     case "delete":
                         self._write_in_template("delete_attribute_action.stub")
 
+        self._write_in_template_without_parameter("g_closing.stub", number_blank_lines=2)
+
     def _write_in_template(self, template_file):
         
         template = self._template_env.get_template(template_file)
         render = template.render(action = self._available_action.action())
 
-        with open(self._stm_filename, "a") as f:
+        with open(self._stm_filename, "a") as f:            
+
             f.write("\n")
             f.write(render)
 

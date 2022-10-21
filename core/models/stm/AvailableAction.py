@@ -8,7 +8,7 @@ class AvailableAction:
     def __init__(self, action : AbstractAction) -> None:
         self._action = action
 
-    def action(self):
+    def action(self) -> AbstractAction:
         return self._action
 
     def __str__(self) -> str:
