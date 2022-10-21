@@ -12,11 +12,11 @@ from core.models.stm.actions.RetypeAttributeAction import RetypeAttributeAction
 
 class AvailableActionsExtractor:
 
-    def __init__(self, sdm_source : SimpleDatabaseModel, sdm_target: SimpleDatabaseModel) -> None:
+    def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel) -> None:
 
         self._A = sdm_source
         self._B = sdm_target
-        self._available_actions : list[AvailableAction] = list()
+        self._available_actions: list[AvailableAction] = list()
 
     def A(self):
         return self._A

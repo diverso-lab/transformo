@@ -11,20 +11,12 @@
             <type>text</type>
         </attribute>
         <attribute>
-            <name>title</name>
+            <name>author</name>
             <type>varchar(25)</type>
         </attribute>
-    </entity>
-
-    <entity id="borrar">
-        <name>Borrar</name>
-    </entity>
-
-    <entity id="comment2">
-        <name>comment</name>
         <attribute>
-            <name>author1</name>
-            <type>tipo1</type>
+            <name>title</name>
+            <type>varchar(25)</type>
         </attribute>
     </entity>
 

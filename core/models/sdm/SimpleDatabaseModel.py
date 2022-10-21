@@ -96,13 +96,11 @@ class SimpleDatabaseModel:
 
     '''On change properties '''
 
-    
     def add_entity(self, entity_name):
 
         entity = Entity(static=True, id=entity_name)
         self.entities_items.append(entity)
 
-    '''
     def edit_entity_name(self, entity, rename):
 
         entity.edit_name(rename)
@@ -168,7 +166,6 @@ class SimpleDatabaseModel:
     def delete_attribute(self, entity, attribute_name):
 
         entity.delete_attribute_name(attribute_name=attribute_name)
-    '''
 
     # methods for actions extraction
     def contains_entity_by_id(self, entity: Entity):

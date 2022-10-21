@@ -16,14 +16,6 @@
         </attribute>
     </entity>
 
-    <entity id="post_meta">
-        <name>PostMeta</name>
-        <attribute>
-            <name>author</name>
-            <type>varchar(25)</type>
-        </attribute>
-    </entity>
-
     <entity id="borrar">
         <name>Borrar</name>
     </entity>

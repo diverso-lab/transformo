@@ -1,5 +1,22 @@
 <stm>
 
+    <transformation type="entity" id="DeleteEntityAction">
+        <action type="delete">
+            <entity>post_meta</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="attribute" id="DeleteAttributeAction">
+        <action type="delete">
+            <entity>post</entity>
+            <attribute>attribute_move</attribute>
+        </action>
+    </transformation>
+
+
+
     <transformation type="attribute" id="RenameAttributeAction">
         <action type="rename">
             <entity>post</entity>
@@ -10,30 +27,11 @@
 
 
 
-    <transformation type="attribute" id="MoveAttributeAction">
-        <action type="move">
-            <from>post_meta</from>
-            <to>post</to>
-            <attribute>author</attribute>
-            <type>varchar(25)</type>
-        </action>
-    </transformation>
-
-
-
     <transformation type="attribute" id="CreateAttributeAction">
         <action type="create">
             <entity>post</entity>
-            <attribute>author</attribute>
+            <attribute>title</attribute>
             <type>varchar(25)</type>
-        </action>
-    </transformation>
-
-
-
-    <transformation type="entity" id="DeleteEntityAction">
-        <action type="delete">
-            <entity>post_meta</entity>
         </action>
     </transformation>
 

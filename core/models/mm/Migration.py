@@ -50,10 +50,10 @@ class Migration:
         extractor = AvailableActionsExtractor(sdm_source=self._current_sdm_source,
                                               sdm_target=self._migration_model.sdm_target())
 
-        # show current source SDM
-        extractor.A().print()
-
         extractor.extract_available_actions()
+
+        if len(extractor.available_actions()) == 0:
+            return self._finish()
 
         # show available actions
         extractor.print()
@@ -91,11 +91,10 @@ class Migration:
             actions_counter=self._actions_counter,
             migration_name=self._migration_name,
             folder="{}/{}".format(self._migration_model.root(), self._migration_name))
-        # TODO: mutate
-        sdm_mutator.mutate()
-        # TODO: return new SDM
-        # self._current_sdm_source = sdm_mutator.new_sdm()
 
+        sdm_mutator.mutate()
+
+        self._current_sdm_source = sdm_mutator.new_sdm()
         self._actions_counter = self._actions_counter + 1
 
         # recursive

@@ -3,24 +3,12 @@
     <entity id="post">
         <name>Post</name>
         <attribute>
-            <name>title</name>
+            <name>author</name>
             <type>varchar(25)</type>
         </attribute>
         <attribute>
             <name>body</name>
             <type>text</type>
-        </attribute>
-        <attribute>
-            <name>attribute_move</name>
-            <type>text</type>
-        </attribute>
-    </entity>
-
-    <entity id="post_meta">
-        <name>PostMeta</name>
-        <attribute>
-            <name>author</name>
-            <type>varchar(25)</type>
         </attribute>
     </entity>
 
