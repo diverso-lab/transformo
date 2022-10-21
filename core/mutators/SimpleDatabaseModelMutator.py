@@ -2,6 +2,7 @@
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.AvailableAction import AvailableAction
 from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
+from core.writers.SimpleDatabaseModelWriter import SimpleDatabaseModelWriter
 
 
 class SimpleDatabaseModelMutator:
@@ -23,8 +24,9 @@ class SimpleDatabaseModelMutator:
         last_transformation = self._last_stm.last_transformation()
         action = last_transformation.actions()[0]
         action_item = action.item()
-        transformation_type = self._available_action.action().transformation_type()
-        action_type = self._available_action.action().action_type()
+
+        transformation_type = last_transformation.type()
+        action_type = action.type()
 
         match transformation_type:
 
@@ -66,5 +68,8 @@ class SimpleDatabaseModelMutator:
                         pass
 
         # TODO: generate new SDM (file) after applying action
+        sdm_filename = "models/{}_{}".format(self._migration_name, self._actions_counter)
+        sdm_writer = SimpleDatabaseModelWriter(sdm = self._current_sdm_source, sdm_filename=sdm_filename)
+        sdm_writer.write()
 
         self._current_sdm_source = self._current_sdm_source.reload_sdm()

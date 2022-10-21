@@ -48,7 +48,6 @@ class Migration:
     def define(self, opening = True):
 
         extractor = AvailableActionsExtractor(sdm_source = self._current_sdm_source, sdm_target = self._migration_model.sdm_target())
-        
 
         # show current source SDM
         extractor.A().print()
@@ -85,6 +84,9 @@ class Migration:
         migration_writer.write()
         last_stm = migration_writer.stm()
 
+        print("HOLAAAA")
+        print(last_stm)
+
         # mutates previous SDM
         sdm_mutator = SimpleDatabaseModelMutator(
             current_sdm_source=self._current_sdm_source,
@@ -92,7 +94,7 @@ class Migration:
             actions_counter = self._actions_counter,
             migration_name = self._migration_name)
         # TODO: mutate
-        # sdm_mutator.mutate()
+        sdm_mutator.mutate()
         # TODO: return new SDM
         # self._current_sdm_source = sdm_mutator.new_sdm()
 

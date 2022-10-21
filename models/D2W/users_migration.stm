@@ -8,12 +8,4 @@
         </action>
     </transformation>
 
-
-
-    <transformation type="entity" id="DeleteEntityAction">
-        <action type="delete">
-            <entity>comment2</entity>
-        </action>
-    </transformation>
-
 </stm>

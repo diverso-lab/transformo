@@ -30,8 +30,7 @@ class MigrationWriter:
 
     def stm(self) -> SimpleTransformationModel:
 
-        if self._closing:
-            return SimpleTransformationModel(stm_file = self._stm_filename)
+        return SimpleTransformationModel(stm_file = self._stm_filename)
 
     def write(self):
 
