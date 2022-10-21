@@ -7,5 +7,5 @@ class SimpleDatabaseModelWriter:
         self._sdm = sdm
         self._filename = sdm_filename
 
-    def writer(self) -> None:
+    def write(self) -> None:
         pass
