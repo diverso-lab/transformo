@@ -37,11 +37,11 @@ class MigrationWriter:
         if self._opening:
 
             try:
-                os.mkdir("models/{}".format(self._migration_model_name))
+                os.mkdir("models/{}/{}".format(self._migration_model_name, self._migration_name))
+                open(self._stm_filename, "w").close()
             except:
                 pass
 
-            self._clear()
             self._write_in_template_without_parameter("g_opening.stub", blank_line=False)
 
         else:
@@ -113,9 +113,6 @@ class MigrationWriter:
                 for i in range(number_blank_lines):
                     f.write("\n")
             f.write(render)
-
-    def _clear(self):
-        open(self._stm_filename, 'w').close()
 
     def _finish(self):
         pass

@@ -1,3 +1,5 @@
+from shutil import rmtree
+
 from core.models.mm import MigrationModel
 from core.models.mm.MigrationType import MigrationType
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
@@ -46,6 +48,13 @@ class Migration:
         return self._excludes_migrations
 
     def define(self, opening=True):
+
+        # delete previous files
+        if opening:
+            try:
+                rmtree("models/{}/{}".format(self._migration_model.root(), self._migration_name))
+            except:
+                pass
 
         extractor = AvailableActionsExtractor(sdm_source=self._current_sdm_source,
                                               sdm_target=self._migration_model.sdm_target())
