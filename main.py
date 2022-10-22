@@ -33,8 +33,11 @@ def main():
         For the moment, let's assume that the dynamic feature selection 
         functionality (constraint propagation) is already implemented.
     '''
-    # selected = migration_model.selection()
-    selected = [common_migration, users_migration, posts_migration, comments_migration]
+    # selected_migrations = migration_model.selection()
+    selected_migrations = [users_migration]
+
+    # Write SQL script
+    migration_model.write_sql(selected_migrations)
 
 
 if __name__ == "__main__":

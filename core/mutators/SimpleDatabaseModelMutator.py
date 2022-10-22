@@ -1,5 +1,8 @@
+from copy import copy
+
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
+from core.models.stm.actions.CreateEntityAction import CreateEntityAction
 from core.writers.SimpleDatabaseModelWriter import SimpleDatabaseModelWriter
 
 
@@ -42,6 +45,13 @@ class SimpleDatabaseModelMutator:
 
                         # update entity
                         self._current_sdm_source.add_entity(element)
+
+                        # get entity from SDM
+                        entity = self._current_sdm_source.get_entity_by_id(element)
+                        original_entity = copy(entity)
+
+                        # create action
+                        action.set_apply(CreateEntityAction(entity=original_entity))
 
                     case "rename":
 

@@ -3,6 +3,8 @@ from core.models.mm.MigrationType import MigrationType
 from core.models.sdm import SimpleDatabaseModel
 from flamapy.core.discover import DiscoverMetamodels
 
+from core.writers.MySQLWriter import MySQLWriter
+
 
 class MigrationModel:
 
@@ -16,7 +18,7 @@ class MigrationModel:
         self._uvl: str = ''
         self._dm = DiscoverMetamodels()
         self._exported_to_uvl = False
-        self._root:str = root
+        self._root: str = root
 
     def sdm_source(self):
         return self._sdm_source
@@ -122,10 +124,10 @@ class MigrationModel:
             f.write('{}\n'.format('D2W'))
 
             for s in self._selected_migrations:
-                f.write('{}\n'.format(s.name().replace(' ','_')))
+                f.write('{}\n'.format(s.name().replace(' ', '_')))
 
             if not available_migration is None:
-                f.write('{}\n'.format(available_migration.name().replace(' ','_')))
+                f.write('{}\n'.format(available_migration.name().replace(' ', '_')))
 
     def _select_migration(self):
 
@@ -142,11 +144,11 @@ class MigrationModel:
 
             self._export_selected_migrations()
             valid_product_without_available_migration = self._dm.use_operation_from_file("ValidProduct",
-                                                                                      './models/' + self._uvl,
-                                                                                      configuration_file='./models/temp.csvconf')
+                                                                                         './models/' + self._uvl,
+                                                                                         configuration_file='./models/temp.csvconf')
 
-            #print("valid_product_with_available_migration: " + str(valid_product_with_available_migration))
-            #print("valid_product_without_available_migration: " + str(valid_product_without_available_migration))
+            # print("valid_product_with_available_migration: " + str(valid_product_with_available_migration))
+            # print("valid_product_without_available_migration: " + str(valid_product_without_available_migration))
 
             # detected excludes
             if not valid_product_with_available_migration and valid_product_without_available_migration:
@@ -157,29 +159,26 @@ class MigrationModel:
             # detected requires
             elif not valid_product_with_available_migration:
 
-                    print("detectado requires")
+                print("detectado requires")
 
-                    self._selected_migrations.append(a)
+                self._selected_migrations.append(a)
 
-                    # mutates selected migration in temp file (csvconf)
-                    self._export_selected_migrations()
+                # mutates selected migration in temp file (csvconf)
+                self._export_selected_migrations()
 
-                    self._available_migrations.remove(a)
+                self._available_migrations.remove(a)
 
-                    return self._select_migration()
+                return self._select_migration()
 
             else:
-            
-                if valid_product_with_available_migration and valid_product_without_available_migration:
 
+                if valid_product_with_available_migration and valid_product_without_available_migration:
                     self._selected_migrations.append(a)
 
-                    #self._eligible_migrations.append(a)
-            
+                    # self._eligible_migrations.append(a)
 
-
-        #self._available_migrations.clear()
-        #self._available_migrations = self._eligible_migrations.copy()
+        # self._available_migrations.clear()
+        # self._available_migrations = self._eligible_migrations.copy()
 
     def export(self):
 
@@ -225,3 +224,7 @@ class MigrationModel:
         self._uvl = uvl_filename
 
         self._exported_to_uvl = True
+
+    def write_sql(self, selected_migrations: list[Migration]) -> None:
+        mysql_writer = MySQLWriter(selected_migrations=selected_migrations, root=self.root())
+        mysql_writer.write()

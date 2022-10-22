@@ -5,6 +5,7 @@ from core.models.mm.MigrationType import MigrationType
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.AvailableActionsExtractor import AvailableActionsExtractor
 from core.models.stm.AvailableAction import AvailableAction
+from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
 from core.mutators.SimpleDatabaseModelMutator import SimpleDatabaseModelMutator
 from core.writers.MigrationWriter import MigrationWriter
 
@@ -20,34 +21,38 @@ class Migration:
         self._selected_actions: list[AvailableAction] = list()
         self._current_sdm_source: SimpleDatabaseModel = None
         self._actions_counter: int = 0
+        self._stm = None
 
     def add_migration_model(self, migration_model: MigrationModel):
         self._migration_model = migration_model
         self._current_sdm_source = migration_model.sdm_source()
 
-    def requires(self, migration):
+    def requires(self, migration) -> None:
         self._requires_migrations.append(migration)
 
-    def excludes(self, migration):
+    def excludes(self, migration) -> None:
 
         # to avoid infinite recursion
         if not migration in self._excludes_migrations:
             self._excludes_migrations.append(migration)
             migration.excludes(self)
 
-    def name(self):
+    def name(self) -> str:
         return self._migration_name
 
-    def type(self):
+    def type(self) -> MigrationType:
         return self._migration_type
 
-    def requires_migrations(self):
+    def stm(self) -> SimpleTransformationModel:
+        return self._stm
+
+    def requires_migrations(self) -> list:
         return self._requires_migrations
 
-    def excludes_migrations(self):
+    def excludes_migrations(self) -> list:
         return self._excludes_migrations
 
-    def define(self, opening=True):
+    def define(self, opening=True) -> None:
 
         # delete previous files
         if opening:
@@ -92,6 +97,7 @@ class Migration:
         )
         migration_writer.write()
         last_stm = migration_writer.stm()
+        self._stm = last_stm
 
         # mutates previous SDM
         sdm_mutator = SimpleDatabaseModelMutator(

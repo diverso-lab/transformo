@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class Action:
 
     def __init__(self, item, transformation_action:str) -> None:
@@ -5,12 +8,16 @@ class Action:
         self._item = item
         self._transformation_action = transformation_action
         self._type = item.getAttribute('type')
+        self._apply: Any = None
 
     def type(self):
         return self._type
 
     def item(self):
         return self._item
+
+    def set_apply(self, apply) -> None:
+        self._apply = apply
 
     def __str__(self) -> str:
 
