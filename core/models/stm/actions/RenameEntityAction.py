@@ -3,19 +3,19 @@ from core.models.stm.actions.AbstractAction import AbstractAction
 
 class RenameEntityAction(AbstractAction):
 
-    def __init__(self, entity, rename) -> None:
+    def __init__(self, entity_id, rename_entity_id) -> None:
         
-        self.__entity = entity
-        self.__rename = rename
+        self._entity_id = entity_id
+        self._rename_entity_id = rename_entity_id
 
-    def entity(self):
-        return self.__entity
+    def entity_id(self):
+        return self._entity_id
 
-    def rename(self):
-        return self.__rename
+    def rename_entity_id(self):
+        return self.rename_entity_id
 
     def info(self):
-        return AbstractAction.info(self) + " \n\t old entity:  " + self.__entity.id() + ", new entity: " + self.__rename
+        return AbstractAction.info(self) + " \n\t old entity:  " + self._entity_id + ", new entity: " + self._rename_entity_id
 
     def transformation_type(self):
         return "entity"

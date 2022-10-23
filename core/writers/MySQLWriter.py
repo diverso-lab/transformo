@@ -38,32 +38,32 @@ class MySQLWriter:
                             match action_type:
 
                                 case "create":
-                                    self._write_action("create_entity_action.stub")
+                                    self._write_action(transformation, action, "create_entity_action.stub")
 
                                 case "rename":
-                                    self._write_action("rename_entity_action.stub")
+                                    self._write_action(transformation, action, "rename_entity_action.stub")
 
                                 case "delete":
-                                    self._write_action("delete_entity_action.stub")
+                                    self._write_action(transformation, action, "delete_entity_action.stub")
 
                         case "attribute":
 
                             match action_type:
 
                                 case "create":
-                                    self._write_action("create_attribute_action.stub")
+                                    self._write_action(transformation, action, "create_attribute_action.stub")
 
                                 case "rename":
-                                    self._write_action("rename_attribute_action.stub")
+                                    self._write_action(transformation, action, "rename_attribute_action.stub")
 
                                 case "retype":
-                                    self._write_action("retype_attribute_action.stub")
+                                    self._write_action(transformation, action, "retype_attribute_action.stub")
 
                                 case "move":
-                                    self._write_action("move_attribute_action.stub")
+                                    self._write_action(transformation, action, "move_attribute_action.stub")
 
                                 case "delete":
-                                    self._write_action("delete_attribute_action.stub")
+                                    self._write_action(transformation, action, "delete_attribute_action.stub")
 
     def _write_action(self, transformation, action, template_file):
 
@@ -75,5 +75,5 @@ class MySQLWriter:
             action=action.apply())
 
         with open(self._sql_filename, "a") as f:
-            f.write("\n")
+            f.write("\n\n")
             f.write(render)

@@ -2,4 +2,4 @@
 -- Transformation  {{ transformation_name }}
 -- -----------------------------------------------------
 
-DROP TABLE `{{ database_name_to }}`.`{{ action.entity().id() }}`
+DROP TABLE `{{ database_name_to }}`.`{{ action.entity_id() }}`

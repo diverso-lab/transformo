@@ -2,5 +2,5 @@
 -- Transformation  {{ transformation_name }}
 -- -----------------------------------------------------
 
-ALTER TABLE `{{ database_name_to }}`.`{{ action.entity().id() }}`
-  RENAME COLUMN `{{ action.attribute() }}` TO `{{ action.rename() }}`;
+ALTER TABLE `{{ database_name_to }}`.`{{ action.entity_id() }}`
+  RENAME COLUMN `{{ action.attribute_name() }}` TO `{{ action.rename_attribute_name() }}`;

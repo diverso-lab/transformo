@@ -2,5 +2,5 @@
 -- Transformation  {{ transformation_name }}
 -- -----------------------------------------------------
 
-RENAME TABLE `{{ database_name_to }}`.`{{ action.entity().id() }}` 
-  TO  `{{ action.rename() }}`;
+RENAME TABLE `{{ database_name_to }}`.`{{ action.entity_id() }}`
+  TO  `{{ action.rename_entity_id() }}`;

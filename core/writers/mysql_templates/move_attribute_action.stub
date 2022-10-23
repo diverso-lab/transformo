@@ -2,11 +2,11 @@
 -- Transformation  {{ transformation_name }}
 -- -----------------------------------------------------
 
-ALTER TABLE `{{ database_name_to }}`.`{{ action.entity_to().id() }}`
-  ADD COLUMN `{{ action.attribute() }}` {{ action.type().upper() }};
+ALTER TABLE `{{ database_name_to }}`.`{{ action.entity_to_id() }}`
+  ADD COLUMN `{{ action.attribute_name() }}` {{ action.type().upper() }};
 
-INSERT INTO `{{ database_name_to }}`.`{{ action.entity_to().id() }}` (`{{ action.attribute() }}`) 
-  SELECT `{{ action.attribute() }}` FROM `{{ database_name_from }}`.`{{ action.entity_from().id() }}`;
+INSERT INTO `{{ database_name_to }}`.`{{ action.entity_to_id() }}` (`{{ action.attribute_name() }}`)
+  SELECT `{{ action.attribute_name() }}` FROM `{{ database_name_from }}`.`{{ action.entity_from_id()}}`;
 
-ALTER TABLE `{{ database_name_to}}`.`{{ action.entity_from().id() }}`
-  DROP COLUMN `{{ action.attribute() }}`;
+ALTER TABLE `{{ database_name_to}}`.`{{ action.entity_from_id()}}`
+  DROP COLUMN `{{ action.attribute_name() }}`;

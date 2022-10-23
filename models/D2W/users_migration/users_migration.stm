@@ -16,12 +16,10 @@
 
 
 
-    <transformation type="attribute" id="MoveAttributeAction">
-        <action type="move">
-            <from>post_meta</from>
-            <to>post</to>
-            <attribute>author</attribute>
-            <type>varchar(25)</type>
+    <transformation type="attribute" id="DeleteAttributeAction">
+        <action type="delete">
+            <entity>post</entity>
+            <attribute>attribute_move</attribute>
         </action>
     </transformation>
 

@@ -3,23 +3,23 @@ from core.models.stm.actions.AbstractAction import AbstractAction
 
 class RetypeAttributeAction(AbstractAction):
 
-    def __init__(self, entity, attribute, retype) -> None:
+    def __init__(self, entity_id, attribute_name, retype_name) -> None:
         
-        self.__entity = entity
-        self.__attribute = attribute
-        self.__retype = retype
+        self._entity_id = entity_id
+        self._attribute_name = attribute_name
+        self._retype_name = retype_name
 
-    def entity(self):
-        return self.__entity
+    def entity_id(self):
+        return self._entity_id
 
-    def attribute(self):
-        return self.__attribute
+    def attribute_name(self):
+        return self._attribute_name
 
-    def retype(self):
-        return self.__retype
+    def retype_name(self):
+        return self._retype_name
 
     def info(self):
-        return AbstractAction.info(self) + " \n\t retype attribute " + self.attribute() + " to " + self.retype() + " in " + self.entity().name()
+        return AbstractAction.info(self) + " \n\t retype attribute " + self._attribute_name + " to " + self._retype_name + " in " + self._entity_id
 
     def transformation_type(self):
         return "attribute"

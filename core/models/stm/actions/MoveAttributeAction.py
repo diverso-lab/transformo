@@ -3,27 +3,27 @@ from core.models.stm.actions.AbstractAction import AbstractAction
 
 class MoveAttributeAction(AbstractAction):
 
-    def __init__(self, entity_from, entity_to, attribute, type) -> None:
+    def __init__(self, entity_from_id, entity_to_id, attribute_name, type) -> None:
         
-        self.__entity_from = entity_from
-        self.__entity_to = entity_to
-        self.__attribute = attribute
-        self.__type = type
+        self._entity_from_id = entity_from_id
+        self._entity_to_id = entity_to_id
+        self._attribute_name = attribute_name
+        self._type = type
 
-    def entity_from(self):
-        return self.__entity_from
+    def entity_from_id(self):
+        return self._entity_from_id
 
-    def entity_to(self):
-        return self.__entity_to
+    def entity_to_id(self):
+        return self._entity_to_id
 
-    def attribute(self):
-        return self.__attribute
+    def attribute_name(self):
+        return self._attribute_name
 
     def type(self):
-        return self.__type
+        return self._type
 
     def info(self):
-        return AbstractAction.info(self) + " \n\t move attribute " + self.attribute() + " : " + self.type() + ", from " + self.entity_from().name() + " to " + self.entity_to().name()
+        return AbstractAction.info(self) + " \n\t move attribute " + self._attribute_name + " : " + self._type + ", from " + self._entity_from_id + " to " + self._entity_to_id
 
     def transformation_type(self):
         return "attribute"
