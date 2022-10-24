@@ -23,47 +23,49 @@ class MySQLWriter:
 
         for migration in self._selected_migrations:
 
-            for transformation in migration.stm().transformations():
+            if not migration.stm() is None:
 
-                transformation_type = transformation.type()
+                for transformation in migration.stm().transformations():
 
-                for action in transformation.actions():
+                    transformation_type = transformation.type()
 
-                    action_type = action.type()
+                    for action in transformation.actions():
 
-                    match transformation_type:
+                        action_type = action.type()
 
-                        case "entity":
+                        match transformation_type:
 
-                            match action_type:
+                            case "entity":
 
-                                case "create":
-                                    self._write_action(transformation, action, "create_entity_action.stub")
+                                match action_type:
 
-                                case "rename":
-                                    self._write_action(transformation, action, "rename_entity_action.stub")
+                                    case "create":
+                                        self._write_action(transformation, action, "create_entity_action.stub")
 
-                                case "delete":
-                                    self._write_action(transformation, action, "delete_entity_action.stub")
+                                    case "rename":
+                                        self._write_action(transformation, action, "rename_entity_action.stub")
 
-                        case "attribute":
+                                    case "delete":
+                                        self._write_action(transformation, action, "delete_entity_action.stub")
 
-                            match action_type:
+                            case "attribute":
 
-                                case "create":
-                                    self._write_action(transformation, action, "create_attribute_action.stub")
+                                match action_type:
 
-                                case "rename":
-                                    self._write_action(transformation, action, "rename_attribute_action.stub")
+                                    case "create":
+                                        self._write_action(transformation, action, "create_attribute_action.stub")
 
-                                case "retype":
-                                    self._write_action(transformation, action, "retype_attribute_action.stub")
+                                    case "rename":
+                                        self._write_action(transformation, action, "rename_attribute_action.stub")
 
-                                case "move":
-                                    self._write_action(transformation, action, "move_attribute_action.stub")
+                                    case "retype":
+                                        self._write_action(transformation, action, "retype_attribute_action.stub")
 
-                                case "delete":
-                                    self._write_action(transformation, action, "delete_attribute_action.stub")
+                                    case "move":
+                                        self._write_action(transformation, action, "move_attribute_action.stub")
+
+                                    case "delete":
+                                        self._write_action(transformation, action, "delete_attribute_action.stub")
 
     def _write_action(self, transformation, action, template_file):
 

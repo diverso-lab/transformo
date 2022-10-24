@@ -26,6 +26,7 @@ def main():
 
     # Interactive definition of each migration
     users_migration.define()
+    posts_migration.define()
 
     # Selection of migrations
     '''
@@ -34,7 +35,7 @@ def main():
         functionality (constraint propagation) is already implemented.
     '''
     # selected_migrations = migration_model.selection()
-    selected_migrations = [users_migration]
+    selected_migrations = [users_migration, posts_migration]
 
     # Write SQL script
     migration_model.write_sql(selected_migrations)

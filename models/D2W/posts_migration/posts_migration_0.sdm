@@ -10,10 +10,6 @@
             <name>body</name>
             <type>text</type>
         </attribute>
-        <attribute>
-            <name>attribute_move</name>
-            <type>text</type>
-        </attribute>
     </entity>
 
     <entity id="post_meta">
@@ -21,6 +17,18 @@
         <attribute>
             <name>author</name>
             <type>varchar(25)</type>
+        </attribute>
+    </entity>
+
+    <entity id="borrar">
+        <name>Borrar</name>
+    </entity>
+
+    <entity id="comment2">
+        <name>comment</name>
+        <attribute>
+            <name>author1</name>
+            <type>tipo1</type>
         </attribute>
     </entity>
 

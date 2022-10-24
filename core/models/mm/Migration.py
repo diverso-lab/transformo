@@ -69,6 +69,13 @@ class Migration:
         if len(extractor.available_actions()) == 0:
             return self._finish()
 
+        # show migration info
+        print()
+        print("########################################")
+        print("Current migration: {}".format(self._migration_name))
+        print("########################################")
+        print()
+
         # show available actions
         extractor.print()
 
@@ -79,7 +86,11 @@ class Migration:
         if inputed == "q":
             return self._finish()
 
-        option = int(inputed)
+        option = None
+        try:
+            option = int(inputed)
+        except:
+            self.define(opening=True)
 
         # selection of action from available actions in current SDM
         selected_action = extractor.available_actions()[option]

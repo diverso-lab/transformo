@@ -190,15 +190,9 @@ class AvailableActionsExtractor:
 
     def print(self):
 
-        print()
-        print("########################################")
-        print("Available actions")
-        print("########################################")
-        print()
-
         print(str(len(self._available_actions)) + " available actions")
         print()
 
         for i in range(len(self._available_actions)):
-            print(str(i) + " -> " + str(self._available_actions[i]))
+            print("\t" + str(i) + " -> " + str(self._available_actions[i]))
             print()
