@@ -1,0 +1,11 @@
+<stm>
+
+    <transformation type="attribute" id="RenameAttributeAction">
+        <action type="rename">
+            <entity>post</entity>
+            <attribute>title</attribute>
+            <rename>author</rename>
+        </action>
+    </transformation>
+
+</stm>

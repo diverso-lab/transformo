@@ -9,25 +9,37 @@ from core.models.sdm.Relationship import Relationship
 class SimpleDatabaseModel:
 
     def __init__(self, file):
+
+        # files
         self._file = file
+        self._doc = minidom.parse(self._file)
 
-        doc = minidom.parse(self._file)
-
+        # basic info
+        self._database_name : str = ""
         self.entities_items: list[Entity] = list()
         self.relationships_items: list[Relationship] = list()
 
-        self._read_entities(doc)
-        self._read_relationships(doc)
+        # reading
+        self._read_database_info()
+        self._read_entities()
+        self._read_relationships()
 
+        # matching
         self.match_relations_and_entities()
-
         self.detect_foreign_keys()
 
     def reload_sdm(self):
         self.__init__(self._file)
 
-    def _read_entities(self, doc) -> None:
-        items = doc.getElementsByTagName('entity')
+    def _read_database_info(self) -> None:
+        database_info = self._doc.getElementsByTagName('database')[0]
+        self._database_name = database_info.getElementsByTagName("name")[0].childNodes[0].data
+
+    def database_name(self):
+        return self._database_name
+
+    def _read_entities(self) -> None:
+        items = self._doc.getElementsByTagName('entity')
 
         for i in items:
             entity = Entity(i)
@@ -36,8 +48,8 @@ class SimpleDatabaseModel:
     def entities(self) -> list[Entity]:
         return self.entities_items
 
-    def _read_relationships(self, doc) -> None:
-        items = doc.getElementsByTagName('relation')
+    def _read_relationships(self) -> None:
+        items = self._doc.getElementsByTagName('relation')
 
         for i in items:
             relation = Relationship(i)

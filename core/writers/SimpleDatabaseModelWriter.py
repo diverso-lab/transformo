@@ -28,6 +28,12 @@ class SimpleDatabaseModelWriter:
 
         self._write_in_template_without_parameter("g_opening.stub")
 
+        # writing basic info
+        self._write_in_template_without_parameter("database_info_opening.stub")
+        self._write_in_template_simple_parameter("database_info_name.stub", self._sdm.database_name())
+        self._write_in_template_without_parameter("database_info_closing.stub")
+
+        # writing entities
         for entity in self._sdm.entities():
 
             self._write_in_template("entity_opening.stub", entity=entity)
@@ -45,6 +51,14 @@ class SimpleDatabaseModelWriter:
 
         template = self._template_env.get_template(template_file)
         render = template.render(entity=entity, attribute=attribute)
+
+        with open(self._sdm_filename, "a") as f:
+            f.write("\n")
+            f.write(render)
+
+    def _write_in_template_simple_parameter(self, template_file: str, parameter: str):
+        template = self._template_env.get_template(template_file)
+        render = template.render(parameter=parameter)
 
         with open(self._sdm_filename, "a") as f:
             f.write("\n")

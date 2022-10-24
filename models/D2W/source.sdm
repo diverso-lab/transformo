@@ -1,5 +1,9 @@
 <sdm>
 
+    <database>
+        <name>DATABASE SOURCE</name>
+    </database>
+
     <entity id="post">
         <name>Post</name>
         <attribute>

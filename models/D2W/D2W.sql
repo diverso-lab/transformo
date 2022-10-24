@@ -1,8 +1,8 @@
 
 
 -- -----------------------------------------------------
--- Transformation  DeleteAttributeAction
+-- Transformation  RenameAttributeAction
 -- -----------------------------------------------------
 
-ALTER TABLE `DATABASE_TO`.`post`
-  DROP COLUMN `attribute_move`;
+ALTER TABLE `DATABASE TARGET`.`post`
+  RENAME COLUMN `title` TO `author`;
