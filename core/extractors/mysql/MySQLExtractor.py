@@ -18,4 +18,17 @@ class MySQLExtractor(AbstractExtractor):
             port=super().port())
 
     def extract(self):
-        pass
+        self._extract_tables_names()
+
+    def _extract_tables_names(self):
+        mydb = self.connect()
+
+        cursor = mydb.cursor()
+
+        cursor.execute("SHOW TABLES")
+
+        for (table_name,) in cursor:
+            table = Table(table_name=table_name)
+            self.__tables.append(table)
+
+        mydb.close()
