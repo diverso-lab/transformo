@@ -1,8 +1,13 @@
 
 
 -- -----------------------------------------------------
--- Transformation  RenameAttributeAction
+-- Transformation  DeleteEntityAction
 -- -----------------------------------------------------
 
-ALTER TABLE `DATABASE TARGET`.`post`
-  RENAME COLUMN `title` TO `author`;
+DROP TABLE `DATABASE TARGET`.`post_meta`
+
+-- -----------------------------------------------------
+-- Transformation  DeleteEntityAction
+-- -----------------------------------------------------
+
+DROP TABLE `DATABASE TARGET`.`comment2`

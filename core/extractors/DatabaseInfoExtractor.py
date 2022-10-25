@@ -1,7 +1,7 @@
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
-class DatabaseExtractor:
+class DatabaseInfoExtractor:
 
     def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel) -> None:
         self._sdm_source = sdm_source

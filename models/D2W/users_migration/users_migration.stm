@@ -1,10 +1,16 @@
 <stm>
 
-    <transformation type="attribute" id="RenameAttributeAction">
-        <action type="rename">
-            <entity>post</entity>
-            <attribute>title</attribute>
-            <rename>author</rename>
+    <transformation type="entity" id="DeleteEntityAction">
+        <action type="delete">
+            <entity>post_meta</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="DeleteEntityAction">
+        <action type="delete">
+            <entity>comment2</entity>
         </action>
     </transformation>
 

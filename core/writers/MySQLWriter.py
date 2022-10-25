@@ -1,12 +1,12 @@
 import jinja2
-from core.extractors.DatabaseExtractor import DatabaseExtractor
+from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
 
 from core.models.mm.Migration import Migration
 
 
 class MySQLWriter:
 
-    def __init__(self, selected_migrations: list[Migration], root: str, database_info_extractor: DatabaseExtractor) -> None:
+    def __init__(self, selected_migrations: list[Migration], root: str, database_info_extractor: DatabaseInfoExtractor) -> None:
 
         # basic info
         self._selected_migrations = selected_migrations

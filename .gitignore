@@ -6,3 +6,4 @@
 /pyvenv.cfg
 /transformo.egg-info/
 __pycache__/
+/db_data
