@@ -41,10 +41,10 @@ services:
       - "8080:80"
     restart: unless-stopped
     volumes:
-      - ./d_modules:/var/www/html/modules \
-      - ./d_profiles:/var/www/html/profiles \
-      - ./d_sites:/var/www/html/sites \
-      - ./d_themes:/var/www/html/themes \
+      - ./drupal/d_modules:/var/www/html/modules \
+      - ./drupal/d_profiles:/var/www/html/profiles \
+      - ./drupal/d_sites:/var/www/html/sites \
+      - ./drupal/d_themes:/var/www/html/themes \
     depends_on:
       - drupal_db
     environment:
@@ -64,7 +64,7 @@ services:
     ports:
       - '8000:80'
     restart: always
-    volumes: ['./:/var/www/html']
+    volumes: ['./wordpress/:/var/www/html']
     environment:
       WORDPRESS_DB_HOST: wordpress_db:3306
       WORDPRESS_DB_USER: wordpress
