@@ -1,9 +1,14 @@
+from core.extractors.mysql.MySQLExtractor import MySQLExtractor
 from core.models.mm.MigrationModel import MigrationModel
 from core.models.mm.MigrationType import MigrationType
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 def main():
+
+    # MySQL extraction
+    mysql_extractor = MySQLExtractor()
+
     # Definition of Simple Database Model
     sdm_source = SimpleDatabaseModel('models/D2W/source.sdm')
     sdm_target = SimpleDatabaseModel('models/D2W/target.sdm')

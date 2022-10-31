@@ -1,13 +1,17 @@
 from core.extractors.AbstractExtractor import AbstractExtractor
 import mysql.connector
 
+from core.extractors.mysql.Table import Table
+
 
 class MySQLExtractor(AbstractExtractor):
 
     def __init__(self):
-        self.__tables = []
+        super().__init__()
 
-        super().__init__(connect=None, sdm=None)
+        connect = self.connect()
+
+        self._tables = []
 
     def connect(self):
         return mysql.connector.connect(
@@ -29,6 +33,6 @@ class MySQLExtractor(AbstractExtractor):
 
         for (table_name,) in cursor:
             table = Table(table_name=table_name)
-            self.__tables.append(table)
+            self._tables.append(table)
 
         mydb.close()

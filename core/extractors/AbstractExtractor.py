@@ -8,7 +8,7 @@ from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 class AbstractExtractor:
 
-    def __init__(self, connect: Any, sdm: SimpleDatabaseModel) -> None:
+    def __init__(self) -> None:
 
         # load environment variables for connection
         load_dotenv()
@@ -18,8 +18,8 @@ class AbstractExtractor:
         self._user = os.getenv('USER')
         self._password = os.getenv('PASSWORD')
 
-        self._sdm = sdm
-        self._connect = connect
+        self._sdm = None
+        self._connect = None
 
     def host(self) -> str:
         return self._host
