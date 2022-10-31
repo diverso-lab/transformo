@@ -7,7 +7,7 @@ from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 def main():
 
     # MySQL extraction
-    mysql_extractor = MySQLExtractor()
+    #mysql_extractor = MySQLExtractor()
 
     # Definition of Simple Database Model
     sdm_source = SimpleDatabaseModel('models/D2W/source.sdm')
