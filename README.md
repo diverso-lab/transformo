@@ -17,21 +17,22 @@ pip install -r requirements.txt
 
 We first must download the repository:
 ```
-git clone https://github.com/diverso-lab/transformo
-cd transformo
+$ git clone https://github.com/diverso-lab/transformo
+$ cd transformo
 ```
 
 Then, we will move to the mysql branch
 ```
-git checkout mysql
-cd dp-to-wp
+$ git checkout mysql
+$ cd dp-to-wp
 ```
 
-Now, we must deploy our Drupal and WordPress instances with Docker:
+Now, we must deploy our Drupal and WordPress instances with Docker (one step at a time, in the order shown):
 ```
-make prepare_drupal
-make install_drupal
+$ make prepare_drupal
+$ make install_drupal
+$ make prepare_wordpress
+$ make install_wordpress
+```
 
-make prepare_wordpress
-make install_wordpress
-```
+Thus, we have started a Drupal container populated with test data on port :8080 and a PHPMyAdmin instance on :8081, which will represent our source system. We have also started a configured and empty WordPress instance to represent our target, on port :8083 and its PHPMyAdmin on port :8084.
