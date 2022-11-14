@@ -27,10 +27,14 @@ $ git checkout mysql
 $ cd dp-to-wp
 ```
 
-Now, we must deploy our Drupal and WordPress instances with Docker (one step at a time, in the order shown):
+Now, we must deploy our Drupal and WordPress instances with Docker (one step at a time, in the order shown). First, we deploy our Drupal services:
 ```
 $ make prepare_drupal
 $ make install_drupal
+```
+
+The following commands will start our WordPress instances:
+```
 $ make prepare_wordpress
 $ make install_wordpress
 ```
