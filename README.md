@@ -15,13 +15,13 @@ pip install -r requirements.txt
 
 # Validation Environment (Drupal MySQL -> WordPress MySQL)
 
-We first must download the repository:
+In this section we detail how to generate a Drupal instance with test data as source system and an empty WordPress instance as target system to validate the migration functionality of the transformo framework. We first must clone the repository:
 ```
 $ git clone https://github.com/diverso-lab/transformo
 $ cd transformo
 ```
 
-Then, we will move to the mysql branch
+Then, we will move to the mysql branch:
 ```
 $ git checkout mysql
 $ cd dp-to-wp
