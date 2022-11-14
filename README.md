@@ -40,3 +40,8 @@ $ make install_wordpress
 ```
 
 Thus, we have started a Drupal container populated with test data on port :8080 and a PHPMyAdmin instance on :8081, which will represent our source system. We have also started a configured and empty WordPress instance to represent our target, on port :8083 and its PHPMyAdmin on port :8084.
+
+|           | Web   | MySQL  | PMA   | ADM credentials (Web /admin & PMA database access) |
+|-----------|-------|--------|-------|----------------------------------------------------|
+| Drupal    | :8080 | :33060 | :8081 | user=drupal pw=drupal                              |
+| WordPress | :9090 | :33061 | :9092 | user=wordpress pw=wordpress                        |
