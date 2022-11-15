@@ -10,3 +10,5 @@ __pycache__/
 /docker/drupal
 /docker/wordpress
 .env
+auto-drupal/
+auto-wp/
