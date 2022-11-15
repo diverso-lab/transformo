@@ -1,13 +1,8 @@
 
 
 -- -----------------------------------------------------
--- Transformation  DeleteEntityAction
+-- Transformation  DeleteAttributeAction
 -- -----------------------------------------------------
 
-DROP TABLE `DATABASE TARGET`.`post_meta`
-
--- -----------------------------------------------------
--- Transformation  DeleteEntityAction
--- -----------------------------------------------------
-
-DROP TABLE `DATABASE TARGET`.`comment2`
+ALTER TABLE `DATABASE TARGET`.`post`
+  DROP COLUMN `attribute_move`;

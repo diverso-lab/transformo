@@ -1,6 +1,6 @@
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
-from core.writers.SimpleDatabaseModelWriter import SimpleDatabaseModelWriter
+from core.writers.SimpleDatabaseModelCopyWriter import SimpleDatabaseModelWriter
 
 
 class SimpleDatabaseModelMutator:
