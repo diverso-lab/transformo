@@ -38,6 +38,7 @@ class SimpleDatabaseModelWriter:
 
             self._write_in_template("entity_opening.stub", entity=entity)
 
+            # writing attributes
             for attribute in entity.attributes():
                 self._write_in_template("attribute.stub", attribute=attribute)
 

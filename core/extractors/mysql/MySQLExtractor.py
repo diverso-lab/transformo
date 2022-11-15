@@ -93,3 +93,5 @@ class MySQLExtractor(AbstractExtractor):
                                              port=super().port())
 
         sdm_writer = SimpleDatabaseModelWriter(tables=self.tables(), database_informer=database_informer)
+        sdm_writer.write()
+        

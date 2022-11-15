@@ -1,6 +1,6 @@
 class Attribute:
 
-    def __init__(self, attribute_item = None, static = False, attribute_name = None, attribute_type = None):
+    def __init__(self, attribute_item=None, static=False, attribute_name=None, attribute_type=None):
 
         if not static:
 
