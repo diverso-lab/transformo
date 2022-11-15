@@ -39,7 +39,7 @@ Thus, we have started a Drupal container populated with test data on port :8080 
   
 |           | Web   | MySQL  | PMA   | ADM credentials (Web /admin & PMA database access) |
 |-----------|-------|--------|-------|----------------------------------------------------|
-| Drupal    | :8080 | :3306 | :8081 | user=drupal pw=drupal                              |
+| Drupal    | :8080 | :33061 | :8081 | user=drupal pw=drupal                              |
 | WordPress | :8082 | :3307 | :8083 | user=wordpress pw=wordpress                        |
   
 </div>

@@ -6,10 +6,18 @@ from core.extractors.mysql.Table import Table
 
 class MySQLExtractor(AbstractExtractor):
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, env = ".env"):
 
-        connect = self.connect()
+        try:
+            super().__init__(env = env)
+        except Exception as e:
+            print(e)
+        
+        try:
+            connect = self.connect()
+            connect.close()
+        except:
+            print("Error! Cannot connect to database. Check that the environment variables are correct in '{}'.".format(env))
 
         self._tables = []
 
