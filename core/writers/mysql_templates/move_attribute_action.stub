@@ -8,5 +8,5 @@ ALTER TABLE `{{ database_name_to }}`.`{{ action.entity_to_id() }}`
 INSERT INTO `{{ database_name_to }}`.`{{ action.entity_to_id() }}` (`{{ action.attribute_name() }}`)
   SELECT `{{ action.attribute_name() }}` FROM `{{ database_name_from }}`.`{{ action.entity_from_id()}}`;
 
-ALTER TABLE `{{ database_name_to}}`.`{{ action.entity_from_id()}}`
+ALTER TABLE `{{ database_name_from}}`.`{{ action.entity_from_id()}}`
   DROP COLUMN `{{ action.attribute_name() }}`;

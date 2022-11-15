@@ -6,3 +6,7 @@
 /pyvenv.cfg
 /transformo.egg-info/
 __pycache__/
+/db_data
+/docker/drupal
+/docker/wordpress
+.env

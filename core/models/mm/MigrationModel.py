@@ -1,4 +1,4 @@
-from core.extractors.DatabaseExtractor import DatabaseExtractor
+from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
 from core.models.mm.Migration import Migration
 from core.models.mm.MigrationType import MigrationType
 from core.models.sdm import SimpleDatabaseModel
@@ -227,6 +227,6 @@ class MigrationModel:
         self._exported_to_uvl = True
 
     def write_sql(self, selected_migrations: list[Migration]) -> None:
-        database_info_extractor = DatabaseExtractor(self._sdm_source, self._sdm_target)
+        database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
         mysql_writer = MySQLWriter(selected_migrations=selected_migrations, root=self.root(), database_info_extractor=database_info_extractor)
         mysql_writer.write()

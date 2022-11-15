@@ -23,12 +23,4 @@
         <name>Borrar</name>
     </entity>
 
-    <entity id="comment2">
-        <name>comment</name>
-        <attribute>
-            <name>author1</name>
-            <type>tipo1</type>
-        </attribute>
-    </entity>
-
 </sdm>
