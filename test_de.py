@@ -1,11 +1,26 @@
+from core.configurators.WorkspaceConfigurator import WorkspaceConfigurator
 from core.extractors.mysql.MySQLExtractor import MySQLExtractor
-from core.models.mm.MigrationModel import MigrationModel
-from core.models.mm.MigrationType import MigrationType
-from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 def main():
 
+    # Setting workspace
+    WorkspaceConfigurator(name='D2W')
+
+    '''
+    # MySQL's extraction for Drupal
+    drupal_mysql_extractor = MySQLExtractor(env=".env.drupal")
+    drupal_mysql_extractor.extract()
+    sdm_source = drupal_mysql_extractor.sdm()
+    '''
+
+    # MySQL's extraction for WordPress
+    wordpress_mysql_extractor = MySQLExtractor(env=".env.wp")
+    wordpress_mysql_extractor.extract()
+    sdm_target = wordpress_mysql_extractor.sdm()
+    print(sdm_target.database_name())
+
+    '''
     # MySQL extraction
     #mysql_extractor = MySQLExtractor()
 
@@ -34,16 +49,17 @@ def main():
     posts_migration.define()
 
     # Selection of migrations
-    '''
+
         This is a pending implementation in the Flama framework.
         For the moment, let's assume that the dynamic feature selection 
         functionality (constraint propagation) is already implemented.
-    '''
+
     # selected_migrations = migration_model.selection()
     selected_migrations = [users_migration, posts_migration]
 
     # Write SQL script
     migration_model.write_sql(selected_migrations)
+    '''
 
 
 if __name__ == "__main__":

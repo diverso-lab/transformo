@@ -3,6 +3,7 @@ import mysql.connector
 
 from core.extractors.mysql.Table import Table
 from core.informers.DatabaseInformer import DatabaseInformer
+from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.writers.SimpleDatabaseModelWriter import SimpleDatabaseModelWriter
 
 
@@ -22,6 +23,7 @@ class MySQLExtractor(AbstractExtractor):
             print("Error! Cannot connect to database. Check that the environment variables are correct in '{}'.".format(env))
 
         self._tables = []
+        self._sdm: SimpleDatabaseModel = None
 
     def connect(self):
         return mysql.connector.connect(
@@ -94,4 +96,9 @@ class MySQLExtractor(AbstractExtractor):
 
         sdm_writer = SimpleDatabaseModelWriter(tables=self.tables(), database_informer=database_informer)
         sdm_writer.write()
+
+        self._sdm = sdm_writer.sdm()
+
+    def sdm(self) -> SimpleDatabaseModel:
+        return self._sdm
         

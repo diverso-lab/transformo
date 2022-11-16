@@ -1,14 +1,11 @@
 from abc import abstractmethod
-from typing import Any
 import os
 from dotenv import load_dotenv
-
-from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 class AbstractExtractor:
 
-    def __init__(self, env) -> None:
+    def __init__(self, env: str) -> None:
 
         # load environment file
         load_dotenv(env)
@@ -23,22 +20,21 @@ class AbstractExtractor:
         except:
             print("Error! There is a problem while opening '{}' environment file".format(env))
 
-        if self._host == None:
+        if self._host is None:
             raise Exception("Error! 'TRANSFORMO_HOST' not found in {} file".format(env))
 
-        if self._port == None:
+        if self._port is None:
             raise Exception("Error! 'TRANSFORMO_PORT' not found in {} file".format(env))
 
-        if self._database == None:
+        if self._database is None:
             raise Exception("Error! 'TRANSFORMO_DATABASE' not found in {} file".format(env))
 
         if self._user == None:
             raise Exception("Error! 'TRANSFORMO_USER' not found in {} file".format(env))
-        
-        if self._password == None:
+
+        if self._password is None:
             raise Exception("Error! 'TRANSFORMO_WORDPRESS' not found in {} file".format(env))
-        
-   
+
         self._sdm = None
         self._connect = None
 

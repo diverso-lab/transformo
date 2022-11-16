@@ -1,17 +1,24 @@
+import os
+
 import jinja2
+from dotenv import load_dotenv
 
 from core.extractors.mysql.Table import Table
 from core.informers.DatabaseInformer import DatabaseInformer
 from core.models.sdm.Attribute import Attribute
 from core.models.sdm.Entity import Entity
+from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 
 
 class SimpleDatabaseModelWriter:
 
     def __init__(self, tables: list[Table], database_informer: DatabaseInformer):
 
+        load_dotenv('.workspace')
+
         self._tables = tables
-        self._sdm_filename = "{}.sdm".format(database_informer.database())
+        self._workspace = os.getenv('WORKSPACE')
+        self._sdm_filename = "workspaces/{workspace}/models/{database_name}.sdm".format(workspace = self._workspace, database_name= database_informer.database())
         self._database_informer = database_informer
 
         template_loader = jinja2.FileSystemLoader(searchpath="./core/writers/sdm_templates")
@@ -82,3 +89,6 @@ class SimpleDatabaseModelWriter:
     def _insert_blank_line(self):
         with open(self._sdm_filename, "a") as f:
             f.write("\n")
+
+    def sdm(self) -> SimpleDatabaseModel:
+        return SimpleDatabaseModel(self._sdm_filename)
