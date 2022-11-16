@@ -1,3 +1,5 @@
+from flamapy.metamodels.fm_metamodel.transformations import UVLReader
+
 from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
 from core.loaders.WorkspaceLoader import WorkspaceLoader
 from core.models.mm.Migration import Migration
@@ -10,6 +12,19 @@ from core.writers.MySQLWriter import MySQLWriter
 
 class MigrationModel:
 
+    def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel, uvl_file: str):
+
+        # flama kernel
+        self._dm = DiscoverMetamodels()
+        self._uvl = UVLReader(uvl_file)
+
+        self._sdm_source = sdm_source
+        self._sdm_target = sdm_target
+        self._workspace = WorkspaceLoader().name()
+
+        self._fm = self._uvl.transform()
+
+    '''
     def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel):
         self._sdm_source = sdm_source
         self._sdm_target = sdm_target
@@ -22,6 +37,7 @@ class MigrationModel:
         self._exported_to_uvl = False
         self._workspace = WorkspaceLoader().name()
         self._root: str = self._workspace
+    '''
 
     def sdm_source(self):
         return self._sdm_source
@@ -30,11 +46,12 @@ class MigrationModel:
         return self._sdm_target
 
     def root(self):
-        return self._root
+        return self._fm.root
 
     def workspace(self):
         return self._workspace
 
+    '''
     def add_migration(self, name: str, migration_type: MigrationType = MigrationType.Optional) -> Migration:
         migration = Migration(migration_name=name, migration_type=migration_type)
 
@@ -48,7 +65,9 @@ class MigrationModel:
         migration.add_migration_model(self)
 
         return migration
+    '''
 
+    '''
     def migrations(self) -> list[Migration]:
         return self._migrations
 
@@ -186,6 +205,7 @@ class MigrationModel:
         # self._available_migrations.clear()
         # self._available_migrations = self._eligible_migrations.copy()
 
+    '''
     def export(self):
 
         uvl_filename = "workspaces/{workspace}/uvl/{root}.uvl".format(workspace=self._workspace, root=self._root)
@@ -231,7 +251,10 @@ class MigrationModel:
 
         self._exported_to_uvl = True
 
+
+
     def write_sql(self, selected_migrations: list[Migration]) -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
         mysql_writer = MySQLWriter(selected_migrations=selected_migrations, root=self.root(), database_info_extractor=database_info_extractor)
         mysql_writer.write()
+

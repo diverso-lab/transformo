@@ -25,6 +25,7 @@ def main():
     wordpress_mysql_extractor.extract()
     sdm_target = wordpress_mysql_extractor.sdm()
 
+    ''''''
     # Definition of migration model and migrations (abstract level)
     migration_model = MigrationModel(sdm_source, sdm_target)
     common_migration = migration_model.add_migration('common_migration', MigrationType.Mandatory)
