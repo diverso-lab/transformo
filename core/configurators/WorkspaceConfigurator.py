@@ -33,6 +33,12 @@ class WorkspaceConfigurator:
         except:
             pass
 
+        # creating scripts folder into workspace
+        try:
+            os.mkdir("workspaces/{}/scripts".format(self._name))
+        except:
+            pass
+
         # creating UVL folder into workspace
         try:
             os.mkdir("workspaces/{}/uvl".format(self._name))

@@ -6,6 +6,12 @@ from core.models.mm.MigrationType import MigrationType
 
 def main():
 
+    print()
+    print("########################################")
+    print("You're execute a proof of concept")
+    print("########################################")
+    print()
+
     # Setting workspace
     WorkspaceConfigurator(name='D2W')
 

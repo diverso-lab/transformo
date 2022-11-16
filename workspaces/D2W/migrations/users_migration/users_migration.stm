@@ -2,14 +2,6 @@
 
     <transformation type="entity" id="CreateEntityAction">
         <action type="create">
-            <entity>wp_commentmeta</entity>
-        </action>
-    </transformation>
-
-
-
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
             <entity>wp_links</entity>
         </action>
     </transformation>

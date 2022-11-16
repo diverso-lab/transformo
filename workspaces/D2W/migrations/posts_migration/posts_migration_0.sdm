@@ -4111,8 +4111,8 @@
         </attribute>
     </entity>
 
-    <entity id="wp_postmeta">
-        <name>wp_postmeta</name>
+    <entity id="wp_posts">
+        <name>wp_posts</name>
     </entity>
 
 </sdm>

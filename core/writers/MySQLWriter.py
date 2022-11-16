@@ -1,5 +1,6 @@
 import jinja2
 from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
+from core.loaders.WorkspaceLoader import WorkspaceLoader
 
 from core.models.mm.Migration import Migration
 
@@ -9,9 +10,10 @@ class MySQLWriter:
     def __init__(self, selected_migrations: list[Migration], root: str, database_info_extractor: DatabaseInfoExtractor) -> None:
 
         # basic info
+        self._workspace = WorkspaceLoader().name()
         self._selected_migrations = selected_migrations
         self._root = root
-        self._sql_filename = "models/{}/{}.sql".format(self._root, self._root)
+        self._sql_filename = "workspaces/{workspace}/scripts/{script_name}.sql".format(workspace=self._workspace, script_name=self._root)
         self._database_info_extractor = database_info_extractor
 
         # templates
