@@ -1,3 +1,4 @@
+from core.loaders.WorkspaceLoader import WorkspaceLoader
 from core.models.stm.AvailableAction import AvailableAction
 import jinja2
 import os
@@ -15,12 +16,14 @@ class MigrationWriter:
             opening: bool = False,
             closing: bool = False):
 
+        self._workspace = WorkspaceLoader().name()
         self._migration_model_name = migration_model_name
         self._migration_name = migration_name
-        self._stm_filename = "models/{}/{}/{}.stm".format(migration_model_name, migration_name, migration_name)
+        self._stm_filename = "workspaces/{workspace}/migrations/{migration_name}/{migration_name}.stm".format(workspace=self._workspace, migration_name = self._migration_name)
         self._available_action = available_action
         self._opening = opening
         self._closing = closing
+
 
         template_loader = jinja2.FileSystemLoader(searchpath="./core/writers/migration_templates")
         self._template_env = jinja2.Environment(loader=template_loader)
@@ -37,7 +40,7 @@ class MigrationWriter:
         if self._opening:
 
             try:
-                os.mkdir("models/{}/{}".format(self._migration_model_name, self._migration_name))
+                os.mkdir("workspaces/{workspace}/migrations/{migration_name}".format(workspace = self._workspace,migration_name= self._migration_name))
                 open(self._stm_filename, "w").close()
             except:
                 pass

@@ -7,7 +7,7 @@ class AbstractAction:
         pass
 
     @abstractmethod
-    def info(self):
+    def info(self) -> str:
         return self.__class__.__name__
 
     @abstractmethod

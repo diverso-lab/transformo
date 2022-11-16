@@ -1,4 +1,5 @@
 from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
+from core.loaders.WorkspaceLoader import WorkspaceLoader
 from core.models.mm.Migration import Migration
 from core.models.mm.MigrationType import MigrationType
 from core.models.sdm import SimpleDatabaseModel
@@ -9,7 +10,7 @@ from core.writers.MySQLWriter import MySQLWriter
 
 class MigrationModel:
 
-    def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel, root: str):
+    def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel):
         self._sdm_source = sdm_source
         self._sdm_target = sdm_target
         self._migrations: list[Migration] = list()
@@ -19,7 +20,8 @@ class MigrationModel:
         self._uvl: str = ''
         self._dm = DiscoverMetamodels()
         self._exported_to_uvl = False
-        self._root: str = root
+        self._workspace = WorkspaceLoader().name()
+        self._root: str = self._workspace
 
     def sdm_source(self):
         return self._sdm_source
@@ -29,6 +31,9 @@ class MigrationModel:
 
     def root(self):
         return self._root
+
+    def workspace(self):
+        return self._workspace
 
     def add_migration(self, name: str, migration_type: MigrationType = MigrationType.Optional) -> Migration:
         migration = Migration(migration_name=name, migration_type=migration_type)
@@ -183,7 +188,7 @@ class MigrationModel:
 
     def export(self):
 
-        uvl_filename = "models/{}/{}.uvl".format(self._root, self._root)
+        uvl_filename = "workspaces/{workspace}/uvl/{root}.uvl".format(workspace=self._workspace, root=self._root)
 
         with open(uvl_filename, 'w') as f:
 

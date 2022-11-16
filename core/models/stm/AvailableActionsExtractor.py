@@ -80,7 +80,7 @@ class AvailableActionsExtractor:
 
         for e in self._B.entities():
             if not self._A.contains_entity_by_id(e):
-                action = CreateEntityAction(e)
+                action = CreateEntityAction(entity_id = e.id())
                 self.add_action(action)
 
     def extract_rename_entity_actions(self):

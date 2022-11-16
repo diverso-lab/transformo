@@ -1,0 +1,17 @@
+<stm>
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
+            <entity>wp_postmeta</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="DeleteEntityAction">
+        <action type="delete">
+            <entity>node__field_cooking_time</entity>
+        </action>
+    </transformation>
+
+</stm>

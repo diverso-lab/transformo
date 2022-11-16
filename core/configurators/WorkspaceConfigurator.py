@@ -15,13 +15,27 @@ class WorkspaceConfigurator:
         with open('.workspace', "a") as f:
             f.write('WORKSPACE={}'.format(self._name))
 
+        # creating workspace folder
         try:
             os.mkdir("workspaces/{}".format(self._name))
         except:
             pass
 
+        # creating migrations folder into workspace
+        try:
+            os.mkdir("workspaces/{}/migrations".format(self._name))
+        except:
+            pass
+
+        # creating models folder into workspace
         try:
             os.mkdir("workspaces/{}/models".format(self._name))
+        except:
+            pass
+
+        # creating UVL folder into workspace
+        try:
+            os.mkdir("workspaces/{}/uvl".format(self._name))
         except:
             pass
 

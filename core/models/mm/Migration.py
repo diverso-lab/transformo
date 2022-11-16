@@ -54,10 +54,12 @@ class Migration:
 
     def define(self, opening=True) -> None:
 
+        print(self._migration_model.root())
+
         # delete previous files
         if opening:
             try:
-                rmtree("models/{}/{}".format(self._migration_model.root(), self._migration_name))
+                rmtree("workspaces/{workspace}/migrations/{migration_name}".format(workspace=self._migration_model.workspace(), migration_name=self._migration_name))
             except:
                 pass
 

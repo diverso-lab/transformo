@@ -1,3 +1,4 @@
+from core.loaders.WorkspaceLoader import WorkspaceLoader
 from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
 from core.writers.SimpleDatabaseModelCopyWriter import SimpleDatabaseModelWriter
@@ -19,6 +20,7 @@ class SimpleDatabaseModelMutator:
         self._migration_name = migration_name
         self._folder = folder
         self._new_sdm_file = None
+        self._workspace = WorkspaceLoader().name()
 
     def mutate(self):
 
@@ -123,7 +125,7 @@ class SimpleDatabaseModelMutator:
                         # update attribute
                         self._current_sdm_source.delete_attribute(entity=entity, attribute_name=attribute)
 
-        self._new_sdm_file = "models/{}/{}_{}.sdm".format(self._folder, self._migration_name, self._actions_counter)
+        self._new_sdm_file = "workspaces/{workspace}/migrations/{migration_name}/{migration_name}_{actions_counter}.sdm".format(workspace=self._workspace, migration_name=self._migration_name, actions_counter=self._actions_counter)
         sdm_writer = SimpleDatabaseModelWriter(sdm=self._current_sdm_source, sdm_filename=self._new_sdm_file,
                                                folder=self._folder)
         sdm_writer.write()

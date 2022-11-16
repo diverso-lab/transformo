@@ -1,9 +1,9 @@
 from core.models.stm.actions.AbstractAction import AbstractAction
 
 
-class CreateEntityAction(AbstractAction) :
+class CreateEntityAction(AbstractAction):
 
-    def __init__(self, entity_id) -> None:
+    def __init__(self, entity_id: str) -> None:
 
         self._entity_id = entity_id
 
