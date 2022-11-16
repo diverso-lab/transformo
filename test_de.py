@@ -7,14 +7,13 @@ def main():
     # Setting workspace
     WorkspaceConfigurator(name='D2W')
 
-    '''
-    # MySQL's extraction for Drupal
+    # MySQL extraction for Drupal
     drupal_mysql_extractor = MySQLExtractor(env=".env.drupal")
     drupal_mysql_extractor.extract()
     sdm_source = drupal_mysql_extractor.sdm()
-    '''
+    print(sdm_source.database_name())
 
-    # MySQL's extraction for WordPress
+    # MySQL extraction for WordPress
     wordpress_mysql_extractor = MySQLExtractor(env=".env.wp")
     wordpress_mysql_extractor.extract()
     sdm_target = wordpress_mysql_extractor.sdm()

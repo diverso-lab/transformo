@@ -1,0 +1,430 @@
+
+<sdm>
+    <database>
+        <name>wordpress</name>
+    </database>
+    <entity id="wp_commentmeta">
+        <name>wp_commentmeta</name>
+        <attribute>
+            <name>meta_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>comment_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>meta_key</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>meta_value</name>
+            <type>longtext</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_comments">
+        <name>wp_comments</name>
+        <attribute>
+            <name>comment_ID</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>comment_post_ID</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>comment_author</name>
+            <type>tinytext</type>
+        </attribute>
+        <attribute>
+            <name>comment_author_email</name>
+            <type>varchar(100)</type>
+        </attribute>
+        <attribute>
+            <name>comment_author_url</name>
+            <type>varchar(200)</type>
+        </attribute>
+        <attribute>
+            <name>comment_author_IP</name>
+            <type>varchar(100)</type>
+        </attribute>
+        <attribute>
+            <name>comment_date</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>comment_date_gmt</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>comment_content</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>comment_karma</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>comment_approved</name>
+            <type>varchar(20)</type>
+        </attribute>
+        <attribute>
+            <name>comment_agent</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>comment_type</name>
+            <type>varchar(20)</type>
+        </attribute>
+        <attribute>
+            <name>comment_parent</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>user_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_links">
+        <name>wp_links</name>
+        <attribute>
+            <name>link_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>link_url</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link_name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link_image</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link_target</name>
+            <type>varchar(25)</type>
+        </attribute>
+        <attribute>
+            <name>link_description</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link_visible</name>
+            <type>varchar(20)</type>
+        </attribute>
+        <attribute>
+            <name>link_owner</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>link_rating</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>link_updated</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>link_rel</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link_notes</name>
+            <type>mediumtext</type>
+        </attribute>
+        <attribute>
+            <name>link_rss</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_options">
+        <name>wp_options</name>
+        <attribute>
+            <name>option_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>option_name</name>
+            <type>varchar(191)</type>
+        </attribute>
+        <attribute>
+            <name>option_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>autoload</name>
+            <type>varchar(20)</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_postmeta">
+        <name>wp_postmeta</name>
+        <attribute>
+            <name>meta_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>post_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>meta_key</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>meta_value</name>
+            <type>longtext</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_posts">
+        <name>wp_posts</name>
+        <attribute>
+            <name>ID</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>post_author</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>post_date</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>post_date_gmt</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>post_content</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>post_title</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>post_excerpt</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>post_status</name>
+            <type>varchar(20)</type>
+        </attribute>
+        <attribute>
+            <name>comment_status</name>
+            <type>varchar(20)</type>
+        </attribute>
+        <attribute>
+            <name>ping_status</name>
+            <type>varchar(20)</type>
+        </attribute>
+        <attribute>
+            <name>post_password</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>post_name</name>
+            <type>varchar(200)</type>
+        </attribute>
+        <attribute>
+            <name>to_ping</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>pinged</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>post_modified</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>post_modified_gmt</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>post_content_filtered</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>post_parent</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>guid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>menu_order</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>post_type</name>
+            <type>varchar(20)</type>
+        </attribute>
+        <attribute>
+            <name>post_mime_type</name>
+            <type>varchar(100)</type>
+        </attribute>
+        <attribute>
+            <name>comment_count</name>
+            <type>bigint</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_term_relationships">
+        <name>wp_term_relationships</name>
+        <attribute>
+            <name>object_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>term_taxonomy_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>term_order</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_term_taxonomy">
+        <name>wp_term_taxonomy</name>
+        <attribute>
+            <name>term_taxonomy_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>term_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>taxonomy</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>description</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>parent</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>count</name>
+            <type>bigint</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_termmeta">
+        <name>wp_termmeta</name>
+        <attribute>
+            <name>meta_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>term_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>meta_key</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>meta_value</name>
+            <type>longtext</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_terms">
+        <name>wp_terms</name>
+        <attribute>
+            <name>term_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(200)</type>
+        </attribute>
+        <attribute>
+            <name>slug</name>
+            <type>varchar(200)</type>
+        </attribute>
+        <attribute>
+            <name>term_group</name>
+            <type>bigint</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_usermeta">
+        <name>wp_usermeta</name>
+        <attribute>
+            <name>umeta_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>user_id</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>meta_key</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>meta_value</name>
+            <type>longtext</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_users">
+        <name>wp_users</name>
+        <attribute>
+            <name>ID</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>user_login</name>
+            <type>varchar(60)</type>
+        </attribute>
+        <attribute>
+            <name>user_pass</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>user_nicename</name>
+            <type>varchar(50)</type>
+        </attribute>
+        <attribute>
+            <name>user_email</name>
+            <type>varchar(100)</type>
+        </attribute>
+        <attribute>
+            <name>user_url</name>
+            <type>varchar(100)</type>
+        </attribute>
+        <attribute>
+            <name>user_registered</name>
+            <type>datetime</type>
+        </attribute>
+        <attribute>
+            <name>user_activation_key</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>user_status</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>display_name</name>
+            <type>varchar(250)</type>
+        </attribute>
+    </entity>
+
+</sdm>

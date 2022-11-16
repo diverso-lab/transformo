@@ -1,6 +1,5 @@
 from abc import abstractmethod
-import os
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 
 class AbstractExtractor:
@@ -8,32 +7,32 @@ class AbstractExtractor:
     def __init__(self, env: str) -> None:
 
         # load environment file
-        load_dotenv(env)
+        dotenv_values_dict = dotenv_values(env)
 
-        # load environment variables 
+        # save environment variables
         try:
-            self._host = os.getenv('TRANSFORMO_HOST')
-            self._port = int(os.getenv('TRANSFORMO_PORT'))
-            self._database = os.getenv('TRANSFORMO_DATABASE')
-            self._user = os.getenv('TRANSFORMO_USER')
-            self._password = os.getenv('TRANSFORMO_PASSWORD')
+            self._host = dotenv_values_dict['HOST']
+            self._port = int(dotenv_values_dict['PORT'])
+            self._database = dotenv_values_dict['DATABASE']
+            self._user = dotenv_values_dict['USER']
+            self._password = dotenv_values_dict['PASSWORD']
         except:
             print("Error! There is a problem while opening '{}' environment file".format(env))
 
         if self._host is None:
-            raise Exception("Error! 'TRANSFORMO_HOST' not found in {} file".format(env))
+            raise Exception("Error! 'HOST' not found in {} file".format(env))
 
         if self._port is None:
-            raise Exception("Error! 'TRANSFORMO_PORT' not found in {} file".format(env))
+            raise Exception("Error! 'PORT' not found in {} file".format(env))
 
         if self._database is None:
-            raise Exception("Error! 'TRANSFORMO_DATABASE' not found in {} file".format(env))
+            raise Exception("Error! 'DATABASE' not found in {} file".format(env))
 
-        if self._user == None:
-            raise Exception("Error! 'TRANSFORMO_USER' not found in {} file".format(env))
+        if self._user is None:
+            raise Exception("Error! 'USER' not found in {} file".format(env))
 
         if self._password is None:
-            raise Exception("Error! 'TRANSFORMO_WORDPRESS' not found in {} file".format(env))
+            raise Exception("Error! 'WORDPRESS' not found in {} file".format(env))
 
         self._sdm = None
         self._connect = None
