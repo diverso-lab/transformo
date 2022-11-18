@@ -2,7 +2,7 @@
 
     <transformation type="entity" id="CreateEntityAction">
         <action type="create">
-            <entity>wp_options</entity>
+            <entity>wp_postmeta</entity>
         </action>
     </transformation>
 
@@ -10,7 +10,7 @@
 
     <transformation type="entity" id="CreateEntityAction">
         <action type="create">
-            <entity>wp_term_relationships</entity>
+            <entity>wp_usermeta</entity>
         </action>
     </transformation>
 

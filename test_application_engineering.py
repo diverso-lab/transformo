@@ -16,6 +16,19 @@ def main():
     # Reading migration feature model
     migration_model = MigrationModelReader().migration_model()
 
+    # Selection of migrations
+    '''
+        This is a pending implementation in the Flama framework.
+        For the moment, let's assume that the dynamic feature selection 
+        functionality (constraint propagation) is already implemented.
+    '''
+
+    # selected_migrations = migration_model.selection()
+    selected_migrations = ['migrate_user_data', 'migrate_published_posts']
+
+    # Write SQL script
+    migration_model.write_sql(selected_migrations_name=selected_migrations)
+
 
 if __name__ == "__main__":
     main()

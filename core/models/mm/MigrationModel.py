@@ -41,6 +41,9 @@ class MigrationModel:
     def migrations(self) -> {}:
         return self._migrations
 
+    def get_migration_by_name(self, migration_name: str):
+        return self._migrations[migration_name]
+
     def _read_migrations(self):
 
         for f in self._fm.get_features():
@@ -100,8 +103,15 @@ class MigrationModel:
 
     '''
 
-    def write_sql(self, selected_migrations: list[Migration]) -> None:
+    def write_sql(self, selected_migrations_name: list[str]) -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
+
+        selected_migrations = list()
+
+        for s in selected_migrations_name:
+            migration = self.get_migration_by_name(s)
+            selected_migrations.append(migration)
+
         mysql_writer = MySQLWriter(selected_migrations=selected_migrations,
                                    root=self.root().name,
                                    database_info_extractor=database_info_extractor)

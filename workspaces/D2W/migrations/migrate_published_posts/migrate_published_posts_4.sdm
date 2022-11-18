@@ -1,0 +1,4134 @@
+
+<sdm>
+    <database>
+        <name>drupal</name>
+    </database>
+    <entity id="block_content">
+        <name>block_content</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content__body">
+        <name>block_content__body</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>body_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_summary</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content__field_content_link">
+        <name>block_content__field_content_link</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_content_link_uri</name>
+            <type>varchar(2048)</type>
+        </attribute>
+        <attribute>
+            <name>field_content_link_title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>field_content_link_options</name>
+            <type>longblob</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content__field_copyright">
+        <name>block_content__field_copyright</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_copyright_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_copyright_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content__field_disclaimer">
+        <name>block_content__field_disclaimer</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_disclaimer_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_disclaimer_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content__field_media_image">
+        <name>block_content__field_media_image</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content__field_summary">
+        <name>block_content__field_summary</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_summary_value</name>
+            <type>longtext</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content__field_title">
+        <name>block_content__field_title</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_title_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_field_data">
+        <name>block_content_field_data</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>info</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>reusable</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_created</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_field_revision">
+        <name>block_content_field_revision</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>info</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_created</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision">
+        <name>block_content_revision</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>revision_user</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>revision_log</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>revision_default</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision__body">
+        <name>block_content_revision__body</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>body_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_summary</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision__field_content_link">
+        <name>block_content_revision__field_content_link</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_content_link_uri</name>
+            <type>varchar(2048)</type>
+        </attribute>
+        <attribute>
+            <name>field_content_link_title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>field_content_link_options</name>
+            <type>longblob</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision__field_copyright">
+        <name>block_content_revision__field_copyright</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_copyright_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_copyright_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision__field_disclaimer">
+        <name>block_content_revision__field_disclaimer</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_disclaimer_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_disclaimer_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision__field_media_image">
+        <name>block_content_revision__field_media_image</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision__field_summary">
+        <name>block_content_revision__field_summary</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_summary_value</name>
+            <type>longtext</type>
+        </attribute>
+    </entity>
+
+    <entity id="block_content_revision__field_title">
+        <name>block_content_revision__field_title</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_title_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_bootstrap">
+        <name>cache_bootstrap</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_config">
+        <name>cache_config</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_container">
+        <name>cache_container</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_data">
+        <name>cache_data</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_default">
+        <name>cache_default</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_discovery">
+        <name>cache_discovery</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_dynamic_page_cache">
+        <name>cache_dynamic_page_cache</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_entity">
+        <name>cache_entity</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_menu">
+        <name>cache_menu</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_page">
+        <name>cache_page</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_render">
+        <name>cache_render</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cachetags">
+        <name>cachetags</name>
+        <attribute>
+            <name>tag</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>invalidations</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="config">
+        <name>config</name>
+        <attribute>
+            <name>collection</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="content_moderation_state">
+        <name>content_moderation_state</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+    </entity>
+
+    <entity id="content_moderation_state_field_data">
+        <name>content_moderation_state_field_data</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>workflow</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>moderation_state</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>content_entity_type_id</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>content_entity_id</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>content_entity_revision_id</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="content_moderation_state_field_revision">
+        <name>content_moderation_state_field_revision</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>workflow</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>moderation_state</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>content_entity_type_id</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>content_entity_id</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>content_entity_revision_id</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="content_moderation_state_revision">
+        <name>content_moderation_state_revision</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>revision_default</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="file_managed">
+        <name>file_managed</name>
+        <attribute>
+            <name>fid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>filename</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>uri</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>filemime</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>filesize</name>
+            <type>bigint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="file_usage">
+        <name>file_usage</name>
+        <attribute>
+            <name>fid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>module</name>
+            <type>varchar(50)</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(64)</type>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <type>varchar(64)</type>
+        </attribute>
+        <attribute>
+            <name>count</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="history">
+        <name>history</name>
+        <attribute>
+            <name>nid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>timestamp</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="inline_block_usage">
+        <name>inline_block_usage</name>
+        <attribute>
+            <name>block_content_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>layout_entity_id</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>layout_entity_type</name>
+            <type>varchar(32)</type>
+        </attribute>
+    </entity>
+
+    <entity id="key_value">
+        <name>key_value</name>
+        <attribute>
+            <name>collection</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <type>longblob</type>
+        </attribute>
+    </entity>
+
+    <entity id="locale_file">
+        <name>locale_file</name>
+        <attribute>
+            <name>project</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>filename</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>version</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>uri</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>timestamp</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>last_checked</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="locales_location">
+        <name>locales_location</name>
+        <attribute>
+            <name>lid</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>sid</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(50)</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>version</name>
+            <type>varchar(20)</type>
+        </attribute>
+    </entity>
+
+    <entity id="locales_source">
+        <name>locales_source</name>
+        <attribute>
+            <name>context</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>lid</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>source</name>
+            <type>blob</type>
+        </attribute>
+        <attribute>
+            <name>version</name>
+            <type>varchar(20)</type>
+        </attribute>
+    </entity>
+
+    <entity id="locales_target">
+        <name>locales_target</name>
+        <attribute>
+            <name>customized</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>language</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>lid</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>translation</name>
+            <type>blob</type>
+        </attribute>
+    </entity>
+
+    <entity id="media">
+        <name>media</name>
+        <attribute>
+            <name>mid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+    </entity>
+
+    <entity id="media__field_media_audio_file">
+        <name>media__field_media_audio_file</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_audio_file_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_audio_file_display</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_audio_file_description</name>
+            <type>text</type>
+        </attribute>
+    </entity>
+
+    <entity id="media__field_media_document">
+        <name>media__field_media_document</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_document_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_document_display</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_document_description</name>
+            <type>text</type>
+        </attribute>
+    </entity>
+
+    <entity id="media__field_media_image">
+        <name>media__field_media_image</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_alt</name>
+            <type>varchar(512)</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_title</name>
+            <type>varchar(1024)</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_width</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_height</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="media__field_media_oembed_video">
+        <name>media__field_media_oembed_video</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_oembed_video_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="media__field_media_video_file">
+        <name>media__field_media_video_file</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_video_file_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_video_file_display</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_video_file_description</name>
+            <type>text</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_field_data">
+        <name>media_field_data</name>
+        <attribute>
+            <name>mid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__alt</name>
+            <type>varchar(512)</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__title</name>
+            <type>varchar(1024)</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__width</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__height</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_field_revision">
+        <name>media_field_revision</name>
+        <attribute>
+            <name>mid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__alt</name>
+            <type>varchar(512)</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__title</name>
+            <type>varchar(1024)</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__width</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>thumbnail__height</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_revision">
+        <name>media_revision</name>
+        <attribute>
+            <name>mid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>revision_user</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>revision_log_message</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>revision_default</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_revision__field_media_audio_file">
+        <name>media_revision__field_media_audio_file</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_audio_file_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_audio_file_display</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_audio_file_description</name>
+            <type>text</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_revision__field_media_document">
+        <name>media_revision__field_media_document</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_document_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_document_display</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_document_description</name>
+            <type>text</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_revision__field_media_image">
+        <name>media_revision__field_media_image</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_alt</name>
+            <type>varchar(512)</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_title</name>
+            <type>varchar(1024)</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_width</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_height</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_revision__field_media_oembed_video">
+        <name>media_revision__field_media_oembed_video</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_oembed_video_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="media_revision__field_media_video_file">
+        <name>media_revision__field_media_video_file</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_video_file_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_video_file_display</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_video_file_description</name>
+            <type>text</type>
+        </attribute>
+    </entity>
+
+    <entity id="menu_link_content">
+        <name>menu_link_content</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+    </entity>
+
+    <entity id="menu_link_content_data">
+        <name>menu_link_content_data</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>enabled</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>description</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>menu_name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link__uri</name>
+            <type>varchar(2048)</type>
+        </attribute>
+        <attribute>
+            <name>link__title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link__options</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>external</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>rediscover</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>weight</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>expanded</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>parent</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="menu_link_content_field_revision">
+        <name>menu_link_content_field_revision</name>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>description</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>enabled</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>external</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>link__options</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>link__title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link__uri</name>
+            <type>varchar(2048)</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="menu_link_content_revision">
+        <name>menu_link_content_revision</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>revision_user</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>revision_log_message</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>revision_default</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="menu_tree">
+        <name>menu_tree</name>
+        <attribute>
+            <name>menu_name</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>mlid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>parent</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>route_name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>route_param_key</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>route_parameters</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>url</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>description</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>class</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>options</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>provider</name>
+            <type>varchar(50)</type>
+        </attribute>
+        <attribute>
+            <name>enabled</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>discovered</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>expanded</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>weight</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>metadata</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>has_children</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>depth</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>p1</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p2</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p3</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p4</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p5</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p6</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p7</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p8</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>p9</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>form_class</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node">
+        <name>node</name>
+        <attribute>
+            <name>nid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__body">
+        <name>node__body</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>body_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_summary</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_cooking_time">
+        <name>node__field_cooking_time</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_cooking_time_value</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_difficulty">
+        <name>node__field_difficulty</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_difficulty_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_ingredients">
+        <name>node__field_ingredients</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_ingredients_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_media_image">
+        <name>node__field_media_image</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_number_of_servings">
+        <name>node__field_number_of_servings</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_number_of_servings_value</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_preparation_time">
+        <name>node__field_preparation_time</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_preparation_time_value</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_recipe_category">
+        <name>node__field_recipe_category</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_recipe_category_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_recipe_instruction">
+        <name>node__field_recipe_instruction</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_recipe_instruction_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_recipe_instruction_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_summary">
+        <name>node__field_summary</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_summary_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_summary_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__field_tags">
+        <name>node__field_tags</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_tags_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node__layout_builder__layout">
+        <name>node__layout_builder__layout</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>layout_builder__layout_section</name>
+            <type>blob</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_access">
+        <name>node_access</name>
+        <attribute>
+            <name>nid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>fallback</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>gid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>realm</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>grant_view</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>grant_update</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>grant_delete</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_field_data">
+        <name>node_field_data</name>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>nid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>promote</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>sticky</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_field_revision">
+        <name>node_field_revision</name>
+        <attribute>
+            <name>nid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>promote</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>sticky</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision">
+        <name>node_revision</name>
+        <attribute>
+            <name>nid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>revision_uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_timestamp</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>revision_log</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>revision_default</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__body">
+        <name>node_revision__body</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>body_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_summary</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>body_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_cooking_time">
+        <name>node_revision__field_cooking_time</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_cooking_time_value</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_difficulty">
+        <name>node_revision__field_difficulty</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_difficulty_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_ingredients">
+        <name>node_revision__field_ingredients</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_ingredients_value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_media_image">
+        <name>node_revision__field_media_image</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_media_image_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_number_of_servings">
+        <name>node_revision__field_number_of_servings</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_number_of_servings_value</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_preparation_time">
+        <name>node_revision__field_preparation_time</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_preparation_time_value</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_recipe_category">
+        <name>node_revision__field_recipe_category</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_recipe_category_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_recipe_instruction">
+        <name>node_revision__field_recipe_instruction</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_recipe_instruction_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_recipe_instruction_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_summary">
+        <name>node_revision__field_summary</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_summary_value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>field_summary_format</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__field_tags">
+        <name>node_revision__field_tags</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>field_tags_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="node_revision__layout_builder__layout">
+        <name>node_revision__layout_builder__layout</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>layout_builder__layout_section</name>
+            <type>blob</type>
+        </attribute>
+    </entity>
+
+    <entity id="path_alias">
+        <name>path_alias</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>path</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>alias</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="path_alias_revision">
+        <name>path_alias_revision</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>path</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>alias</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_default</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="router">
+        <name>router</name>
+        <attribute>
+            <name>fit</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>number_parts</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>path</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>pattern_outline</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>route</name>
+            <type>longblob</type>
+        </attribute>
+    </entity>
+
+    <entity id="search_dataset">
+        <name>search_dataset</name>
+        <attribute>
+            <name>sid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(64)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>reindex</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="search_index">
+        <name>search_index</name>
+        <attribute>
+            <name>word</name>
+            <type>varchar(50)</type>
+        </attribute>
+        <attribute>
+            <name>sid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(64)</type>
+        </attribute>
+        <attribute>
+            <name>score</name>
+            <type>float</type>
+        </attribute>
+    </entity>
+
+    <entity id="search_total">
+        <name>search_total</name>
+        <attribute>
+            <name>word</name>
+            <type>varchar(50)</type>
+        </attribute>
+        <attribute>
+            <name>count</name>
+            <type>float</type>
+        </attribute>
+    </entity>
+
+    <entity id="semaphore">
+        <name>semaphore</name>
+        <attribute>
+            <name>expire</name>
+            <type>double</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="sequences">
+        <name>sequences</name>
+        <attribute>
+            <name>value</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="sessions">
+        <name>sessions</name>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>sid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>hostname</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>timestamp</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>session</name>
+            <type>longblob</type>
+        </attribute>
+    </entity>
+
+    <entity id="shortcut">
+        <name>shortcut</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>shortcut_set</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+    </entity>
+
+    <entity id="shortcut_field_data">
+        <name>shortcut_field_data</name>
+        <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>shortcut_set</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>weight</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>link__uri</name>
+            <type>varchar(2048)</type>
+        </attribute>
+        <attribute>
+            <name>link__title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link__options</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="shortcut_set_users">
+        <name>shortcut_set_users</name>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>set_name</name>
+            <type>varchar(32)</type>
+        </attribute>
+    </entity>
+
+    <entity id="taxonomy_index">
+        <name>taxonomy_index</name>
+        <attribute>
+            <name>nid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>tid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>sticky</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="taxonomy_term__parent">
+        <name>taxonomy_term__parent</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>parent_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="taxonomy_term_data">
+        <name>taxonomy_term_data</name>
+        <attribute>
+            <name>tid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+    </entity>
+
+    <entity id="taxonomy_term_field_data">
+        <name>taxonomy_term_field_data</name>
+        <attribute>
+            <name>tid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>vid</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>description__value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>description__format</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>weight</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_created</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="taxonomy_term_field_revision">
+        <name>taxonomy_term_field_revision</name>
+        <attribute>
+            <name>tid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>description__value</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>description__format</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>content_translation_created</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="taxonomy_term_revision">
+        <name>taxonomy_term_revision</name>
+        <attribute>
+            <name>tid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>revision_user</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>revision_log_message</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>revision_default</name>
+            <type>tinyint</type>
+        </attribute>
+    </entity>
+
+    <entity id="taxonomy_term_revision__parent">
+        <name>taxonomy_term_revision__parent</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>parent_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="user__roles">
+        <name>user__roles</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>roles_target_id</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="user__user_picture">
+        <name>user__user_picture</name>
+        <attribute>
+            <name>bundle</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>deleted</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>entity_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>delta</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>user_picture_target_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>user_picture_alt</name>
+            <type>varchar(512)</type>
+        </attribute>
+        <attribute>
+            <name>user_picture_title</name>
+            <type>varchar(1024)</type>
+        </attribute>
+        <attribute>
+            <name>user_picture_width</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>user_picture_height</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="users">
+        <name>users</name>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>uuid</name>
+            <type>varchar(128)</type>
+        </attribute>
+    </entity>
+
+    <entity id="users_data">
+        <name>users_data</name>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>module</name>
+            <type>varchar(50)</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="users_field_data">
+        <name>users_field_data</name>
+        <attribute>
+            <name>access</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>init</name>
+            <type>varchar(254)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>login</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>mail</name>
+            <type>varchar(254)</type>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <type>varchar(60)</type>
+        </attribute>
+        <attribute>
+            <name>pass</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>preferred_admin_langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>preferred_langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>timezone</name>
+            <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+    </entity>
+
+    <entity id="watchdog">
+        <name>watchdog</name>
+        <attribute>
+            <name>wid</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <type>varchar(64)</type>
+        </attribute>
+        <attribute>
+            <name>message</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>variables</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>severity</name>
+            <type>tinyint unsigned</type>
+        </attribute>
+        <attribute>
+            <name>link</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>location</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>referer</name>
+            <type>text</type>
+        </attribute>
+        <attribute>
+            <name>hostname</name>
+            <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>timestamp</name>
+            <type>int</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_options">
+        <name>wp_options</name>
+        <attribute>
+            <name>autoload</name>
+            <type>varchar(20)</type>
+        </attribute>
+    </entity>
+
+    <entity id="wp_term_relationships">
+        <name>wp_term_relationships</name>
+    </entity>
+
+    <entity id="wp_terms">
+        <name>wp_terms</name>
+    </entity>
+
+    <entity id="wp_postmeta">
+        <name>wp_postmeta</name>
+    </entity>
+
+</sdm>
