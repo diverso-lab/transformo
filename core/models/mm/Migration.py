@@ -1,10 +1,7 @@
-from shutil import rmtree
+from flamapy.metamodels.fm_metamodel.models import Feature
 
-from flamapy.metamodels.fm_metamodel.models import FeatureModel, Feature
-
+from core.loaders.WorkspaceLoader import WorkspaceLoader
 from core.models.mm import MigrationModel
-from core.models.mm.MigrationType import MigrationType
-from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.AvailableActionsExtractor import AvailableActionsExtractor
 from core.models.stm.AvailableAction import AvailableAction
 from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
@@ -19,6 +16,7 @@ class Migration:
         # basic
         self._migration_model = migration_model
         self._feature = feature
+        self._workspace: str = WorkspaceLoader().name()
 
         # derivative
         self._migration_name = self._feature.name
@@ -44,8 +42,6 @@ class Migration:
     def define(self, opening=True) -> None:
 
         print(self._migration_model.root())
-
-        # delete previous files
 
         extractor = AvailableActionsExtractor(sdm_source=self._current_sdm_source,
                                               sdm_target=self._migration_model.sdm_target())
@@ -94,7 +90,6 @@ class Migration:
         )
         migration_writer.write()
         last_stm = migration_writer.stm()
-        # self._stm = last_stm
 
         # mutates previous SDM
         sdm_mutator = SimpleDatabaseModelMutator(
@@ -116,49 +111,7 @@ class Migration:
     def _finish(self):
         pass
 
-    '''
-    def __init__(self, migration_name: str, migration_type: MigrationType = MigrationType.Optional):
-        self._migration_name = migration_name
-        self._migration_type = migration_type
-        self._requires_migrations: list[Migration] = list()
-        self._excludes_migrations: list[Migration] = list()
-        self._migration_model: MigrationModel = None
-        self._selected_actions: list[AvailableAction] = list()
-        self._current_sdm_source: SimpleDatabaseModel = None
-        self._actions_counter: int = 0
-        self._stm = None
-
-    def add_migration_model(self, migration_model: MigrationModel):
-        self._migration_model = migration_model
-        self._current_sdm_source = migration_model.sdm_source()
-
-    def requires(self, migration) -> None:
-        self._requires_migrations.append(migration)
-
-    def excludes(self, migration) -> None:
-
-        # to avoid infinite recursion
-        if not migration in self._excludes_migrations:
-            self._excludes_migrations.append(migration)
-            migration.excludes(self)
-
-    def name(self) -> str:
-        return self._migration_name
-
-    def type(self) -> MigrationType:
-        return self._migration_type
-
     def stm(self) -> SimpleTransformationModel:
-        return self._stm
-
-    def requires_migrations(self) -> list:
-        return self._requires_migrations
-
-    def excludes_migrations(self) -> list:
-        return self._excludes_migrations
-
-    
-
-    
-
-    '''
+        return SimpleTransformationModel(stm_file='workspaces/{workspace}/migrations'
+                                                  '/{migration_name}/{migration_name}.stm'
+                                         .format(workspace=self._workspace, migration_name=self._migration_name))

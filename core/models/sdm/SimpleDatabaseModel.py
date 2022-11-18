@@ -1,5 +1,7 @@
+import os
 from xml.dom import minidom
 
+from core.loaders.WorkspaceLoader import WorkspaceLoader
 from core.models.sdm.Attribute import Attribute
 from core.models.sdm.Entity import Entity
 from core.models.sdm.ForeignKey import ForeignKey
@@ -8,11 +10,11 @@ from core.models.sdm.Relationship import Relationship
 
 class SimpleDatabaseModel:
 
-    def __init__(self, file):
+    def __init__(self, filename: str):
 
         # files
-        self._file = file
-        self._doc = minidom.parse(self._file)
+        self._filename = filename
+        self._doc = minidom.parse(self._filename)
 
         # basic info
         self._database_name : str = ""
@@ -28,8 +30,11 @@ class SimpleDatabaseModel:
         self.match_relations_and_entities()
         self.detect_foreign_keys()
 
+        # transformo kernel
+        self._workspace = WorkspaceLoader().name()
+
     def reload_sdm(self):
-        self.__init__(self._file)
+        self.__init__(self._filename)
 
     def _read_database_info(self) -> None:
         database_info = self._doc.getElementsByTagName('database')[0]
@@ -192,8 +197,20 @@ class SimpleDatabaseModel:
 
         return res
 
-    def file(self) -> str:
-        return self._file
+    def filename(self) -> str:
+        return self._filename
+
+    def _set_context(self, context: str):
+
+        new_filename = 'workspaces/{workspace}/models/{context}.sdm'.format(workspace=self._workspace, context=context)
+        os.rename(self._filename, new_filename)
+        self._filename = new_filename
+
+    def set_as_source(self) -> None:
+        self._set_context('source')
+
+    def set_as_target(self) -> None:
+        self._set_context('target')
 
     def print(self) -> str:
 
@@ -201,7 +218,7 @@ class SimpleDatabaseModel:
 
         print("########################################")
 
-        print("original SDM file: " + self._file)
+        print("original SDM file: " + self._filename)
 
         print("########################################")
 

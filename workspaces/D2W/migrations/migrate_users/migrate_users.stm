@@ -1,0 +1,17 @@
+<stm>
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
+            <entity>wp_options</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
+            <entity>wp_term_relationships</entity>
+        </action>
+    </transformation>
+
+</stm>

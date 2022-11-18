@@ -9,7 +9,7 @@ def main():
 
     print()
     print("########################################")
-    print("You're execute a proof of concept")
+    print("You're execute TEST DOMAIN ENGINEERING")
     print("########################################")
     print()
 
@@ -26,10 +26,9 @@ def main():
     wordpress_mysql_extractor.extract()
     sdm_target = wordpress_mysql_extractor.sdm()
 
-    # Migration feature model
+    # Creating migration feature model
     migration_model = MigrationModel(sdm_source, sdm_target, 'workspaces/D2W/uvl/D2W.uvl')
-    # migration_model.define('migrate_users')
-    migration_model.export()
+    #migration_model.define('migrate_users')
 
 
 if __name__ == "__main__":

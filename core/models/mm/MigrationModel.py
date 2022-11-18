@@ -36,6 +36,7 @@ class MigrationModel:
 
         # operations
         self._read_migrations()
+        self._set_sdm_contexts()
 
     def migrations(self) -> {}:
         return self._migrations
@@ -45,6 +46,10 @@ class MigrationModel:
         for f in self._fm.get_features():
             migration = Migration(migration_model=self, feature=f)
             self._migrations[f.name] = migration
+
+    def _set_sdm_contexts(self):
+        self._sdm_source.set_as_source()
+        self._sdm_target.set_as_target()
 
     def define(self, migration_name: str) -> None:
 
@@ -95,9 +100,9 @@ class MigrationModel:
 
     '''
 
-    '''
     def write_sql(self, selected_migrations: list[Migration]) -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
-        mysql_writer = MySQLWriter(selected_migrations=selected_migrations, root=self.root(), database_info_extractor=database_info_extractor)
+        mysql_writer = MySQLWriter(selected_migrations=selected_migrations,
+                                   root=self.root().name,
+                                   database_info_extractor=database_info_extractor)
         mysql_writer.write()
-    '''
