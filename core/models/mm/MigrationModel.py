@@ -1,13 +1,21 @@
+from shutil import rmtree
+
+from flamapy.metamodels.fm_metamodel.models import FeatureModel
 from flamapy.metamodels.fm_metamodel.transformations import UVLReader
 
 from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
 from core.loaders.WorkspaceLoader import WorkspaceLoader
 from core.models.mm.Migration import Migration
-from core.models.mm.MigrationType import MigrationType
 from core.models.sdm import SimpleDatabaseModel
 from flamapy.core.discover import DiscoverMetamodels
 
 from core.writers.MySQLWriter import MySQLWriter
+
+
+def _check_is_migration_is_abstract(migration: Migration) -> None:
+
+    if migration.is_abstract():
+        raise Exception('Error! Actions cannot be defined on an abstract migration.')
 
 
 class MigrationModel:
@@ -17,12 +25,45 @@ class MigrationModel:
         # flama kernel
         self._dm = DiscoverMetamodels()
         self._uvl = UVLReader(uvl_file)
+        self._fm: FeatureModel = self._uvl.transform()
 
-        self._sdm_source = sdm_source
-        self._sdm_target = sdm_target
-        self._workspace = WorkspaceLoader().name()
+        # transformo kernel
+        self._sdm_source: SimpleDatabaseModel = sdm_source
+        self._sdm_target: SimpleDatabaseModel = sdm_target
+        self._workspace: str = WorkspaceLoader().name()
+        self._uvl_file: str = uvl_file
+        self._migrations = {}
 
-        self._fm = self._uvl.transform()
+        # operations
+        self._read_migrations()
+
+    def migrations(self) -> {}:
+        return self._migrations
+
+    def _read_migrations(self):
+
+        for f in self._fm.get_features():
+            migration = Migration(migration_model=self, feature=f)
+            self._migrations[f.name] = migration
+
+    def define(self, migration_name: str) -> None:
+
+        try:
+
+            migration = self._migrations[migration_name]
+
+            _check_is_migration_is_abstract(migration)
+
+            try:
+                rmtree("workspaces/{workspace}/migrations/{migration_name}".format(
+                    workspace=self._workspace, migration_name=migration_name))
+            except:
+                pass
+
+            migration.define()
+
+        except KeyError as e:
+            print("Error! '{}' not found in migration model".format(migration_name))
 
     '''
     def __init__(self, sdm_source: SimpleDatabaseModel, sdm_target: SimpleDatabaseModel):
@@ -39,16 +80,16 @@ class MigrationModel:
         self._root: str = self._workspace
     '''
 
-    def sdm_source(self):
+    def sdm_source(self) -> SimpleDatabaseModel:
         return self._sdm_source
 
-    def sdm_target(self):
+    def sdm_target(self) -> SimpleDatabaseModel:
         return self._sdm_target
 
     def root(self):
         return self._fm.root
 
-    def workspace(self):
+    def workspace(self) -> str:
         return self._workspace
 
     '''
@@ -205,56 +246,11 @@ class MigrationModel:
         # self._available_migrations.clear()
         # self._available_migrations = self._eligible_migrations.copy()
 
-    '''
-    def export(self):
-
-        uvl_filename = "workspaces/{workspace}/uvl/{root}.uvl".format(workspace=self._workspace, root=self._root)
-
-        with open(uvl_filename, 'w') as f:
-
-            f.write('namespace {}\n\n'.format(self._root))
-
-            # print features
-            f.write('features\n')
-            f.write('\t' + self._root + ' { abstract }\n')
-            # print mandatory features
-            f.write('\t\tmandatory\n')
-            for m in self._migrations:
-                if m.type() == MigrationType.Mandatory:
-                    string = "\t\t\t{}\n".format(m.name().replace(" ", "_"))
-                    f.write(string)
-
-            # print optional features
-            f.write('\t\toptional\n')
-            for m in self._migrations:
-                if m.type() == MigrationType.Optional:
-                    string = "\t\t\t{}\n".format(m.name().replace(" ", "_"))
-                    f.write(string)
-
-            # print constraints
-            f.write('constraints\n')
-            for m in self._migrations:
-
-                if len(m.requires_migrations()) > 0:
-                    for require_migration in m.requires_migrations():
-                        string = '\t{} => {}\n'.format(m.name().replace(" ", "_"),
-                                                       require_migration.name().replace(' ', '_'))
-                        f.write(string)
-
-                if len(m.excludes_migrations()) > 0:
-                    for exclude_migration in m.excludes_migrations():
-                        string = '\t{} => ! {}\n'.format(m.name().replace(" ", "_"),
-                                                         exclude_migration.name().replace(' ', '_'))
-                        f.write(string)
-
-        self._uvl = uvl_filename
-
-        self._exported_to_uvl = True
-
-
+    
 
     def write_sql(self, selected_migrations: list[Migration]) -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
         mysql_writer = MySQLWriter(selected_migrations=selected_migrations, root=self.root(), database_info_extractor=database_info_extractor)
         mysql_writer.write()
 
+    '''

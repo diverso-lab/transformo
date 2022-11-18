@@ -6,6 +6,7 @@ from core.models.mm.MigrationModel import MigrationModel
 
 
 def main():
+
     print()
     print("########################################")
     print("You're execute a proof of concept")
@@ -27,7 +28,7 @@ def main():
 
     # Migration feature model
     migration_model = MigrationModel(sdm_source, sdm_target, 'workspaces/D2W/uvl/D2W.uvl')
-
+    migration_model.define('migrate_users')
 
 
 if __name__ == "__main__":

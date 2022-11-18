@@ -667,6 +667,70 @@
         </attribute>
     </entity>
 
+    <entity id="cache_bootstrap">
+        <name>cache_bootstrap</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_config">
+        <name>cache_config</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
     <entity id="cache_container">
         <name>cache_container</name>
         <attribute>
@@ -696,6 +760,274 @@
         <attribute>
             <name>checksum</name>
             <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_data">
+        <name>cache_data</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_default">
+        <name>cache_default</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_discovery">
+        <name>cache_discovery</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_dynamic_page_cache">
+        <name>cache_dynamic_page_cache</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_entity">
+        <name>cache_entity</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_menu">
+        <name>cache_menu</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_page">
+        <name>cache_page</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cache_render">
+        <name>cache_render</name>
+        <attribute>
+            <name>cid</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>decimal(14,3)</type>
+        </attribute>
+        <attribute>
+            <name>serialized</name>
+            <type>smallint</type>
+        </attribute>
+        <attribute>
+            <name>tags</name>
+            <type>longtext</type>
+        </attribute>
+        <attribute>
+            <name>checksum</name>
+            <type>varchar(255)</type>
+        </attribute>
+    </entity>
+
+    <entity id="cachetags">
+        <name>cachetags</name>
+        <attribute>
+            <name>tag</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>invalidations</name>
+            <type>int</type>
         </attribute>
     </entity>
 
@@ -3152,6 +3484,22 @@
         <attribute>
             <name>count</name>
             <type>float</type>
+        </attribute>
+    </entity>
+
+    <entity id="semaphore">
+        <name>semaphore</name>
+        <attribute>
+            <name>name</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>double</type>
         </attribute>
     </entity>
 

@@ -1,9 +1,0 @@
-<stm>
-
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_posts</entity>
-        </action>
-    </transformation>
-
-</stm>
