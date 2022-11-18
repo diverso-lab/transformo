@@ -28,7 +28,8 @@ def main():
 
     # Migration feature model
     migration_model = MigrationModel(sdm_source, sdm_target, 'workspaces/D2W/uvl/D2W.uvl')
-    migration_model.define('migrate_users')
+    # migration_model.define('migrate_users')
+    migration_model.export()
 
 
 if __name__ == "__main__":
