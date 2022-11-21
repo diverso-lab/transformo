@@ -1,5 +1,6 @@
 from typing import Any
 
+from core.models.stm.actions.CopyAttributeAction import CopyAttributeAction
 from core.models.stm.actions.CreateAttributeAction import CreateAttributeAction
 from core.models.stm.actions.CreateEntityAction import CreateEntityAction
 from core.models.stm.actions.DeleteAttributeAction import DeleteAttributeAction
@@ -109,6 +110,18 @@ class Action:
 
                         # create action
                         apply = MoveAttributeAction(entity_from_id=entity_from_id, entity_to_id=entity_to_id,
+                                                    attribute_name=attribute_name, type=type)
+
+                    case "copy":
+
+                        # basic data
+                        entity_from_id = self._item.getElementsByTagName("from")[0].childNodes[0].data
+                        entity_to_id = self._item.getElementsByTagName("to")[0].childNodes[0].data
+                        attribute_name = self._item.getElementsByTagName("attribute")[0].childNodes[0].data
+                        type = self._item.getElementsByTagName("type")[0].childNodes[0].data
+
+                        # create action
+                        apply = CopyAttributeAction(entity_from_id=entity_from_id, entity_to_id=entity_to_id,
                                                     attribute_name=attribute_name, type=type)
 
                     case "delete":

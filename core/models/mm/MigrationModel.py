@@ -1,3 +1,5 @@
+import os
+from os.path import exists
 from shutil import rmtree
 
 from flamapy.metamodels.fm_metamodel.models import FeatureModel
@@ -68,7 +70,7 @@ class MigrationModel:
 
     def wizard(self):
 
-        print()
+        os.system('cls')
         print("########################################")
         print("{workspace}: MIGRATION WIZARD".format(workspace=self._workspace))
         print("########################################")
@@ -76,7 +78,16 @@ class MigrationModel:
 
         option = 0
         for m in self._leaf_migrations:
-            print("{option}. {name}".format(option=option,name=self._leaf_migrations[m]))
+
+            undefined = ""
+            if not os.path.exists('workspaces/{workspace}/migrations/{migration_name}'.format(
+                    workspace=self._workspace,
+                    migration_name=self._leaf_migrations[m])):
+                undefined = "(UNDEFINED)"
+
+            print("[{option}] {name} {undefined}".format(option=option,
+                                                         name=self._leaf_migrations[m],
+                                                         undefined=undefined))
             option = option + 1
 
         print()
@@ -87,7 +98,8 @@ class MigrationModel:
 
         try:
             migrations = list(self._leaf_migrations.keys())
-            migration = migrations[int(inputted)]
+            migration_name = migrations[int(inputted)]
+            migration = self.get_migration_by_name(migration_name)
             migration.define()
         except:
             return self.wizard()
