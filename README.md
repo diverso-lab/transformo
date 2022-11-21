@@ -37,9 +37,9 @@ Thus, we have started a Drupal container populated with test data on port :8080 
 
 <div align="center">
   
-|           | Web   | MySQL  | PMA   | ADM credentials (Web /admin & PMA database access) |
-|-----------|-------|--------|-------|----------------------------------------------------|
-| Drupal    | :8080 | :33061 | :8081 | user=drupal pw=drupal                              |
-| WordPress | :8082 | :3307 | :8083 | user=wordpress pw=wordpress                        |
+|           | Web   | MySQL  | PHPMyAdmin | Credentials (Web /admin & PHPMyAdmin database access) |
+|-----------|-------|--------|------------|-------------------------------------------------------|
+| Drupal    | :8080 | :33061 | :8081      | user=drupal, password=drupal                          |
+| WordPress | :8082 | :33062 | :8083      | user=wordpress, password=wordpress                    |
   
 </div>

@@ -4111,12 +4111,12 @@
         </attribute>
     </entity>
 
-    <entity id="wp_postmeta">
-        <name>wp_postmeta</name>
+    <entity id="wp_commentmeta">
+        <name>wp_commentmeta</name>
     </entity>
 
-    <entity id="wp_usermeta">
-        <name>wp_usermeta</name>
+    <entity id="wp_comments">
+        <name>wp_comments</name>
     </entity>
 
 </sdm>

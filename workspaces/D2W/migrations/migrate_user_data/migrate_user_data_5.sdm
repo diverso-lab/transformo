@@ -4111,8 +4111,28 @@
         </attribute>
     </entity>
 
+    <entity id="wp_commentmeta">
+        <name>wp_commentmeta</name>
+    </entity>
+
+    <entity id="wp_comments">
+        <name>wp_comments</name>
+    </entity>
+
+    <entity id="wp_links">
+        <name>wp_links</name>
+    </entity>
+
     <entity id="wp_options">
         <name>wp_options</name>
+    </entity>
+
+    <entity id="wp_postmeta">
+        <name>wp_postmeta</name>
+    </entity>
+
+    <entity id="wp_posts">
+        <name>wp_posts</name>
     </entity>
 
 </sdm>

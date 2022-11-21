@@ -2,6 +2,38 @@
 
     <transformation type="entity" id="CreateEntityAction">
         <action type="create">
+            <entity>wp_commentmeta</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
+            <entity>wp_comments</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
+            <entity>wp_links</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
+            <entity>wp_options</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
             <entity>wp_postmeta</entity>
         </action>
     </transformation>
@@ -10,7 +42,15 @@
 
     <transformation type="entity" id="CreateEntityAction">
         <action type="create">
-            <entity>wp_usermeta</entity>
+            <entity>wp_posts</entity>
+        </action>
+    </transformation>
+
+
+
+    <transformation type="entity" id="CreateEntityAction">
+        <action type="create">
+            <entity>wp_term_relationships</entity>
         </action>
     </transformation>
 

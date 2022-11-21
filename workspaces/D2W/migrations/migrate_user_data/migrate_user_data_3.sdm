@@ -4111,12 +4111,20 @@
         </attribute>
     </entity>
 
-    <entity id="wp_options">
-        <name>wp_options</name>
+    <entity id="wp_commentmeta">
+        <name>wp_commentmeta</name>
     </entity>
 
-    <entity id="wp_term_relationships">
-        <name>wp_term_relationships</name>
+    <entity id="wp_comments">
+        <name>wp_comments</name>
+    </entity>
+
+    <entity id="wp_links">
+        <name>wp_links</name>
+    </entity>
+
+    <entity id="wp_options">
+        <name>wp_options</name>
     </entity>
 
 </sdm>

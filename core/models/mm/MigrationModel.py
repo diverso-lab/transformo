@@ -13,7 +13,6 @@ from core.writers.MySQLWriter import MySQLWriter
 
 
 def _check_is_migration_is_abstract(migration: Migration) -> None:
-
     if migration.is_abstract():
         raise Exception('Error! Actions cannot be defined on an abstract migration.')
 
@@ -33,9 +32,11 @@ class MigrationModel:
         self._workspace: str = WorkspaceLoader().name()
         self._uvl_file: str = uvl_file
         self._migrations = {}
+        self._leaf_migrations = {}
 
         # operations
         self._read_migrations()
+        self._read_leaf_migrations()
         self._set_sdm_contexts()
 
     def migrations(self) -> {}:
@@ -50,10 +51,50 @@ class MigrationModel:
             migration = Migration(migration_model=self, feature=f)
             self._migrations[f.name] = migration
 
+    def _read_leaf_migrations(self) -> {}:
+
+        self._leaf_migrations = {}
+
+        for k in self._migrations:
+            migration = self._migrations[k]
+            if migration.is_leaf():
+                self._leaf_migrations [migration.name()] = migration
+
+        return self._leaf_migrations
+
     def _set_sdm_contexts(self):
         self._sdm_source.set_as_source()
         self._sdm_target.set_as_target()
 
+    def wizard(self):
+
+        print()
+        print("########################################")
+        print("{workspace}: MIGRATION WIZARD".format(workspace=self._workspace))
+        print("########################################")
+        print()
+
+        option = 0
+        for m in self._leaf_migrations:
+            print("{option}. {name}".format(option=option,name=self._leaf_migrations[m]))
+            option = option + 1
+
+        print()
+        inputted = str(input("Select an available migration to manage ('q' for quit): "))
+
+        if inputted == "q":
+            return
+
+        try:
+            migrations = list(self._leaf_migrations.keys())
+            migration = migrations[int(inputted)]
+            migration.define()
+        except:
+            return self.wizard()
+
+        return self.wizard()
+
+    '''
     def define(self, migration_name: str) -> None:
 
         try:
@@ -72,6 +113,7 @@ class MigrationModel:
 
         except KeyError as e:
             print("Error! '{}' not found in migration model".format(migration_name))
+    '''
 
     def sdm_source(self) -> SimpleDatabaseModel:
         return self._sdm_source
@@ -86,7 +128,8 @@ class MigrationModel:
         return self._workspace
 
     def export(self):
-        uvl_writer = UVLWriter(self._fm, 'workspaces/{workspace}/uvl/{root}.uvl'.format(workspace=self._workspace, root=self.root()))
+        uvl_writer = UVLWriter(self._fm, 'workspaces/{workspace}/uvl/{root}.uvl'.format(workspace=self._workspace,
+                                                                                        root=self.root()))
         uvl_writer.transform()
 
     '''

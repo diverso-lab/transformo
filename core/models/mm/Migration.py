@@ -39,6 +39,9 @@ class Migration:
     def is_abstract(self):
         return self._feature.is_abstract
 
+    def is_leaf(self):
+        return self._feature.is_leaf()
+
     def define(self, opening=True) -> None:
 
         print(self._migration_model.root())
