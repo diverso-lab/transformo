@@ -8,6 +8,7 @@ from core.models.sdm.SimpleDatabaseModel import SimpleDatabaseModel
 from core.models.stm.AvailableActionsExtractor import AvailableActionsExtractor
 from core.models.stm.AvailableAction import AvailableAction
 from core.models.stm.SimpleTransformationModel import SimpleTransformationModel
+from core.models.stm.actions.AbstractAction import AbstractAction
 from core.models.stm.actions.CopyAttributeAction import CopyAttributeAction
 from core.mutators.SimpleDatabaseModelMutator import SimpleDatabaseModelMutator
 from core.writers.MigrationWriter import MigrationWriter
@@ -24,12 +25,11 @@ class Migration:
 
         # derivative
         self._migration_name: str = self._feature.name
-        self._current_sdm_source: SimpleDatabaseModel = migration_model.sdm_source()
+        self._current_sdm_source: SimpleDatabaseModel = self.current_sdm_source()
         self._sdm_target = migration_model.sdm_target()
 
         # for operations
         self._selected_actions: list[AvailableAction] = list()
-        self._actions_counter: int = 0
 
     def __str__(self):
         return self._feature.__str__()
@@ -47,14 +47,47 @@ class Migration:
     def is_leaf(self):
         return self._feature.is_leaf()
 
+    def _calculate_actions_counter(self) -> int:
+
+        stm = self.stm()
+
+        if stm is None:
+            return 0
+        else:
+            return len(stm.transformations()) - 1
+
     def current_sdm_source(self) -> SimpleDatabaseModel:
-        return self._current_sdm_source
+
+        stm = self.stm()
+
+        if stm is None:
+            return self._migration_model.sdm_source()
+        else:
+
+            suffix = len(stm.transformations()) - 1
+
+            sdm_file = 'workspaces/{workspace}/migrations/{migration_name}/{migration_name}_{suffix}.sdm'.format(
+                workspace=self._workspace,
+                migration_name=self._migration_name,
+                suffix=suffix)
+
+            if not os.path.isfile(sdm_file):
+                return None
+            else:
+                return SimpleDatabaseModel(filename=sdm_file)
 
     def sdm_target(self) -> SimpleDatabaseModel:
         return self._sdm_target
 
-    def define(self, opening=True) -> None:
-        os.system('cls')
+    def _is_opening(self) -> bool:
+
+        return not os.path.isfile('workspaces/{workspace}/migrations/{migration_name}/{migration_name}.stm'.format(
+            workspace=self._workspace,
+            migration_name=self._migration_name))
+
+    def _show_basic_info(self) -> None:
+
+        os.system('clear')
         print("########################################")
         print("{workspace}: MIGRATION WIZARD".format(workspace=self._workspace))
         print("########################################")
@@ -63,6 +96,10 @@ class Migration:
         print()
         print('-> Current actions')
         print('\t-> TODO')
+
+    def _show_and_select_abstract_action(self) -> AbstractAction | None:
+
+        abstract_action = None
 
         print()
         print("[0] Create entity")
@@ -81,63 +118,31 @@ class Migration:
         inputted = str(input("Select an action ('q' for quit): "))
 
         if inputted == "q":
-            return
+            return abstract_action
 
         match int(inputted):
             case 7:
-                self._define_copy_attribute_action()
+                abstract_action = self._define_copy_attribute_action()
             case _:
                 pass
 
-        return self.define()
+        return abstract_action
 
-        '''
-        print(self._migration_model.root())
+    def define(self) -> None:
 
-        extractor = AvailableActionsExtractor(sdm_source=self._current_sdm_source,
-                                              sdm_target=self._migration_model.sdm_target())
+        self._show_basic_info()
 
-        extractor.extract_available_actions()
+        abstract_action = self._show_and_select_abstract_action()
 
-        if len(extractor.available_actions()) == 0:
-            return self._finish()
-
-        # show migration info
-        print()
-        print("########################################")
-        print("Current migration: {}".format(self._migration_name))
-        print("########################################")
-        print()
-
-        # show available actions
-        extractor.print()
-
-        print("")
-
-        inputted = str(input("Select an available action ('q' for quit): "))
-
-        if inputted == "q":
-            return self._finish()
-
-        option = None
-        try:
-            option = int(inputted)
-        except:
-            self.define(opening=True)
-
-        # selection of action from available actions in current SDM
-        selected_action = extractor.available_actions()[option]
-        self._selected_actions.append(selected_action)
-        print("Selected action: \n")
-        print(selected_action)
+        if abstract_action is None:
+            return
 
         # write transformation in STM file
         migration_writer = MigrationWriter(
             migration_model_name=self._migration_model.root(),
             migration_name=self._migration_name,
-            available_action=selected_action,
-            opening=opening,
-            closing=False
+            abstract_action=abstract_action,
+            opening=self._is_opening()
         )
         migration_writer.write()
         last_stm = migration_writer.stm()
@@ -146,21 +151,17 @@ class Migration:
         sdm_mutator = SimpleDatabaseModelMutator(
             current_sdm_source=self._current_sdm_source,
             last_stm=last_stm,
-            actions_counter=self._actions_counter,
+            actions_counter=self._calculate_actions_counter(),
             migration_name=self._migration_name,
             folder="{}/{}".format(self._migration_model.root(), self._migration_name))
 
         sdm_mutator.mutate()
         self._current_sdm_source = sdm_mutator.new_sdm()
 
-        # increments actions counter
-        self._actions_counter = self._actions_counter + 1
-
         # recursive call
-        self.define(opening=False)
-        '''
+        return self.define()
 
-    def _define_copy_attribute_action(self):
+    def _define_copy_attribute_action(self) -> AbstractAction:
 
         # TODO: Refactoring
 
@@ -168,10 +169,11 @@ class Migration:
         entities_target = self.sdm_target().entities()
 
         #### SELECT ENTITY FROM SOURCE
-        os.system('cls')
+        os.system('clear')
         print("[**] Select entity from source")
         print("[  ] Select attribute from source")
         print("[  ] Select entity from target")
+        print("[  ] Select attribute from target")
         print()
 
         counter = 0
@@ -187,13 +189,12 @@ class Migration:
 
         entity_from = entities_source[int(inputted)]
 
-
-
         #### SELECT ATTRIBUTE
-        os.system('cls')
+        os.system('clear')
         print("[OK] Select entity from source ({entity_from})".format(entity_from=entity_from))
         print("[**] Select attribute from source")
         print("[  ] Select entity from target")
+        print("[  ] Select attribute from target")
         print()
 
         counter = 0
@@ -207,14 +208,14 @@ class Migration:
         if inputted == "q":
             return self.define()
 
-        attribute = entity_from.attributes()[int(inputted)]
-
+        attribute_from = entity_from.attributes()[int(inputted)]
 
         #### SELECT ENTITY FROM TARGET
-        os.system('cls')
-        print("[OK] Select entity from source ({entity_from})".format(entity_from=entity_from))
+        os.system('clear')
+        print("[OK] Select entity from source ({entity_from})".format(entity_from=entity_from.name()))
         print("[OK] Select attribute from source")
         print("[**] Select entity from target")
+        print("[  ] Select attribute from target")
         print()
 
         counter = 0
@@ -229,16 +230,46 @@ class Migration:
             return self.define()
 
         entity_to = entities_target[int(inputted)]
-        action = CopyAttributeAction(entity_from_id=entity_from.id(), entity_to_id=entity_to.id(),
-                                    attribute_name=attribute.name(), type=attribute.type())
 
+        #### SELECT ATTRIBUTE FROM TARGET
+        os.system('clear')
+        print("[OK] Select entity from source ({entity_from})".format(entity_from=entity_from.name()))
+        print("[OK] Select attribute from source")
+        print("[OK] Select entity from target")
+        print("[  ] Select attribute from target")
+        print()
 
-        print("[{}]Entity")
+        counter = 0
+        for attr in entity_to.attributes():
+            print("[{counter}] {attr_name} ({type})".format(counter=counter, attr_name=attr.name(), type=attr.type()))
+            counter = counter + 1
+
+        print()
+        inputted = str(input("Select attribute from entity ('q' for quit):"))
+
+        if inputted == "q":
+            return self.define()
+
+        attribute_to = entity_to.attributes()[int(inputted)]
+
+        action = CopyAttributeAction(entity_from_id=entity_from.id(),
+                                     entity_to_id=entity_to.id(),
+                                     attribute_from_name=attribute_from.name(),
+                                     attribute_to_name=attribute_to.name(),
+                                     type=attribute_from.type())
+
+        return action
 
     def _finish(self):
         pass
 
-    def stm(self) -> SimpleTransformationModel:
-        return SimpleTransformationModel(stm_file='workspaces/{workspace}/migrations'
-                                                  '/{migration_name}/{migration_name}.stm'
-                                         .format(workspace=self._workspace, migration_name=self._migration_name))
+    def stm(self) -> SimpleTransformationModel | None:
+
+        stm_file = 'workspaces/{workspace}/migrations/{migration_name}/{migration_name}.stm'.format(
+            workspace=self._workspace, migration_name=self._migration_name)
+
+        if not os.path.isfile(stm_file):
+            return None
+        else:
+            return SimpleTransformationModel(stm_file=stm_file)
+

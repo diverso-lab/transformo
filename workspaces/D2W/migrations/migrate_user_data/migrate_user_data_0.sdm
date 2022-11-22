@@ -1038,12 +1038,12 @@
             <type>varchar(255)</type>
         </attribute>
         <attribute>
-            <name>data</name>
-            <type>longblob</type>
-        </attribute>
-        <attribute>
             <name>name</name>
             <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>data</name>
+            <type>longblob</type>
         </attribute>
     </entity>
 
@@ -1054,16 +1054,16 @@
             <type>int unsigned</type>
         </attribute>
         <attribute>
-            <name>langcode</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
             <name>revision_id</name>
             <type>int unsigned</type>
         </attribute>
         <attribute>
             <name>uuid</name>
             <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
         </attribute>
     </entity>
 
@@ -1170,16 +1170,16 @@
             <type>int unsigned</type>
         </attribute>
         <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
             <name>langcode</name>
             <type>varchar(12)</type>
         </attribute>
         <attribute>
             <name>revision_default</name>
             <type>tinyint</type>
-        </attribute>
-        <attribute>
-            <name>revision_id</name>
-            <type>int unsigned</type>
         </attribute>
     </entity>
 
@@ -1258,15 +1258,15 @@
     <entity id="history">
         <name>history</name>
         <attribute>
+            <name>uid</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
             <name>nid</name>
             <type>int unsigned</type>
         </attribute>
         <attribute>
             <name>timestamp</name>
-            <type>int</type>
-        </attribute>
-        <attribute>
-            <name>uid</name>
             <type>int</type>
         </attribute>
     </entity>
@@ -1278,12 +1278,12 @@
             <type>int unsigned</type>
         </attribute>
         <attribute>
-            <name>layout_entity_id</name>
-            <type>varchar(128)</type>
-        </attribute>
-        <attribute>
             <name>layout_entity_type</name>
             <type>varchar(32)</type>
+        </attribute>
+        <attribute>
+            <name>layout_entity_id</name>
+            <type>varchar(128)</type>
         </attribute>
     </entity>
 
@@ -1362,16 +1362,16 @@
     <entity id="locales_source">
         <name>locales_source</name>
         <attribute>
-            <name>context</name>
-            <type>varchar(255)</type>
-        </attribute>
-        <attribute>
             <name>lid</name>
             <type>int</type>
         </attribute>
         <attribute>
             <name>source</name>
             <type>blob</type>
+        </attribute>
+        <attribute>
+            <name>context</name>
+            <type>varchar(255)</type>
         </attribute>
         <attribute>
             <name>version</name>
@@ -1382,20 +1382,20 @@
     <entity id="locales_target">
         <name>locales_target</name>
         <attribute>
-            <name>customized</name>
-            <type>int</type>
-        </attribute>
-        <attribute>
-            <name>language</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
             <name>lid</name>
             <type>int</type>
         </attribute>
         <attribute>
             <name>translation</name>
             <type>blob</type>
+        </attribute>
+        <attribute>
+            <name>language</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>customized</name>
+            <type>int</type>
         </attribute>
     </entity>
 
@@ -2110,6 +2110,46 @@
     <entity id="menu_link_content_field_revision">
         <name>menu_link_content_field_revision</name>
         <attribute>
+            <name>id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>revision_id</name>
+            <type>int unsigned</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
+        </attribute>
+        <attribute>
+            <name>enabled</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>description</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link__uri</name>
+            <type>varchar(2048)</type>
+        </attribute>
+        <attribute>
+            <name>link__title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>link__options</name>
+            <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>external</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
             <name>changed</name>
             <type>int</type>
         </attribute>
@@ -2118,48 +2158,8 @@
             <type>tinyint</type>
         </attribute>
         <attribute>
-            <name>description</name>
-            <type>varchar(255)</type>
-        </attribute>
-        <attribute>
-            <name>enabled</name>
-            <type>tinyint</type>
-        </attribute>
-        <attribute>
-            <name>external</name>
-            <type>tinyint</type>
-        </attribute>
-        <attribute>
-            <name>id</name>
-            <type>int unsigned</type>
-        </attribute>
-        <attribute>
-            <name>langcode</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
-            <name>link__options</name>
-            <type>longblob</type>
-        </attribute>
-        <attribute>
-            <name>link__title</name>
-            <type>varchar(255)</type>
-        </attribute>
-        <attribute>
-            <name>link__uri</name>
-            <type>varchar(2048)</type>
-        </attribute>
-        <attribute>
-            <name>revision_id</name>
-            <type>int unsigned</type>
-        </attribute>
-        <attribute>
             <name>revision_translation_affected</name>
             <type>tinyint</type>
-        </attribute>
-        <attribute>
-            <name>title</name>
-            <type>varchar(255)</type>
         </attribute>
     </entity>
 
@@ -2782,43 +2782,43 @@
     <entity id="node_field_data">
         <name>node_field_data</name>
         <attribute>
-            <name>changed</name>
-            <type>int</type>
+            <name>nid</name>
+            <type>int unsigned</type>
         </attribute>
         <attribute>
-            <name>content_translation_outdated</name>
-            <type>tinyint</type>
+            <name>vid</name>
+            <type>int unsigned</type>
         </attribute>
         <attribute>
-            <name>content_translation_source</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
-            <name>created</name>
-            <type>int</type>
-        </attribute>
-        <attribute>
-            <name>default_langcode</name>
-            <type>tinyint</type>
+            <name>type</name>
+            <type>varchar(32)</type>
         </attribute>
         <attribute>
             <name>langcode</name>
             <type>varchar(12)</type>
         </attribute>
         <attribute>
-            <name>nid</name>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>uid</name>
             <type>int unsigned</type>
         </attribute>
         <attribute>
+            <name>title</name>
+            <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
             <name>promote</name>
-            <type>tinyint</type>
-        </attribute>
-        <attribute>
-            <name>revision_translation_affected</name>
-            <type>tinyint</type>
-        </attribute>
-        <attribute>
-            <name>status</name>
             <type>tinyint</type>
         </attribute>
         <attribute>
@@ -2826,20 +2826,20 @@
             <type>tinyint</type>
         </attribute>
         <attribute>
-            <name>title</name>
-            <type>varchar(255)</type>
+            <name>default_langcode</name>
+            <type>tinyint</type>
         </attribute>
         <attribute>
-            <name>type</name>
-            <type>varchar(32)</type>
+            <name>revision_translation_affected</name>
+            <type>tinyint</type>
         </attribute>
         <attribute>
-            <name>uid</name>
-            <type>int unsigned</type>
+            <name>content_translation_source</name>
+            <type>varchar(12)</type>
         </attribute>
         <attribute>
-            <name>vid</name>
-            <type>int unsigned</type>
+            <name>content_translation_outdated</name>
+            <type>tinyint</type>
         </attribute>
     </entity>
 
@@ -3402,16 +3402,8 @@
     <entity id="router">
         <name>router</name>
         <attribute>
-            <name>fit</name>
-            <type>int</type>
-        </attribute>
-        <attribute>
             <name>name</name>
             <type>varchar(255)</type>
-        </attribute>
-        <attribute>
-            <name>number_parts</name>
-            <type>smallint</type>
         </attribute>
         <attribute>
             <name>path</name>
@@ -3422,8 +3414,16 @@
             <type>varchar(255)</type>
         </attribute>
         <attribute>
+            <name>fit</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
             <name>route</name>
             <type>longblob</type>
+        </attribute>
+        <attribute>
+            <name>number_parts</name>
+            <type>smallint</type>
         </attribute>
     </entity>
 
@@ -3490,16 +3490,16 @@
     <entity id="semaphore">
         <name>semaphore</name>
         <attribute>
-            <name>expire</name>
-            <type>double</type>
-        </attribute>
-        <attribute>
             <name>name</name>
             <type>varchar(255)</type>
         </attribute>
         <attribute>
             <name>value</name>
             <type>varchar(255)</type>
+        </attribute>
+        <attribute>
+            <name>expire</name>
+            <type>double</type>
         </attribute>
     </entity>
 
@@ -3542,16 +3542,16 @@
             <type>int unsigned</type>
         </attribute>
         <attribute>
-            <name>langcode</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
             <name>shortcut_set</name>
             <type>varchar(32)</type>
         </attribute>
         <attribute>
             <name>uuid</name>
             <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
         </attribute>
     </entity>
 
@@ -3962,16 +3962,16 @@
     <entity id="users">
         <name>users</name>
         <attribute>
-            <name>langcode</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
             <name>uid</name>
             <type>int unsigned</type>
         </attribute>
         <attribute>
             <name>uuid</name>
             <type>varchar(128)</type>
+        </attribute>
+        <attribute>
+            <name>langcode</name>
+            <type>varchar(12)</type>
         </attribute>
     </entity>
 
@@ -4002,36 +4002,20 @@
     <entity id="users_field_data">
         <name>users_field_data</name>
         <attribute>
-            <name>access</name>
-            <type>int</type>
-        </attribute>
-        <attribute>
-            <name>changed</name>
-            <type>int</type>
-        </attribute>
-        <attribute>
-            <name>created</name>
-            <type>int</type>
-        </attribute>
-        <attribute>
-            <name>default_langcode</name>
-            <type>tinyint</type>
-        </attribute>
-        <attribute>
-            <name>init</name>
-            <type>varchar(254)</type>
+            <name>uid</name>
+            <type>int unsigned</type>
         </attribute>
         <attribute>
             <name>langcode</name>
             <type>varchar(12)</type>
         </attribute>
         <attribute>
-            <name>login</name>
-            <type>int</type>
+            <name>preferred_langcode</name>
+            <type>varchar(12)</type>
         </attribute>
         <attribute>
-            <name>mail</name>
-            <type>varchar(254)</type>
+            <name>preferred_admin_langcode</name>
+            <type>varchar(12)</type>
         </attribute>
         <attribute>
             <name>name</name>
@@ -4042,24 +4026,40 @@
             <type>varchar(255)</type>
         </attribute>
         <attribute>
-            <name>preferred_admin_langcode</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
-            <name>preferred_langcode</name>
-            <type>varchar(12)</type>
-        </attribute>
-        <attribute>
-            <name>status</name>
-            <type>tinyint</type>
+            <name>mail</name>
+            <type>varchar(254)</type>
         </attribute>
         <attribute>
             <name>timezone</name>
             <type>varchar(32)</type>
         </attribute>
         <attribute>
-            <name>uid</name>
-            <type>int unsigned</type>
+            <name>status</name>
+            <type>tinyint</type>
+        </attribute>
+        <attribute>
+            <name>created</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>changed</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>access</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>login</name>
+            <type>int</type>
+        </attribute>
+        <attribute>
+            <name>init</name>
+            <type>varchar(254)</type>
+        </attribute>
+        <attribute>
+            <name>default_langcode</name>
+            <type>tinyint</type>
         </attribute>
     </entity>
 
@@ -4109,10 +4109,6 @@
             <name>timestamp</name>
             <type>int</type>
         </attribute>
-    </entity>
-
-    <entity id="wp_commentmeta">
-        <name>wp_commentmeta</name>
     </entity>
 
 </sdm>

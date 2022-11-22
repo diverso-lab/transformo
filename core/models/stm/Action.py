@@ -117,12 +117,13 @@ class Action:
                         # basic data
                         entity_from_id = self._item.getElementsByTagName("from")[0].childNodes[0].data
                         entity_to_id = self._item.getElementsByTagName("to")[0].childNodes[0].data
-                        attribute_name = self._item.getElementsByTagName("attribute")[0].childNodes[0].data
+                        attribute_from_name = self._item.getElementsByTagName("attribute_from")[0].childNodes[0].data
+                        attribute_to_name = self._item.getElementsByTagName("attribute_to")[0].childNodes[0].data
                         type = self._item.getElementsByTagName("type")[0].childNodes[0].data
 
                         # create action
                         apply = CopyAttributeAction(entity_from_id=entity_from_id, entity_to_id=entity_to_id,
-                                                    attribute_name=attribute_name, type=type)
+                                                    attribute_from_name=attribute_from_name,attribute_to_name=attribute_to_name, type=type)
 
                     case "delete":
 

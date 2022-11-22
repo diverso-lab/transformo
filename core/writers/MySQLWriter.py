@@ -13,7 +13,9 @@ class MySQLWriter:
         self._workspace = WorkspaceLoader().name()
         self._selected_migrations = selected_migrations
         self._root = root
-        self._sql_filename = "workspaces/{workspace}/scripts/{script_name}.sql".format(workspace=self._workspace, script_name=self._root)
+        self._sql_filename = "workspaces/{workspace}/scripts/{script_name}.sql".format(
+            workspace=self._workspace,
+            script_name=self._root)
         self._database_info_extractor = database_info_extractor
 
         # templates
@@ -70,6 +72,9 @@ class MySQLWriter:
 
                                     case "move":
                                         self._write_action(transformation, action, "move_attribute_action.stub")
+
+                                    case "copy":
+                                        self._write_action(transformation, action, "copy_attribute_action.stub")
 
                                     case "delete":
                                         self._write_action(transformation, action, "delete_attribute_action.stub")

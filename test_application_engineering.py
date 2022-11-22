@@ -24,7 +24,7 @@ def main():
     '''
 
     # selected_migrations = migration_model.selection()
-    selected_migrations = ['migrate_user_data', 'migrate_published_posts']
+    selected_migrations = ['migrate_user_data']
 
     # Write SQL script
     migration_model.write_sql(selected_migrations_name=selected_migrations)

@@ -60,7 +60,7 @@ class MigrationModel:
         for k in self._migrations:
             migration = self._migrations[k]
             if migration.is_leaf():
-                self._leaf_migrations [migration.name()] = migration
+                self._leaf_migrations[migration.name()] = migration
 
         return self._leaf_migrations
 
@@ -70,7 +70,7 @@ class MigrationModel:
 
     def wizard(self):
 
-        os.system('cls')
+        os.system('clear')
         print("########################################")
         print("{workspace}: MIGRATION WIZARD".format(workspace=self._workspace))
         print("########################################")
@@ -96,13 +96,10 @@ class MigrationModel:
         if inputted == "q":
             return
 
-        try:
-            migrations = list(self._leaf_migrations.keys())
-            migration_name = migrations[int(inputted)]
-            migration = self.get_migration_by_name(migration_name)
-            migration.define()
-        except:
-            return self.wizard()
+        migrations = list(self._leaf_migrations.keys())
+        migration_name = migrations[int(inputted)]
+        migration = self.get_migration_by_name(migration_name)
+        migration.define()
 
         return self.wizard()
 

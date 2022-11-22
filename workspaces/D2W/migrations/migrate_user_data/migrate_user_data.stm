@@ -1,56 +1,24 @@
 <stm>
 
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_commentmeta</entity>
+    <transformation type="attribute" id="CopyAttributeAction">
+        <action type="copy">
+            <from>node__field_preparation_time</from>
+            <to>wp_termmeta</to>
+            <attribute_from>bundle</attribute_from>
+            <attribute_to>bundle</attribute_to>
+            <type>varchar(128)</type>
         </action>
     </transformation>
 
 
 
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_comments</entity>
-        </action>
-    </transformation>
-
-
-
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_links</entity>
-        </action>
-    </transformation>
-
-
-
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_options</entity>
-        </action>
-    </transformation>
-
-
-
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_postmeta</entity>
-        </action>
-    </transformation>
-
-
-
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_posts</entity>
-        </action>
-    </transformation>
-
-
-
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_term_relationships</entity>
+    <transformation type="attribute" id="CopyAttributeAction">
+        <action type="copy">
+            <from>node__field_preparation_time</from>
+            <to>wp_termmeta</to>
+            <attribute_from>bundle</attribute_from>
+            <attribute_to>bundle</attribute_to>
+            <type>varchar(128)</type>
         </action>
     </transformation>
 
