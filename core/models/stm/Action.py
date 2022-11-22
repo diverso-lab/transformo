@@ -1,5 +1,6 @@
 from typing import Any
 
+from core.models.stm.actions.AbstractAction import AbstractAction
 from core.models.stm.actions.CopyAttributeAction import CopyAttributeAction
 from core.models.stm.actions.CreateAttributeAction import CreateAttributeAction
 from core.models.stm.actions.CreateEntityAction import CreateEntityAction
@@ -29,7 +30,7 @@ class Action:
     def set_apply(self, apply) -> None:
         self._apply = apply
 
-    def apply(self):
+    def apply(self) -> AbstractAction:
 
         apply = None
 

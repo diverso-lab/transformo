@@ -1,0 +1,13 @@
+<stm>
+
+    <transformation type="attribute" id="CopyAttributeAction">
+        <action type="copy">
+            <from>node__field_preparation_time</from>
+            <to>wp_postmeta</to>
+            <attribute_from>langcode</attribute_from>
+            <attribute_to>meta_key</attribute_to>
+            <type>varchar(32)</type>
+        </action>
+    </transformation>
+
+</stm>

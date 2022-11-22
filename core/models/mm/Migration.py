@@ -95,23 +95,36 @@ class Migration:
         print("-> Working on migration: {}".format(self._migration_name))
         print()
         print('-> Current actions')
-        print('\t-> TODO')
+        print()
+
+        stm = self.stm()
+        if not stm is None:
+
+            for t in stm.transformations():
+                for a in t.actions():
+                    print("\t" + a.apply().info())
+                    print()
+
+        else:
+
+            print("No actions defined")
 
     def _show_and_select_abstract_action(self) -> AbstractAction | None:
 
         abstract_action = None
 
+        print("-> Available action(s)")
         print()
-        print("[0] Create entity")
-        print("[1] Rename entity")
-        print("[2] Delete entity")
+        print("\t[0] Create entity")
+        print("\t[1] Rename entity")
+        print("\t[2] Delete entity")
         print()
-        print("[3] Create attribute")
-        print("[4] Rename attribute")
-        print("[5] Retype attribute")
-        print("[6] Move attribute")
-        print("[7] Copy attribute")
-        print("[8] Delete attribute")
+        print("\t[3] Create attribute")
+        print("\t[4] Rename attribute")
+        print("\t[5] Retype attribute")
+        print("\t[6] Move attribute")
+        print("\t[7] Copy attribute")
+        print("\t[8] Delete attribute")
 
         print("")
 
