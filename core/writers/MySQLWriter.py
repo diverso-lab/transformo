@@ -75,6 +75,9 @@ class MySQLWriter:
                                     case "copy":
                                         self._write_action(transformation, action, "copy_attribute_action.stub")
 
+                                    case "update":
+                                        self._write_action(transformation, action, "update_attribute_action.stub")
+
                                     case "delete":
                                         self._write_action(transformation, action, "delete_attribute_action.stub")
 

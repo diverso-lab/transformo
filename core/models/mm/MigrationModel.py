@@ -44,6 +44,10 @@ class MigrationModel:
         self._read_leaf_migrations()
         self._set_sdm_contexts()
 
+        # products
+        self._products: list[list[Any]] = list()
+        self._calculate_products()
+
     def migrations(self) -> {}:
         return self._migrations
 
@@ -137,7 +141,8 @@ class MigrationModel:
 
     '''
 
-    def get_all_products(self) -> list[list[Any]]:
+    def _calculate_products(self) -> None:
+        products: list[list[Any]] = list()
 
         # feature model to sat
         fmtopysat = FmToPysat(source_model=self._fm)
@@ -148,11 +153,22 @@ class MigrationModel:
         glucose3.execute(model=pysat_model)
 
         # get all products
-        products = glucose3.get_products()
+        glucose3_products = glucose3.get_products()
+
+        for gp in glucose3_products:
+            product = list()
+            for gp_item in gp:
+                migration = self.get_migration_by_name(gp_item)
+                if migration.is_leaf():
+                    product.append(migration.name())
+            products.append(product)
 
         # TODO: Apply ordering
 
-        return products
+        self._products = products
+
+    def get_all_products(self) -> list[list[Any]]:
+        return self._products
 
     def get_all_scripts(self):
 
@@ -161,8 +177,14 @@ class MigrationModel:
         counter = 0
         for product in products:
             script_name = "{root}_{counter}".format(root=self.root(), counter=counter)
-            self.write_sql(selected_migrations_names=product,script_name=script_name)
+            self.write_sql(selected_migrations_names=product, script_name=script_name)
             counter = counter + 1
+
+    def dynamic_selection(self):
+
+
+
+        inputted = str(input("Select an available migration ('q' for quit): "))
 
     def write_sql(self, selected_migrations_names: list[str], script_name: str = "") -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)

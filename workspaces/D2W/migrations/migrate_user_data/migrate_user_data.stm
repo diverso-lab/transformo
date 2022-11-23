@@ -6,18 +6,31 @@
             <to>wp_users</to>
             <attribute_from>name</attribute_from>
             <attribute_to>user_nicename</attribute_to>
+            <primary_key_from>uid</primary_key_from>
             <type>varchar(60)</type>
         </action>
     </transformation>
 
-
-
-    <transformation type="attribute" id="CopyAttributeAction">
-        <action type="copy">
+    <transformation type="attribute" id="UpdateAttributeAction">
+        <action type="update">
             <from>users_field_data</from>
             <to>wp_users</to>
             <attribute_from>mail</attribute_from>
             <attribute_to>user_email</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateAttributeAction">
+        <action type="update">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>pass</attribute_from>
+            <attribute_to>user_pass</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
             <type>varchar(254)</type>
         </action>
     </transformation>

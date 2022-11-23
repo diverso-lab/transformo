@@ -3,4 +3,4 @@
 -- -----------------------------------------------------
 
 INSERT INTO `{{ database_name_to }}`.`{{ action.entity_to_id() }}` (`{{ action.attribute_to_name() }}`)
-  SELECT `{{ action.attribute_from_name() }}` FROM `{{ database_name_from }}`.`{{ action.entity_from_id()}}`;
+  SELECT `{{ action.attribute_from_name() }}` FROM `{{ database_name_from }}`.`{{ action.entity_from_id()}}` ORDER BY `{{ action.primary_key_from()}}`;
