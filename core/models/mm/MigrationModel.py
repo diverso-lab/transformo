@@ -1,9 +1,12 @@
 import os
 from os.path import exists
 from shutil import rmtree
+from typing import Any
 
 from flamapy.metamodels.fm_metamodel.models import FeatureModel
 from flamapy.metamodels.fm_metamodel.transformations import UVLReader, UVLWriter
+from flamapy.metamodels.pysat_metamodel.operations import Glucose3Products
+from flamapy.metamodels.pysat_metamodel.transformations import FmToPysat
 
 from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
 from core.loaders.WorkspaceLoader import WorkspaceLoader
@@ -103,27 +106,6 @@ class MigrationModel:
 
         return self.wizard()
 
-    '''
-    def define(self, migration_name: str) -> None:
-
-        try:
-
-            migration = self._migrations[migration_name]
-
-            _check_is_migration_is_abstract(migration)
-
-            try:
-                rmtree("workspaces/{workspace}/migrations/{migration_name}".format(
-                    workspace=self._workspace, migration_name=migration_name))
-            except:
-                pass
-
-            migration.define()
-
-        except KeyError as e:
-            print("Error! '{}' not found in migration model".format(migration_name))
-    '''
-
     def sdm_source(self) -> SimpleDatabaseModel:
         return self._sdm_source
 
@@ -155,16 +137,46 @@ class MigrationModel:
 
     '''
 
-    def write_sql(self, selected_migrations_name: list[str]) -> None:
+    def get_all_products(self) -> list[list[Any]]:
+
+        # feature model to sat
+        fmtopysat = FmToPysat(source_model=self._fm)
+        pysat_model = fmtopysat.transform()
+
+        # sat to Glucose3 Solver
+        glucose3 = Glucose3Products()
+        glucose3.execute(model=pysat_model)
+
+        # get all products
+        products = glucose3.get_products()
+
+        # TODO: Apply ordering
+
+        return products
+
+    def get_all_scripts(self):
+
+        products = self.get_all_products()
+
+        counter = 0
+        for product in products:
+            script_name = "{root}_{counter}".format(root=self.root(), counter=counter)
+            self.write_sql(selected_migrations_names=product,script_name=script_name)
+            counter = counter + 1
+
+    def write_sql(self, selected_migrations_names: list[str], script_name: str = "") -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
 
         selected_migrations = list()
 
-        for s in selected_migrations_name:
+        for s in selected_migrations_names:
             migration = self.get_migration_by_name(s)
             selected_migrations.append(migration)
 
+        if script_name == "":
+            script_name = self.root()
+
         mysql_writer = MySQLWriter(selected_migrations=selected_migrations,
-                                   root=self.root().name,
+                                   script_name=script_name,
                                    database_info_extractor=database_info_extractor)
         mysql_writer.write()
