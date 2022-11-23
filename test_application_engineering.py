@@ -23,11 +23,6 @@ def main():
         functionality (constraint propagation) is already implemented.
     '''
 
-    # Get all products
-    products = migration_model.get_all_products()
-    for p in products:
-        print(p)
-
     # Get all scripts
     migration_model.get_all_scripts()
 
@@ -35,7 +30,7 @@ def main():
     selected_migrations = ['migrate_user_data']
 
     # Write SQL script
-    migration_model.write_sql(selected_migrations_names=selected_migrations)
+    # migration_model.write_sql(selected_migrations_names=selected_migrations)
 
 
 if __name__ == "__main__":

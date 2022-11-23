@@ -4,19 +4,12 @@
 -- Transformation  CopyAttributeAction
 -- -----------------------------------------------------
 
-INSERT INTO `wordpress`.`wp_postmeta` (`meta_key`)
-  SELECT `langcode` FROM `drupal`.`node__field_preparation_time`;
+INSERT INTO `wordpress`.`wp_users` (`user_nicename`)
+  SELECT `name` FROM `drupal`.`users_field_data`;
 
 -- -----------------------------------------------------
 -- Transformation  CopyAttributeAction
 -- -----------------------------------------------------
 
-INSERT INTO `wordpress`.`wp_termmeta` (`bundle`)
-  SELECT `bundle` FROM `drupal`.`node__field_preparation_time`;
-
--- -----------------------------------------------------
--- Transformation  CopyAttributeAction
--- -----------------------------------------------------
-
-INSERT INTO `wordpress`.`wp_termmeta` (`bundle`)
-  SELECT `bundle` FROM `drupal`.`node__field_preparation_time`;
+INSERT INTO `wordpress`.`wp_users` (`user_email`)
+  SELECT `mail` FROM `drupal`.`users_field_data`;

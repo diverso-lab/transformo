@@ -2,11 +2,11 @@
 
     <transformation type="attribute" id="CopyAttributeAction">
         <action type="copy">
-            <from>node__field_preparation_time</from>
-            <to>wp_termmeta</to>
-            <attribute_from>bundle</attribute_from>
-            <attribute_to>bundle</attribute_to>
-            <type>varchar(128)</type>
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>name</attribute_from>
+            <attribute_to>user_nicename</attribute_to>
+            <type>varchar(60)</type>
         </action>
     </transformation>
 
@@ -14,11 +14,11 @@
 
     <transformation type="attribute" id="CopyAttributeAction">
         <action type="copy">
-            <from>node__field_preparation_time</from>
-            <to>wp_termmeta</to>
-            <attribute_from>bundle</attribute_from>
-            <attribute_to>bundle</attribute_to>
-            <type>varchar(128)</type>
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>mail</attribute_from>
+            <attribute_to>user_email</attribute_to>
+            <type>varchar(254)</type>
         </action>
     </transformation>
 
