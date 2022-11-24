@@ -1,3 +1,4 @@
+from core.models.stm.Filter import Filter
 from core.models.stm.actions.AbstractAction import AbstractAction
 
 
@@ -10,7 +11,8 @@ class UpdateFromFieldAction(AbstractAction):
                  attribute_to_name,
                  type,
                  primary_key_from,
-                 primary_key_to) -> None:
+                 primary_key_to,
+                 filter_item) -> None:
         self._entity_from_id = entity_from_id
         self._entity_to_id = entity_to_id
         self._attribute_from_name = attribute_from_name
@@ -18,6 +20,18 @@ class UpdateFromFieldAction(AbstractAction):
         self._primary_key_from = primary_key_from
         self._primary_key_to = primary_key_to
         self._type = type
+
+        self._read_filter(filter_item)
+
+    def _read_filter(self, filter_item):
+
+        if not filter_item is None:
+            self._filter = Filter(filter_item)
+        else:
+            self._filter = None
+
+    def filter(self):
+        return self._filter
 
     def entity_from_id(self):
         return self._entity_from_id

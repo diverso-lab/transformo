@@ -1,5 +1,6 @@
 from typing import Any
 
+from core.models.stm.Filter import Filter
 from core.models.stm.actions.AbstractAction import AbstractAction
 from core.models.stm.actions.CopyAttributeAction import CopyAttributeAction
 from core.models.stm.actions.CreateAttributeAction import CreateAttributeAction
@@ -24,8 +25,21 @@ class Action:
         self._type = item.getAttribute('type')
         self._apply: Any = None
 
-    def type(self):
+        self._read_filter()
+
+    def _read_filter(self):
+
+        try:
+            item_filter = self._item.getElementsByTagName("filter")[0]
+            self._filter = Filter(item_filter)
+        except:
+            pass
+
+    def type(self) -> str:
         return self._type
+
+    def filter(self) -> Filter:
+        return self._filter
 
     def item(self):
         return self._item
@@ -162,6 +176,13 @@ class Action:
                         primary_key_to = self._item.getElementsByTagName("primary_key_to")[0].childNodes[0].data
                         type = self._item.getElementsByTagName("type")[0].childNodes[0].data
 
+                        filter_item = None
+
+                        try:
+                            filter_item = self._item.getElementsByTagName("filter")[0]
+                        except:
+                            pass
+
                         # create action
                         apply = UpdateFromFieldAction(entity_from_id=entity_from_id,
                                                       entity_to_id=entity_to_id,
@@ -169,6 +190,7 @@ class Action:
                                                       attribute_to_name=attribute_to_name,
                                                       primary_key_from=primary_key_from,
                                                       primary_key_to=primary_key_to,
+                                                      filter_item=filter_item,
                                                       type=type)
 
                     case "update_from_value":

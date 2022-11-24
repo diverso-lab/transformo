@@ -180,12 +180,6 @@ class MigrationModel:
             self.write_sql(selected_migrations_names=product, script_name=script_name)
             counter = counter + 1
 
-    def dynamic_selection(self):
-
-
-
-        inputted = str(input("Select an available migration ('q' for quit): "))
-
     def write_sql(self, selected_migrations_names: list[str], script_name: str = "") -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
 

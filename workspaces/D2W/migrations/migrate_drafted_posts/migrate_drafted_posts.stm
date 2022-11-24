@@ -1,0 +1,121 @@
+<stm>
+
+    <transformation type="attribute" id="InsertReferenceAction">
+        <action type="insert_reference">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(60)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>uid</attribute_from>
+            <attribute_to>post_author</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>created</attribute_from>
+            <attribute_to>post_date</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+            <filter>
+                <type>FROM_UNIXTIME</type>
+            </filter>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>created</attribute_from>
+            <attribute_to>post_date_gmt</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+            <filter>
+                <type>FROM_UNIXTIME</type>
+            </filter>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>created</attribute_from>
+            <attribute_to>post_modified</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+            <filter>
+                <type>FROM_UNIXTIME</type>
+            </filter>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>created</attribute_from>
+            <attribute_to>post_modified_gmt</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+            <filter>
+                <type>FROM_UNIXTIME</type>
+            </filter>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>title</attribute_from>
+            <attribute_to>post_title</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>title</attribute_from>
+            <attribute_to>post_name</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node__body</from>
+            <to>wp_posts</to>
+            <attribute_from>body_value</attribute_from>
+            <attribute_to>post_content</attribute_to>
+            <primary_key_from>entity_id</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+</stm>
