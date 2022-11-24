@@ -7,7 +7,32 @@
             <attribute_from>name</attribute_from>
             <attribute_to>user_nicename</attribute_to>
             <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
             <type>varchar(60)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateAttributeAction">
+        <action type="update">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>name</attribute_from>
+            <attribute_to>user_login</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateAttributeAction">
+        <action type="update">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>name</attribute_from>
+            <attribute_to>display_name</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
         </action>
     </transformation>
 

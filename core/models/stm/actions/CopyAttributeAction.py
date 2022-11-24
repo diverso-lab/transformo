@@ -9,6 +9,7 @@ class CopyAttributeAction(AbstractAction):
                  attribute_from_name,
                  attribute_to_name,
                  primary_key_from,
+                 primary_key_to,
                  type) -> None:
         
         self._entity_from_id = entity_from_id
@@ -16,6 +17,7 @@ class CopyAttributeAction(AbstractAction):
         self._attribute_from_name = attribute_from_name
         self._attribute_to_name = attribute_to_name
         self._primary_key_from = primary_key_from
+        self._primary_key_to = primary_key_to
         self._type = type
 
     def entity_from_id(self):
@@ -32,6 +34,9 @@ class CopyAttributeAction(AbstractAction):
 
     def primary_key_from(self):
         return self._primary_key_from
+
+    def primary_key_to(self):
+        return self._primary_key_to
 
     def type(self):
         return self._type

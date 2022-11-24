@@ -4,8 +4,28 @@
 -- Transformation  CopyAttributeAction
 -- -----------------------------------------------------
 
-INSERT INTO `wordpress`.`wp_users` (`user_nicename`)
-  SELECT `name` FROM `drupal`.`users_field_data` ORDER BY `uid`;
+INSERT INTO `wordpress`.`wp_users` (`ID`, `user_nicename`)
+  SELECT `uid`, `name` FROM `drupal`.`users_field_data` ORDER BY `uid`;
+
+-- -----------------------------------------------------
+-- Transformation  UpdateAttributeAction
+-- -----------------------------------------------------
+
+UPDATE `wordpress`.`wp_users` table_target
+       INNER JOIN `drupal`.`users_field_data` table_source
+       ON table_source.`uid` = table_target.`ID`
+SET table_target.`user_login` = table_source.`name`
+WHERE table_source.`uid` = table_target.`ID`;
+
+-- -----------------------------------------------------
+-- Transformation  UpdateAttributeAction
+-- -----------------------------------------------------
+
+UPDATE `wordpress`.`wp_users` table_target
+       INNER JOIN `drupal`.`users_field_data` table_source
+       ON table_source.`uid` = table_target.`ID`
+SET table_target.`display_name` = table_source.`name`
+WHERE table_source.`uid` = table_target.`ID`;
 
 -- -----------------------------------------------------
 -- Transformation  UpdateAttributeAction

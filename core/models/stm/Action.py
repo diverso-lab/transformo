@@ -122,6 +122,7 @@ class Action:
                         attribute_from_name = self._item.getElementsByTagName("attribute_from")[0].childNodes[0].data
                         attribute_to_name = self._item.getElementsByTagName("attribute_to")[0].childNodes[0].data
                         primary_key_from = self._item.getElementsByTagName("primary_key_from")[0].childNodes[0].data
+                        primary_key_to = self._item.getElementsByTagName("primary_key_to")[0].childNodes[0].data
                         type = self._item.getElementsByTagName("type")[0].childNodes[0].data
 
                         # create action
@@ -129,6 +130,7 @@ class Action:
                                                     entity_to_id=entity_to_id,
                                                     attribute_from_name=attribute_from_name,
                                                     primary_key_from=primary_key_from,
+                                                    primary_key_to=primary_key_to,
                                                     attribute_to_name=attribute_to_name, type=type)
 
                     case "update":
