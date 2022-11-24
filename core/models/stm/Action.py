@@ -6,11 +6,13 @@ from core.models.stm.actions.CreateAttributeAction import CreateAttributeAction
 from core.models.stm.actions.CreateEntityAction import CreateEntityAction
 from core.models.stm.actions.DeleteAttributeAction import DeleteAttributeAction
 from core.models.stm.actions.DeleteEntityAction import DeleteEntityAction
+from core.models.stm.actions.InsertReferenceAction import InsertReferenceAction
 from core.models.stm.actions.MoveAttributeAction import MoveAttributeAction
 from core.models.stm.actions.RenameAttributeAction import RenameAttributeAction
 from core.models.stm.actions.RenameEntityAction import RenameEntityAction
 from core.models.stm.actions.RetypeAttributeAction import RetypeAttributeAction
-from core.models.stm.actions.UpdateAttributeAction import UpdateAttributeAction
+from core.models.stm.actions.UpdateFromFieldAction import UpdateFromFieldAction
+from core.models.stm.actions.UpdateFromValueAction import UpdateFromValueAction
 
 
 class Action:
@@ -133,7 +135,23 @@ class Action:
                                                     primary_key_to=primary_key_to,
                                                     attribute_to_name=attribute_to_name, type=type)
 
-                    case "update":
+                    case "insert_reference":
+
+                        # basic data
+                        entity_from_id = self._item.getElementsByTagName("from")[0].childNodes[0].data
+                        entity_to_id = self._item.getElementsByTagName("to")[0].childNodes[0].data
+                        primary_key_from = self._item.getElementsByTagName("primary_key_from")[0].childNodes[0].data
+                        primary_key_to = self._item.getElementsByTagName("primary_key_to")[0].childNodes[0].data
+                        type = self._item.getElementsByTagName("type")[0].childNodes[0].data
+
+                        # create action
+                        apply = InsertReferenceAction(entity_from_id=entity_from_id,
+                                                    entity_to_id=entity_to_id,
+                                                    primary_key_from=primary_key_from,
+                                                    primary_key_to=primary_key_to,
+                                                    type=type)
+
+                    case "update_from_field":
 
                         # basic data
                         entity_from_id = self._item.getElementsByTagName("from")[0].childNodes[0].data
@@ -145,9 +163,29 @@ class Action:
                         type = self._item.getElementsByTagName("type")[0].childNodes[0].data
 
                         # create action
-                        apply = UpdateAttributeAction(entity_from_id=entity_from_id,
+                        apply = UpdateFromFieldAction(entity_from_id=entity_from_id,
                                                       entity_to_id=entity_to_id,
                                                       attribute_from_name=attribute_from_name,
+                                                      attribute_to_name=attribute_to_name,
+                                                      primary_key_from=primary_key_from,
+                                                      primary_key_to=primary_key_to,
+                                                      type=type)
+
+                    case "update_from_value":
+
+                        # basic data
+                        entity_from_id = self._item.getElementsByTagName("from")[0].childNodes[0].data
+                        entity_to_id = self._item.getElementsByTagName("to")[0].childNodes[0].data
+                        attribute_to_name = self._item.getElementsByTagName("attribute_to")[0].childNodes[0].data
+                        value = self._item.getElementsByTagName("value")[0].childNodes[0].data
+                        primary_key_from = self._item.getElementsByTagName("primary_key_from")[0].childNodes[0].data
+                        primary_key_to = self._item.getElementsByTagName("primary_key_to")[0].childNodes[0].data
+                        type = self._item.getElementsByTagName("type")[0].childNodes[0].data
+
+                        # create action
+                        apply = UpdateFromValueAction(entity_from_id=entity_from_id,
+                                                      entity_to_id=entity_to_id,
+                                                      value=value,
                                                       attribute_to_name=attribute_to_name,
                                                       primary_key_from=primary_key_from,
                                                       primary_key_to=primary_key_to,

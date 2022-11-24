@@ -1,0 +1,6 @@
+-- -----------------------------------------------------
+-- Transformation  {{ transformation_name }}
+-- -----------------------------------------------------
+
+INSERT INTO `{{ database_name_to }}`.`{{ action.entity_to_id() }}` (`{{ action.primary_key_to() }}`)
+  SELECT `{{ action.primary_key_from() }}` FROM `{{ database_name_from }}`.`{{ action.entity_from_id()}}` ORDER BY `{{ action.primary_key_from()}}`;

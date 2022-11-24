@@ -23,6 +23,11 @@ def main():
         functionality (constraint propagation) is already implemented.
     '''
 
+    # Get products
+    products = migration_model.get_all_products()
+    for p in products:
+        print(p)
+
     # Get all scripts
     migration_model.get_all_scripts()
 

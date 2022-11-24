@@ -1,19 +1,19 @@
 from core.models.stm.actions.AbstractAction import AbstractAction
 
 
-class UpdateAttributeAction(AbstractAction):
+class UpdateFromValueAction(AbstractAction):
 
     def __init__(self,
                  entity_from_id,
                  entity_to_id,
-                 attribute_from_name,
+                 value,
                  attribute_to_name,
                  type,
                  primary_key_from,
                  primary_key_to) -> None:
         self._entity_from_id = entity_from_id
         self._entity_to_id = entity_to_id
-        self._attribute_from_name = attribute_from_name
+        self._value = value
         self._attribute_to_name = attribute_to_name
         self._primary_key_from = primary_key_from
         self._primary_key_to = primary_key_to
@@ -25,8 +25,8 @@ class UpdateAttributeAction(AbstractAction):
     def entity_to_id(self):
         return self._entity_to_id
 
-    def attribute_from_name(self):
-        return self._attribute_from_name
+    def value(self):
+        return self._value
 
     def attribute_to_name(self):
         return self._attribute_to_name
@@ -48,4 +48,4 @@ class UpdateAttributeAction(AbstractAction):
         return "attribute"
 
     def action_type(self):
-        return "update"
+        return "update_from_field"
