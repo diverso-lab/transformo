@@ -72,6 +72,34 @@ WHERE table_source.`uid` = table_target.`ID`;
 -- Transformation  InsertReferenceAction
 -- -----------------------------------------------------
 
+INSERT INTO `wordpress`.`wp_usermeta` (`user_id`)
+  SELECT `uid` FROM `drupal`.`users_field_data`
+  ORDER BY `uid`;
+
+-- -----------------------------------------------------
+-- Transformation  UpdateFromValueAction
+-- -----------------------------------------------------
+
+UPDATE `wordpress`.`wp_usermeta` table_target
+       INNER JOIN `drupal`.`users_field_data` table_source
+       ON table_source.`uid` = table_target.`user_id`
+SET table_target.`meta_key` = 'wp_capabilities'
+WHERE table_source.`uid` = table_target.`user_id`;
+
+-- -----------------------------------------------------
+-- Transformation  UpdateFromValueAction
+-- -----------------------------------------------------
+
+UPDATE `wordpress`.`wp_usermeta` table_target
+       INNER JOIN `drupal`.`users_field_data` table_source
+       ON table_source.`uid` = table_target.`user_id`
+SET table_target.`meta_value` = 'a:1:{s:13:"administrator";b:1;}'
+WHERE table_source.`uid` = table_target.`user_id`;
+
+-- -----------------------------------------------------
+-- Transformation  InsertReferenceAction
+-- -----------------------------------------------------
+
 INSERT INTO `wordpress`.`wp_posts` (`ID`)
   SELECT `nid` FROM `drupal`.`node_field_data`
   WHERE `drupal`.`node_field_data`.`type` IN ('article')
@@ -172,35 +200,3 @@ UPDATE `wordpress`.`wp_posts` table_target
     SET table_target.`post_content` = table_source.`body_value`
 
 WHERE table_source.`entity_id` = table_target.`ID`;
-
--- -----------------------------------------------------
--- Transformation  InsertReferenceAction
--- -----------------------------------------------------
-
-INSERT INTO `wordpress`.`wp_comments` (`comment_ID`)
-  SELECT `id` FROM `drupal`.`node__field_comment`
-  ORDER BY `id`;
-
--- -----------------------------------------------------
--- Transformation  UpdateFromFieldAction
--- -----------------------------------------------------
-
-UPDATE `wordpress`.`wp_comments` table_target
-       INNER JOIN `drupal`.`node__field_comment` table_source
-       ON table_source.`id` = table_target.`comment_ID`
-
-    SET table_target.`comment_post_ID` = table_source.`entity_id`
-
-WHERE table_source.`id` = table_target.`comment_ID`;
-
--- -----------------------------------------------------
--- Transformation  UpdateFromFieldAction
--- -----------------------------------------------------
-
-UPDATE `wordpress`.`wp_comments` table_target
-       INNER JOIN `drupal`.`node__field_comment` table_source
-       ON table_source.`id` = table_target.`comment_ID`
-
-    SET table_target.`comment_author` = table_source.`field_comment_value`
-
-WHERE table_source.`id` = table_target.`comment_ID`;

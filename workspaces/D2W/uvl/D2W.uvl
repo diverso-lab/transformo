@@ -11,7 +11,7 @@ features
             migrate_content
                 mandatory
                     migrate_posts
-                        alternative
+                        or
                             migrate_articles
                             migrate_pages
                 optional
@@ -19,4 +19,3 @@ features
 constraints
     migrate_content => migrate_users
     migrate_user_roles => migrate_user_data
-    migrate_comments => migrate_posts
