@@ -1,22 +1,22 @@
 features
-	D2W
-		mandatory
-			migrate_basic_data
-		optional
-			migrate_users
-				or
-					migrate_user_data
-					migrate_user_roles
-		optional
-			migrate_content
-				mandatory
-					migrate_posts
-						alternative
-							migrate_drafted_posts
-							migrate_published_posts
-				optional
-					migrate_comments
+    D2W
+        mandatory
+            migrate_basic_data
+        optional
+            migrate_users
+                or
+                    migrate_user_data
+                    migrate_user_roles
+        optional
+            migrate_content
+                mandatory
+                    migrate_posts
+                        alternative
+                            migrate_articles
+                            migrate_pages
+                optional
+                    migrate_comments
 constraints
-	migrate_content => migrate_users
-	migrate_user_roles => migrate_user_data
-	migrate_comments => migrate_posts
+    migrate_content => migrate_users
+    migrate_user_roles => migrate_user_data
+    migrate_comments => migrate_posts

@@ -1,4 +1,5 @@
 from core.models.stm.Filter import Filter
+from core.models.stm.Where import Where
 from core.models.stm.actions.AbstractAction import AbstractAction
 
 
@@ -22,6 +23,9 @@ class UpdateFromFieldAction(AbstractAction):
         self._type = type
 
         self._read_filter(filter_item)
+
+
+
 
     def _read_filter(self, filter_item):
 

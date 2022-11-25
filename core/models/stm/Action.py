@@ -158,12 +158,20 @@ class Action:
                         primary_key_to = self._item.getElementsByTagName("primary_key_to")[0].childNodes[0].data
                         type = self._item.getElementsByTagName("type")[0].childNodes[0].data
 
+                        where_item = None
+
+                        try:
+                            where_item = self._item.getElementsByTagName("where")[0]
+                        except:
+                            pass
+
                         # create action
                         apply = InsertReferenceAction(entity_from_id=entity_from_id,
                                                     entity_to_id=entity_to_id,
                                                     primary_key_from=primary_key_from,
                                                     primary_key_to=primary_key_to,
-                                                    type=type)
+                                                    type=type,
+                                                    where_item=where_item)
 
                     case "update_from_field":
 

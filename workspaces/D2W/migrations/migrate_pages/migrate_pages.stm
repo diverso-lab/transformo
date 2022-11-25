@@ -7,6 +7,10 @@
             <primary_key_from>nid</primary_key_from>
             <primary_key_to>ID</primary_key_to>
             <type>varchar(60)</type>
+            <where>
+                <attribute_from>type</attribute_from>
+                <value>page</value>
+            </where>
         </action>
     </transformation>
 
