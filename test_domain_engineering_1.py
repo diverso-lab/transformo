@@ -1,5 +1,3 @@
-from flamapy.metamodels.fm_metamodel.transformations import UVLReader
-
 from core.configurators.WorkspaceConfigurator import WorkspaceConfigurator
 from core.extractors.mysql.MySQLExtractor import MySQLExtractor
 from core.models.mm.MigrationModel import MigrationModel
@@ -28,8 +26,7 @@ def main():
 
     # Creating migration feature model
     migration_model = MigrationModel(sdm_source, sdm_target, 'workspaces/D2W/uvl/D2W.uvl')
-    migration_model.define('migrate_user_data')
-    migration_model.define('migrate_published_posts')
+    migration_model.wizard()
 
 
 if __name__ == "__main__":

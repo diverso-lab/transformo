@@ -1,16 +1,72 @@
 <stm>
 
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_postmeta</entity>
+    <transformation type="attribute" id="InsertReferenceAction">
+        <action type="insert_reference">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(60)</type>
         </action>
     </transformation>
 
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>name</attribute_from>
+            <attribute_to>user_nicename</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
 
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>name</attribute_from>
+            <attribute_to>user_login</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
 
-    <transformation type="entity" id="CreateEntityAction">
-        <action type="create">
-            <entity>wp_usermeta</entity>
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>name</attribute_from>
+            <attribute_to>display_name</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>mail</attribute_from>
+            <attribute_to>user_email</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>users_field_data</from>
+            <to>wp_users</to>
+            <attribute_from>pass</attribute_from>
+            <attribute_to>user_pass</attribute_to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
         </action>
     </transformation>
 
