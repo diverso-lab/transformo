@@ -1,7 +1,12 @@
+import os
+from os.path import exists
 from shutil import rmtree
+from typing import Any
 
 from flamapy.metamodels.fm_metamodel.models import FeatureModel
 from flamapy.metamodels.fm_metamodel.transformations import UVLReader, UVLWriter
+from flamapy.metamodels.pysat_metamodel.operations import Glucose3Products
+from flamapy.metamodels.pysat_metamodel.transformations import FmToPysat
 
 from core.extractors.DatabaseInfoExtractor import DatabaseInfoExtractor
 from core.loaders.WorkspaceLoader import WorkspaceLoader
@@ -13,7 +18,6 @@ from core.writers.MySQLWriter import MySQLWriter
 
 
 def _check_is_migration_is_abstract(migration: Migration) -> None:
-
     if migration.is_abstract():
         raise Exception('Error! Actions cannot be defined on an abstract migration.')
 
@@ -33,10 +37,16 @@ class MigrationModel:
         self._workspace: str = WorkspaceLoader().name()
         self._uvl_file: str = uvl_file
         self._migrations = {}
+        self._leaf_migrations = {}
 
         # operations
         self._read_migrations()
+        self._read_leaf_migrations()
         self._set_sdm_contexts()
+
+        # products
+        self._products: list[list[Any]] = list()
+        self._calculate_products()
 
     def migrations(self) -> {}:
         return self._migrations
@@ -50,28 +60,55 @@ class MigrationModel:
             migration = Migration(migration_model=self, feature=f)
             self._migrations[f.name] = migration
 
+    def _read_leaf_migrations(self) -> {}:
+
+        self._leaf_migrations = {}
+
+        for k in self._migrations:
+            migration = self._migrations[k]
+            if migration.is_leaf():
+                self._leaf_migrations[migration.name()] = migration
+
+        return self._leaf_migrations
+
     def _set_sdm_contexts(self):
         self._sdm_source.set_as_source()
         self._sdm_target.set_as_target()
 
-    def define(self, migration_name: str) -> None:
+    def wizard(self):
 
-        try:
+        os.system('clear')
+        print("########################################")
+        print("{workspace}: MIGRATION WIZARD".format(workspace=self._workspace))
+        print("########################################")
+        print()
 
-            migration = self._migrations[migration_name]
+        option = 0
+        for m in self._leaf_migrations:
 
-            _check_is_migration_is_abstract(migration)
+            undefined = ""
+            if not os.path.exists('workspaces/{workspace}/migrations/{migration_name}'.format(
+                    workspace=self._workspace,
+                    migration_name=self._leaf_migrations[m])):
+                undefined = "(UNDEFINED)"
 
-            try:
-                rmtree("workspaces/{workspace}/migrations/{migration_name}".format(
-                    workspace=self._workspace, migration_name=migration_name))
-            except:
-                pass
+            print("[{option}] {name} {undefined}".format(option=option,
+                                                         name=self._leaf_migrations[m],
+                                                         undefined=undefined))
+            option = option + 1
 
-            migration.define()
+        print()
+        inputted = str(input("Select an available migration to manage ('q' for quit): "))
 
-        except KeyError as e:
-            print("Error! '{}' not found in migration model".format(migration_name))
+        if inputted == "q":
+            return
+
+        migrations = list(self._leaf_migrations.keys())
+        migration_name = migrations[int(inputted)]
+        migration = self.get_migration_by_name(migration_name)
+        migration.define()
+
+        return self.wizard()
 
     def sdm_source(self) -> SimpleDatabaseModel:
         return self._sdm_source
@@ -86,7 +123,8 @@ class MigrationModel:
         return self._workspace
 
     def export(self):
-        uvl_writer = UVLWriter(self._fm, 'workspaces/{workspace}/uvl/{root}.uvl'.format(workspace=self._workspace, root=self.root()))
+        uvl_writer = UVLWriter(self._fm, 'workspaces/{workspace}/uvl/{root}.uvl'.format(workspace=self._workspace,
+                                                                                        root=self.root()))
         uvl_writer.transform()
 
     '''
@@ -103,16 +141,58 @@ class MigrationModel:
 
     '''
 
-    def write_sql(self, selected_migrations_name: list[str]) -> None:
+    def _calculate_products(self) -> None:
+        products: list[list[Any]] = list()
+
+        # feature model to sat
+        fmtopysat = FmToPysat(source_model=self._fm)
+        pysat_model = fmtopysat.transform()
+
+        # sat to Glucose3 Solver
+        glucose3 = Glucose3Products()
+        glucose3.execute(model=pysat_model)
+
+        # get all products
+        glucose3_products = glucose3.get_products()
+
+        for gp in glucose3_products:
+            product = list()
+            for gp_item in gp:
+                migration = self.get_migration_by_name(gp_item)
+                if migration.is_leaf():
+                    product.append(migration.name())
+            products.append(product)
+
+        # TODO: Apply ordering
+
+        self._products = products
+
+    def get_all_products(self) -> list[list[Any]]:
+        return self._products
+
+    def get_all_scripts(self):
+
+        products = self.get_all_products()
+
+        counter = 0
+        for product in products:
+            script_name = "{root}_{counter}".format(root=self.root(), counter=counter)
+            self.write_sql(selected_migrations_names=product, script_name=script_name)
+            counter = counter + 1
+
+    def write_sql(self, selected_migrations_names: list[str], script_name: str = "") -> None:
         database_info_extractor = DatabaseInfoExtractor(self._sdm_source, self._sdm_target)
 
         selected_migrations = list()
 
-        for s in selected_migrations_name:
+        for s in selected_migrations_names:
             migration = self.get_migration_by_name(s)
             selected_migrations.append(migration)
 
+        if script_name == "":
+            script_name = self.root()
+
         mysql_writer = MySQLWriter(selected_migrations=selected_migrations,
-                                   root=self.root().name,
+                                   script_name=script_name,
                                    database_info_extractor=database_info_extractor)
         mysql_writer.write()

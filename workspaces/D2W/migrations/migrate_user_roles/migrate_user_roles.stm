@@ -1,0 +1,37 @@
+<stm>
+
+    <transformation type="attribute" id="InsertReferenceAction">
+        <action type="insert_reference">
+            <from>users_field_data</from>
+            <to>wp_usermeta</to>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>user_id</primary_key_to>
+            <type>varchar(60)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromValueAction">
+        <action type="update_from_value">
+            <from>users_field_data</from>
+            <to>wp_usermeta</to>
+            <attribute_to>meta_key</attribute_to>
+            <value>wp_capabilities</value>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>user_id</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromValueAction">
+        <action type="update_from_value">
+            <from>users_field_data</from>
+            <to>wp_usermeta</to>
+            <attribute_to>meta_value</attribute_to>
+            <value>a:1:{s:13:"administrator";b:1;}</value>
+            <primary_key_from>uid</primary_key_from>
+            <primary_key_to>user_id</primary_key_to>
+            <type>varchar(254)</type>
+        </action>
+    </transformation>
+
+</stm>

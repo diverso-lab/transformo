@@ -7,13 +7,14 @@ from core.models.mm.Migration import Migration
 
 class MySQLWriter:
 
-    def __init__(self, selected_migrations: list[Migration], root: str, database_info_extractor: DatabaseInfoExtractor) -> None:
+    def __init__(self, selected_migrations: list[Migration], script_name: str, database_info_extractor: DatabaseInfoExtractor) -> None:
 
         # basic info
         self._workspace = WorkspaceLoader().name()
         self._selected_migrations = selected_migrations
-        self._root = root
-        self._sql_filename = "workspaces/{workspace}/scripts/{script_name}.sql".format(workspace=self._workspace, script_name=self._root)
+        self._sql_filename = "workspaces/{workspace}/scripts/{script_name}.sql".format(
+            workspace=self._workspace,
+            script_name=script_name)
         self._database_info_extractor = database_info_extractor
 
         # templates
@@ -70,6 +71,18 @@ class MySQLWriter:
 
                                     case "move":
                                         self._write_action(transformation, action, "move_attribute_action.stub")
+
+                                    case "copy":
+                                        self._write_action(transformation, action, "copy_attribute_action.stub")
+
+                                    case "insert_reference":
+                                        self._write_action(transformation, action, "insert_reference_action.stub")
+
+                                    case "update_from_field":
+                                        self._write_action(transformation, action, "update_from_field_action.stub")
+
+                                    case "update_from_value":
+                                        self._write_action(transformation, action, "update_from_value_action.stub")
 
                                     case "delete":
                                         self._write_action(transformation, action, "delete_attribute_action.stub")
