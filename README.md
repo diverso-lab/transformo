@@ -21,6 +21,11 @@ $ git clone https://github.com/diverso-lab/transformo
 $ cd transformo
 ```
 
+We move to dp-to-wp
+```
+$ cd dp-to-wp
+```
+
 Now, we must deploy our Drupal and WordPress instances with Docker (one step at a time, in the order shown). First, we deploy our Drupal services:
 ```
 $ make prepare_drupal

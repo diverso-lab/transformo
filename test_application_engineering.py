@@ -1,5 +1,6 @@
 from core.configurators.WorkspaceConfigurator import WorkspaceConfigurator
 from core.readers.MigrationModelReader import MigrationModelReader
+import time
 
 
 def main():
@@ -9,6 +10,8 @@ def main():
     print("You're execute TEST APPLICATION ENGINEERING")
     print("########################################")
     print()
+
+    start = time.time()
 
     # Setting workspace
     WorkspaceConfigurator(name='D2W')
@@ -31,11 +34,10 @@ def main():
     # Get all scripts
     migration_model.get_all_scripts()
 
-    # selected_migrations = migration_model.selection()
-    selected_migrations = ['migrate_user_data']
+    end = time.time()
 
-    # Write SQL script
-    # migration_model.write_sql(selected_migrations_names=selected_migrations)
+    print("Execution time: {} milliseconds".format((end - start) * 1000))
+    
 
 
 if __name__ == "__main__":
