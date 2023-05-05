@@ -24,3 +24,15 @@ prepare_wordpress:
 
 install_wordpress:
 	cd auto-wp && make autoinstall
+
+up:
+	cd auto-drupal && docker compose up -d
+	cd ..
+	cd
+	cd auto-wp && docker compose up -d
+
+down:
+	cd auto-drupal && docker compose down
+	cd ..
+	cd
+	cd auto-wp && docker compose down
