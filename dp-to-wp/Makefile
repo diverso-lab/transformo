@@ -13,14 +13,14 @@ clean_wordpress:
 	@echo "Done."
 
 prepare_drupal:
-	git clone https://github.com/joszamama/auto-drupal
+	git clone https://github.com/drorganvidez/auto-drupal
 	cd auto-drupal && make prepare
 
 install_drupal:
 	cd auto-drupal && make autoinstall
 
 prepare_wordpress:
-	git clone https://github.com/joszamama/auto-wp
+	git clone https://github.com/drorganvidez/auto-wp
 
 install_wordpress:
 	cd auto-wp && make autoinstall
