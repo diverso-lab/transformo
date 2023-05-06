@@ -79,7 +79,7 @@ class MySQLWriter:
                                         self._write_action(transformation, action, "insert_reference_action.stub")
 
                                     case "update_from_field":
-                                        self._write_action(transformation, action, "update_from_field_action.stub")
+                                        self._write_action(transformation, action, "update_from_field_action.jinja")
 
                                     case "update_from_value":
                                         self._write_action(transformation, action, "update_from_value_action.stub")
@@ -90,12 +90,26 @@ class MySQLWriter:
     def _write_action(self, transformation, action, template_file):
 
         template = self._template_env.get_template(template_file)
-        render = template.render(
-            transformation_name=transformation.id(),
-            database_name_from=self._database_info_extractor.database_source_name(),
-            database_name_to=self._database_info_extractor.database_target_name(),
-            action=action.apply())
 
-        with open(self._sql_filename, "a") as f:
+        
+
+        body = {
+                "transformation_name" : transformation.id(),
+                "database_name_from" : self._database_info_extractor.database_source_name(),
+                "database_name_to" : self._database_info_extractor.database_target_name(),
+                "action" : action.apply()
+            }
+        
+        #template.stream(body).dump("hola.sql")
+        
+        render = template.render(body)
+
+        print(render)
+
+        with open(self._sql_filename, "a",  encoding='utf-8') as f:
             f.write("\n\n")
             f.write(render)
+            f.write("\n")
+
+
+    

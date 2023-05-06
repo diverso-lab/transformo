@@ -107,6 +107,22 @@
             <primary_key_from>nid</primary_key_from>
             <primary_key_to>ID</primary_key_to>
             <type>varchar(254)</type>
+            <replace>
+                <old>OLD</old>
+                <new>NUEVO_VALOR</new>
+            </replace>
+        </action>
+    </transformation>
+
+    <transformation type="attribute" id="UpdateFromFieldAction">
+        <action type="update_from_field">
+            <from>node_field_data</from>
+            <to>wp_posts</to>
+            <attribute_from>title</attribute_from>
+            <attribute_to>post_name</attribute_to>
+            <primary_key_from>nid</primary_key_from>
+            <primary_key_to>ID</primary_key_to>
+            <type>varchar(254)</type>
         </action>
     </transformation>
 

@@ -1,4 +1,5 @@
 from core.models.stm.Filter import Filter
+from core.models.stm.Replace import Replace
 from core.models.stm.Where import Where
 from core.models.stm.actions.AbstractAction import AbstractAction
 
@@ -13,7 +14,9 @@ class UpdateFromFieldAction(AbstractAction):
                  type,
                  primary_key_from,
                  primary_key_to,
-                 filter_item) -> None:
+                 filter_item,
+                 replace_item) -> None:
+
         self._entity_from_id = entity_from_id
         self._entity_to_id = entity_to_id
         self._attribute_from_name = attribute_from_name
@@ -23,8 +26,7 @@ class UpdateFromFieldAction(AbstractAction):
         self._type = type
 
         self._read_filter(filter_item)
-
-
+        self._read_replace(replace_item)
 
 
     def _read_filter(self, filter_item):
@@ -34,8 +36,21 @@ class UpdateFromFieldAction(AbstractAction):
         else:
             self._filter = None
 
-    def filter(self):
+    def filter(self) -> Filter:
         return self._filter
+    
+
+
+    def _read_replace(self, replace_item):
+
+        if not replace_item is None:
+            self._replace = Replace(replace_item)
+        else:
+            self._replace = None
+
+    def replace(self) -> Replace:
+        return self._replace
+
 
     def entity_from_id(self):
         return self._entity_from_id

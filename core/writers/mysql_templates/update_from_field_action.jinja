@@ -8,6 +8,19 @@ UPDATE `{{ database_name_to }}`.`{{ action.entity_to_id() }}` table_target
 {% if action.filter() is not none %}
     SET table_target.`{{ action.attribute_to_name() }}` = {{ action.filter().type() }}(table_source.`{{ action.attribute_from_name() }}`)
 {% else %}
+
+    {% if action.attribute_to_name() == "post_name" %}
+    SET table_target.`{{ action.attribute_to_name() }}` = REPLACE(table_source.`{{ action.attribute_from_name() }}`, ' ', '-')
+    {% else %}
     SET table_target.`{{ action.attribute_to_name() }}` = table_source.`{{ action.attribute_from_name() }}`
+    {% endif %}
+
+    
+
+    
+
 {% endif %}
 WHERE table_source.`{{ action.primary_key_from() }}` = table_target.`{{ action.primary_key_to() }}`;
+
+
+

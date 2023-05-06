@@ -1,6 +1,7 @@
 from typing import Any
 
 from core.models.stm.Filter import Filter
+from core.models.stm.Replace import Replace
 from core.models.stm.actions.AbstractAction import AbstractAction
 from core.models.stm.actions.CopyAttributeAction import CopyAttributeAction
 from core.models.stm.actions.CreateAttributeAction import CreateAttributeAction
@@ -26,6 +27,7 @@ class Action:
         self._apply: Any = None
 
         self._read_filter()
+        self._read_replace()
 
     def _read_filter(self):
 
@@ -35,11 +37,22 @@ class Action:
         except:
             pass
 
+    def _read_replace(self):
+
+        try:
+            item_replace = self._item.getElementsByTagName("replace")[0]
+            self._replace = Replace(item_replace)
+        except:
+            pass
+
     def type(self) -> str:
         return self._type
 
     def filter(self) -> Filter:
         return self._filter
+    
+    def replace(self) -> Replace:
+        return self._replace
 
     def item(self):
         return self._item
@@ -185,9 +198,16 @@ class Action:
                         type = self._item.getElementsByTagName("type")[0].childNodes[0].data
 
                         filter_item = None
+                        replace_item = None
 
                         try:
                             filter_item = self._item.getElementsByTagName("filter")[0]
+                        except:
+                            pass
+
+                        try:
+                            replace_item = self._item.getElementsByTagName("replace")[0]
+                            print("leido")
                         except:
                             pass
 
@@ -199,6 +219,7 @@ class Action:
                                                       primary_key_from=primary_key_from,
                                                       primary_key_to=primary_key_to,
                                                       filter_item=filter_item,
+                                                      replace_item=replace_item,
                                                       type=type)
 
                     case "update_from_value":
