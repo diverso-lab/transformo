@@ -98,11 +98,7 @@ We are ready!
 
 We have prepared a script that disables NULL and AUTOINCREMENT constraints. Since our validation focuses on dumping field by field from one database to another, it is important that the target database has no restrictions on individually updated fields.
 
-Therefore, in the SQL tab, we import the code contained in:
-
-```
-prepare.sql
-````
+Therefore, in the SQL tab, we execute the code contained in  `workspaces/DW2/scripts/prepare.sql`:
 
 #### 2.2.3 Execute transformation scripts!
 
