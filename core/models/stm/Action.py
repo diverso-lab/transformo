@@ -207,7 +207,6 @@ class Action:
 
                         try:
                             replace_item = self._item.getElementsByTagName("replace")[0]
-                            print("leido")
                         except:
                             pass
 

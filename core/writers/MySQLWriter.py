@@ -90,9 +90,7 @@ class MySQLWriter:
     def _write_action(self, transformation, action, template_file):
 
         template = self._template_env.get_template(template_file)
-
         
-
         body = {
                 "transformation_name" : transformation.id(),
                 "database_name_from" : self._database_info_extractor.database_source_name(),
@@ -100,11 +98,7 @@ class MySQLWriter:
                 "action" : action.apply()
             }
         
-        #template.stream(body).dump("hola.sql")
-        
         render = template.render(body)
-
-        print(render)
 
         with open(self._sql_filename, "a",  encoding='utf-8') as f:
             f.write("\n\n")

@@ -23,10 +23,6 @@ UPDATE `wordpress`.`wp_users` table_target
     SET table_target.`user_nicename` = table_source.`name`
     
 
-    
-
-    
-
 
 WHERE table_source.`uid` = table_target.`ID`;
 
@@ -45,10 +41,6 @@ UPDATE `wordpress`.`wp_users` table_target
 
     
     SET table_target.`user_login` = table_source.`name`
-    
-
-    
-
     
 
 
@@ -71,10 +63,6 @@ UPDATE `wordpress`.`wp_users` table_target
     SET table_target.`display_name` = table_source.`name`
     
 
-    
-
-    
-
 
 WHERE table_source.`uid` = table_target.`ID`;
 
@@ -95,10 +83,6 @@ UPDATE `wordpress`.`wp_users` table_target
     SET table_target.`user_email` = table_source.`mail`
     
 
-    
-
-    
-
 
 WHERE table_source.`uid` = table_target.`ID`;
 
@@ -117,10 +101,6 @@ UPDATE `wordpress`.`wp_users` table_target
 
     
     SET table_target.`user_pass` = table_source.`pass`
-    
-
-    
-
     
 
 
@@ -186,10 +166,6 @@ UPDATE `wordpress`.`wp_posts` table_target
     SET table_target.`post_author` = table_source.`uid`
     
 
-    
-
-    
-
 
 WHERE table_source.`nid` = table_target.`ID`;
 
@@ -274,10 +250,6 @@ UPDATE `wordpress`.`wp_posts` table_target
     SET table_target.`post_title` = table_source.`title`
     
 
-    
-
-    
-
 
 WHERE table_source.`nid` = table_target.`ID`;
 
@@ -298,10 +270,6 @@ UPDATE `wordpress`.`wp_posts` table_target
     SET table_target.`post_name` = REPLACE(table_source.`title`, ' ', '-')
     
 
-    
-
-    
-
 
 WHERE table_source.`nid` = table_target.`ID`;
 
@@ -320,10 +288,6 @@ UPDATE `wordpress`.`wp_posts` table_target
 
     
     SET table_target.`post_content` = table_source.`body_value`
-    
-
-    
-
     
 
 
@@ -357,10 +321,6 @@ UPDATE `wordpress`.`wp_posts` table_target
     SET table_target.`post_author` = table_source.`uid`
     
 
-    
-
-    
-
 
 WHERE table_source.`nid` = table_target.`ID`;
 
@@ -445,10 +405,6 @@ UPDATE `wordpress`.`wp_posts` table_target
     SET table_target.`post_title` = table_source.`title`
     
 
-    
-
-    
-
 
 WHERE table_source.`nid` = table_target.`ID`;
 
@@ -469,10 +425,6 @@ UPDATE `wordpress`.`wp_posts` table_target
     SET table_target.`post_name` = REPLACE(table_source.`title`, ' ', '-')
     
 
-    
-
-    
-
 
 WHERE table_source.`nid` = table_target.`ID`;
 
@@ -491,10 +443,6 @@ UPDATE `wordpress`.`wp_posts` table_target
 
     
     SET table_target.`post_name` = REPLACE(table_source.`title`, ' ', '-')
-    
-
-    
-
     
 
 
@@ -515,10 +463,6 @@ UPDATE `wordpress`.`wp_posts` table_target
 
     
     SET table_target.`post_content` = table_source.`body_value`
-    
-
-    
-
     
 
 
@@ -551,10 +495,6 @@ UPDATE `wordpress`.`wp_comments` table_target
     SET table_target.`comment_post_ID` = table_source.`entity_id`
     
 
-    
-
-    
-
 
 WHERE table_source.`entity_id` = table_target.`comment_ID`;
 
@@ -573,10 +513,6 @@ UPDATE `wordpress`.`wp_comments` table_target
 
     
     SET table_target.`comment_content` = table_source.`field_summary_value`
-    
-
-    
-
     
 
 
