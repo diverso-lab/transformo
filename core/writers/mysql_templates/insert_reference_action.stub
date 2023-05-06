@@ -3,9 +3,10 @@
 -- -----------------------------------------------------
 
 INSERT INTO `{{ database_name_to }}`.`{{ action.entity_to_id() }}` (`{{ action.primary_key_to() }}`)
-  SELECT `{{ action.primary_key_from() }}` FROM `{{ database_name_from }}`.`{{ action.entity_from_id()}}`
+  SELECT MIN(`{{ action.primary_key_from() }}`) FROM `{{ database_name_from }}`.`{{ action.entity_from_id()}}`
 
   {%- if action.where() is not none %}
 {{" "}} WHERE `{{ database_name_from }}`.`{{ action.entity_from_id()}}`.`{{ action.where().attribute_from() }}` IN ('{{ action.where().value() }}')
 {%- endif %}
+  GROUP BY `{{ action.primary_key_from()}}`
   ORDER BY `{{ action.primary_key_from()}}`;

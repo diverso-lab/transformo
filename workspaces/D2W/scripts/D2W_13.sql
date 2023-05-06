@@ -5,7 +5,8 @@
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_users` (`ID`)
-  SELECT `uid` FROM `drupal`.`users_field_data`
+  SELECT MIN(`uid`) FROM `drupal`.`users_field_data`
+  GROUP BY `uid`
   ORDER BY `uid`;
 
 -- -----------------------------------------------------
@@ -73,7 +74,8 @@ WHERE table_source.`uid` = table_target.`ID`;
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_usermeta` (`user_id`)
-  SELECT `uid` FROM `drupal`.`users_field_data`
+  SELECT MIN(`uid`) FROM `drupal`.`users_field_data`
+  GROUP BY `uid`
   ORDER BY `uid`;
 
 -- -----------------------------------------------------

@@ -5,7 +5,8 @@
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_users` (`ID`)
-  SELECT `uid` FROM `drupal`.`users_field_data`
+  SELECT MIN(`uid`) FROM `drupal`.`users_field_data`
+  GROUP BY `uid`
   ORDER BY `uid`;
 
 -- -----------------------------------------------------
@@ -73,8 +74,9 @@ WHERE table_source.`uid` = table_target.`ID`;
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_posts` (`ID`)
-  SELECT `nid` FROM `drupal`.`node_field_data`
+  SELECT MIN(`nid`) FROM `drupal`.`node_field_data`
   WHERE `drupal`.`node_field_data`.`type` IN ('article')
+  GROUP BY `nid`
   ORDER BY `nid`;
 
 -- -----------------------------------------------------
@@ -178,8 +180,9 @@ WHERE table_source.`entity_id` = table_target.`ID`;
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_posts` (`ID`)
-  SELECT `nid` FROM `drupal`.`node_field_data`
+  SELECT MIN(`nid`) FROM `drupal`.`node_field_data`
   WHERE `drupal`.`node_field_data`.`type` IN ('page')
+  GROUP BY `nid`
   ORDER BY `nid`;
 
 -- -----------------------------------------------------

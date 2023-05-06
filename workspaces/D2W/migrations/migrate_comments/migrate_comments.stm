@@ -2,9 +2,9 @@
 
     <transformation type="attribute" id="InsertReferenceAction">
         <action type="insert_reference">
-            <from>node__field_comment</from>
+            <from>node_revision__field_summary</from>
             <to>wp_comments</to>
-            <primary_key_from>id</primary_key_from>
+            <primary_key_from>entity_id</primary_key_from>
             <primary_key_to>comment_ID</primary_key_to>
             <type>varchar(60)</type>
         </action>
@@ -12,23 +12,23 @@
 
     <transformation type="attribute" id="UpdateFromFieldAction">
         <action type="update_from_field">
-            <from>node__field_comment</from>
+            <from>node_revision__field_summary</from>
             <to>wp_comments</to>
             <attribute_from>entity_id</attribute_from>
             <attribute_to>comment_post_ID</attribute_to>
-            <primary_key_from>id</primary_key_from>
+            <primary_key_from>entity_id</primary_key_from>
             <primary_key_to>comment_ID</primary_key_to>
             <type>varchar(254)</type>
         </action>
     </transformation>
 
-    <transformation type="attribute" id="UpdateFromFieldAction">
+     <transformation type="attribute" id="UpdateFromFieldAction">
         <action type="update_from_field">
-            <from>node__field_comment</from>
+            <from>node_revision__field_summary</from>
             <to>wp_comments</to>
-            <attribute_from>field_comment_value</attribute_from>
-            <attribute_to>comment_author</attribute_to>
-            <primary_key_from>id</primary_key_from>
+            <attribute_from>field_summary_value</attribute_from>
+            <attribute_to>comment_content</attribute_to>
+            <primary_key_from>entity_id</primary_key_from>
             <primary_key_to>comment_ID</primary_key_to>
             <type>varchar(254)</type>
         </action>

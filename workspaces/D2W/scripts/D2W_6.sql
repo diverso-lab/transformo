@@ -5,7 +5,8 @@
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_users` (`ID`)
-  SELECT `uid` FROM `drupal`.`users_field_data`
+  SELECT MIN(`uid`) FROM `drupal`.`users_field_data`
+  GROUP BY `uid`
   ORDER BY `uid`;
 
 -- -----------------------------------------------------
@@ -73,8 +74,9 @@ WHERE table_source.`uid` = table_target.`ID`;
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_posts` (`ID`)
-  SELECT `nid` FROM `drupal`.`node_field_data`
+  SELECT MIN(`nid`) FROM `drupal`.`node_field_data`
   WHERE `drupal`.`node_field_data`.`type` IN ('article')
+  GROUP BY `nid`
   ORDER BY `nid`;
 
 -- -----------------------------------------------------
@@ -178,8 +180,9 @@ WHERE table_source.`entity_id` = table_target.`ID`;
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_posts` (`ID`)
-  SELECT `nid` FROM `drupal`.`node_field_data`
+  SELECT MIN(`nid`) FROM `drupal`.`node_field_data`
   WHERE `drupal`.`node_field_data`.`type` IN ('page')
+  GROUP BY `nid`
   ORDER BY `nid`;
 
 -- -----------------------------------------------------
@@ -283,29 +286,30 @@ WHERE table_source.`entity_id` = table_target.`ID`;
 -- -----------------------------------------------------
 
 INSERT INTO `wordpress`.`wp_comments` (`comment_ID`)
-  SELECT `id` FROM `drupal`.`node__field_comment`
-  ORDER BY `id`;
+  SELECT MIN(`entity_id`) FROM `drupal`.`node_revision__field_summary`
+  GROUP BY `entity_id`
+  ORDER BY `entity_id`;
 
 -- -----------------------------------------------------
 -- Transformation  UpdateFromFieldAction
 -- -----------------------------------------------------
 
 UPDATE `wordpress`.`wp_comments` table_target
-       INNER JOIN `drupal`.`node__field_comment` table_source
-       ON table_source.`id` = table_target.`comment_ID`
+       INNER JOIN `drupal`.`node_revision__field_summary` table_source
+       ON table_source.`entity_id` = table_target.`comment_ID`
 
     SET table_target.`comment_post_ID` = table_source.`entity_id`
 
-WHERE table_source.`id` = table_target.`comment_ID`;
+WHERE table_source.`entity_id` = table_target.`comment_ID`;
 
 -- -----------------------------------------------------
 -- Transformation  UpdateFromFieldAction
 -- -----------------------------------------------------
 
 UPDATE `wordpress`.`wp_comments` table_target
-       INNER JOIN `drupal`.`node__field_comment` table_source
-       ON table_source.`id` = table_target.`comment_ID`
+       INNER JOIN `drupal`.`node_revision__field_summary` table_source
+       ON table_source.`entity_id` = table_target.`comment_ID`
 
-    SET table_target.`comment_author` = table_source.`field_comment_value`
+    SET table_target.`comment_content` = table_source.`field_summary_value`
 
-WHERE table_source.`id` = table_target.`comment_ID`;
+WHERE table_source.`entity_id` = table_target.`comment_ID`;
